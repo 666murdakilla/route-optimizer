@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useGoogleMaps } from './hooks/useGoogleMaps'
 import { loadLocations, saveLocations } from './lib/storage'
-import { computeRoutes } from './lib/computeRoutes'
+import { computeRoutes, recomputeRouteTotals } from './lib/computeRoutes'
 import MapView from './components/MapView'
 import LocationForm from './components/LocationForm'
 import LocationList from './components/LocationList'
@@ -13,7 +13,13 @@ export default function App() {
   const [locations, setLocations] = useState(() => loadLocations())
   const [selectedIds, setSelectedIds] = useState(() => new Set())
   const [startId, setStartId] = useState(null)
-  const [routes, setRoutes] = useState(null)
+  const [endId, setEndId] = useState(null)
+  // routesResult holds the solver's raw output plus the distance/duration
+  // matrices it was solved against; routeViews holds what's actually
+  // displayed (order/totals/per-stop schedule), which manual reordering and
+  // schedule edits mutate without ever needing to re-fetch the matrices.
+  const [routesResult, setRoutesResult] = useState(null)
+  const [routeViews, setRouteViews] = useState(null)
   const [routesLoading, setRoutesLoading] = useState(false)
   const [routesError, setRoutesError] = useState(null)
   const [visibleRoutes, setVisibleRoutes] = useState({ distance: true, time: true })
@@ -38,6 +44,14 @@ export default function App() {
     }
   }, [selectedIds])
 
+  // Keep the chosen end point valid: clear it if its location was
+  // deselected, or if it now collides with the start point.
+  useEffect(() => {
+    if (endId && (endId === startId || !selectedLocations.some((loc) => loc.id === endId))) {
+      setEndId(null)
+    }
+  }, [selectedIds, startId])
+
   function handleAdd(location) {
     setLocations((prev) => [...prev, location])
   }
@@ -49,7 +63,8 @@ export default function App() {
       next.delete(id)
       return next
     })
-    setRoutes(null)
+    setRoutesResult(null)
+    setRouteViews(null)
     setRoutesError(null)
   }
 
@@ -60,8 +75,14 @@ export default function App() {
       else next.add(id)
       return next
     })
-    setRoutes(null)
+    setRoutesResult(null)
+    setRouteViews(null)
     setRoutesError(null)
+  }
+
+  function handleStartChange(newStartId) {
+    setStartId(newStartId)
+    setEndId((prev) => (prev === newStartId ? null : prev))
   }
 
   async function handleCalculate() {
@@ -70,13 +91,20 @@ export default function App() {
       0,
       selectedLocations.findIndex((loc) => loc.id === startId),
     )
+    const endLookup = endId ? selectedLocations.findIndex((loc) => loc.id === endId) : -1
+    const endIndex = endLookup >= 0 ? endLookup : null
 
     setRoutesLoading(true)
     setRoutesError(null)
-    setRoutes(null)
+    setRoutesResult(null)
+    setRouteViews(null)
     try {
-      const result = await computeRoutes(selectedLocations, startIndex)
-      setRoutes(result)
+      const result = await computeRoutes(selectedLocations, startIndex, endIndex)
+      setRoutesResult(result)
+      setRouteViews({
+        distance: routeViewFromSummary(result.distance),
+        time: routeViewFromSummary(result.time),
+      })
     } catch (err) {
       setRoutesError(err.message || 'Could not calculate routes. Please try again.')
     } finally {
@@ -86,6 +114,52 @@ export default function App() {
 
   function handleToggleVisible(key) {
     setVisibleRoutes((prev) => ({ ...prev, [key]: !prev[key] }))
+  }
+
+  function handleReorder(routeKey, newOrder) {
+    const { totalMiles, totalMinutes } = recomputeRouteTotals(
+      newOrder,
+      routesResult.locations,
+      routesResult.matrices.distanceMiles,
+      routesResult.matrices.durationMinutes,
+    )
+    setRouteViews((prev) => ({
+      ...prev,
+      [routeKey]: { ...prev[routeKey], order: newOrder, totalMiles, totalMinutes },
+    }))
+  }
+
+  function handleResetOrder(routeKey) {
+    setRouteViews((prev) => ({
+      ...prev,
+      [routeKey]: {
+        ...prev[routeKey],
+        order: routesResult[routeKey].order,
+        totalMiles: routesResult[routeKey].totalMiles,
+        totalMinutes: routesResult[routeKey].totalMinutes,
+      },
+    }))
+  }
+
+  function handleDurationChange(routeKey, locationId, minutes) {
+    setRouteViews((prev) => ({
+      ...prev,
+      [routeKey]: {
+        ...prev[routeKey],
+        stopDurations: { ...prev[routeKey].stopDurations, [locationId]: minutes },
+      },
+    }))
+  }
+
+  function handleAnchorChange(routeKey, locationId, time) {
+    setRouteViews((prev) => {
+      const current = prev[routeKey]
+      if (time === '') {
+        if (current.anchor?.locationId !== locationId) return prev
+        return { ...prev, [routeKey]: { ...current, anchor: null } }
+      }
+      return { ...prev, [routeKey]: { ...current, anchor: { locationId, time } } }
+    })
   }
 
   return (
@@ -111,7 +185,7 @@ export default function App() {
       <main className="app-layout">
         <section className="map-panel">
           {mapsStatus === 'ready' ? (
-            <MapView locations={locations} routes={routes} visibleRoutes={visibleRoutes} />
+            <MapView locations={locations} routes={routeViews} visibleRoutes={visibleRoutes} />
           ) : (
             <div className="map-placeholder">
               {mapsStatus === 'loading' ? 'Loading map…' : 'Map unavailable.'}
@@ -143,19 +217,36 @@ export default function App() {
             <RoutePanel
               selectedLocations={selectedLocations}
               startId={startId}
-              onStartChange={setStartId}
+              onStartChange={handleStartChange}
+              endId={endId}
+              onEndChange={setEndId}
               onCalculate={handleCalculate}
               loading={routesLoading}
               error={routesError}
-              routes={routes}
+              routesResult={routesResult}
+              routeViews={routeViews}
               visibleRoutes={visibleRoutes}
               onToggleVisible={handleToggleVisible}
+              onReorder={handleReorder}
+              onResetOrder={handleResetOrder}
+              onDurationChange={handleDurationChange}
+              onAnchorChange={handleAnchorChange}
             />
           )}
         </section>
       </main>
     </div>
   )
+}
+
+function routeViewFromSummary(routeSummary) {
+  return {
+    order: routeSummary.order,
+    totalMiles: routeSummary.totalMiles,
+    totalMinutes: routeSummary.totalMinutes,
+    stopDurations: {},
+    anchor: null,
+  }
 }
 
 function disabledFormMessage(mapsStatus) {

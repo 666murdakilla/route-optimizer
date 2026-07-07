@@ -1,7 +1,8 @@
 // Solves the "open path" traveling salesman problem: given a cost matrix
 // between N stops and a fixed starting stop, find the visiting order that
-// minimizes total cost, ending wherever is cheapest (there is no
-// requirement to return to the start).
+// minimizes total cost. If an end stop is also fixed, the path must finish
+// there; otherwise it ends wherever is cheapest (no requirement to return
+// to the start).
 //
 // Method selection:
 //   - N <= HELD_KARP_LIMIT: exact Held-Karp dynamic programming,
@@ -21,17 +22,17 @@
 
 const HELD_KARP_LIMIT = 12
 
-export function solveTSP(costMatrix, startIndex) {
+export function solveTSP(costMatrix, startIndex, endIndex = null) {
   const n = costMatrix.length
   if (n === 0) return { order: [], total: 0 }
   if (n === 1) return { order: [startIndex], total: 0 }
 
   return n <= HELD_KARP_LIMIT
-    ? solveHeldKarp(costMatrix, startIndex)
-    : solveNearestNeighborWith2Opt(costMatrix, startIndex)
+    ? solveHeldKarp(costMatrix, startIndex, endIndex)
+    : solveNearestNeighborWith2Opt(costMatrix, startIndex, endIndex)
 }
 
-function solveHeldKarp(costMatrix, startIndex) {
+function solveHeldKarp(costMatrix, startIndex, endIndex) {
   const n = costMatrix.length
   const FULL_MASK = (1 << n) - 1
   const startBit = 1 << startIndex
@@ -62,12 +63,22 @@ function solveHeldKarp(costMatrix, startIndex) {
     }
   }
 
-  let bestEnd = startIndex
-  let bestCost = dp[FULL_MASK][startIndex]
-  for (let j = 0; j < n; j++) {
-    if (dp[FULL_MASK][j] < bestCost) {
-      bestCost = dp[FULL_MASK][j]
-      bestEnd = j
+  // With a fixed end, the DP already computed the best cost of visiting
+  // everyone and finishing exactly at endIndex - just read that cell
+  // instead of minimizing over every possible last stop.
+  let bestEnd
+  let bestCost
+  if (endIndex !== null) {
+    bestEnd = endIndex
+    bestCost = dp[FULL_MASK][endIndex]
+  } else {
+    bestEnd = startIndex
+    bestCost = dp[FULL_MASK][startIndex]
+    for (let j = 0; j < n; j++) {
+      if (dp[FULL_MASK][j] < bestCost) {
+        bestCost = dp[FULL_MASK][j]
+        bestEnd = j
+      }
     }
   }
 
@@ -85,18 +96,24 @@ function solveHeldKarp(costMatrix, startIndex) {
   return { order, total: bestCost }
 }
 
-function solveNearestNeighborWith2Opt(costMatrix, startIndex) {
-  const order = nearestNeighborPath(costMatrix, startIndex)
-  const improved = twoOptImprove(order, costMatrix)
+function solveNearestNeighborWith2Opt(costMatrix, startIndex, endIndex) {
+  const order = nearestNeighborPath(costMatrix, startIndex, endIndex)
+  const improved = twoOptImprove(order, costMatrix, endIndex !== null)
   return { order: improved, total: pathCost(improved, costMatrix) }
 }
 
-function nearestNeighborPath(costMatrix, startIndex) {
+// Builds a greedy path start -> ... -> (endIndex, if fixed) by always
+// hopping to the nearest unvisited stop. When an end is fixed, it's held
+// out of the greedy selection and appended last so the path still finishes
+// there.
+function nearestNeighborPath(costMatrix, startIndex, endIndex) {
   const n = costMatrix.length
   const visited = new Set([startIndex])
+  if (endIndex !== null) visited.add(endIndex)
   const order = [startIndex]
+  const stopsToVisit = endIndex !== null ? n - 1 : n
 
-  while (order.length < n) {
+  while (order.length < stopsToVisit) {
     const current = order[order.length - 1]
     let nearest = -1
     let nearestCost = Infinity
@@ -112,21 +129,25 @@ function nearestNeighborPath(costMatrix, startIndex) {
     order.push(nearest)
   }
 
+  if (endIndex !== null) order.push(endIndex)
+
   return order
 }
 
 // Classic 2-opt: repeatedly reverse a segment of the path if doing so
 // shortens it, until no single reversal helps. The start of the path (index
-// 0) is left fixed since the route must begin at the chosen start location.
-function twoOptImprove(initialOrder, costMatrix) {
+// 0) is always left fixed. When fixedEnd is true, the last index is also
+// left fixed so the path still finishes at the required end stop.
+function twoOptImprove(initialOrder, costMatrix, fixedEnd) {
   let order = initialOrder.slice()
   const n = order.length
+  const kBound = fixedEnd ? n - 1 : n
   let improved = true
 
   while (improved) {
     improved = false
     for (let i = 1; i < n - 1; i++) {
-      for (let k = i + 1; k < n; k++) {
+      for (let k = i + 1; k < kBound; k++) {
         const reversed = order.slice()
         reverseSegment(reversed, i, k)
         if (pathCost(reversed, costMatrix) < pathCost(order, costMatrix)) {

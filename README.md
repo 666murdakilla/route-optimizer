@@ -21,6 +21,16 @@ client-side.
   (orange = shortest distance, blue = fastest time), plus ordered stop lists
   with total miles/time. If both routes land on the same stop order, the UI
   says so explicitly instead of showing two identical lists.
+- Optional end point, in addition to the start point, for both optimized
+  routes - the solver then finds the best order visiting every selected stop
+  between that fixed start and end instead of ending wherever is cheapest.
+- Drag-and-drop manual reordering of either route's stop list, with totals
+  recalculated instantly from the already-fetched distance/duration data (no
+  extra API calls) and a "reset to optimized order" button per route.
+- Per-stop arrival time and dwell-duration editing: set a time on any one
+  stop and the rest are estimated automatically (forward and backward)
+  using real drive times and each stop's dwell duration, staying in sync as
+  you reorder stops or change durations.
 
 ## Getting a Google Maps API key
 
@@ -77,6 +87,7 @@ src/
     distanceMatrix.js   Fetches the distance/duration matrix for selected stops
     tsp.js              TSP solver (Held-Karp exact + nearest-neighbor/2-opt fallback)
     computeRoutes.js    Combines the matrix + solver into the two route results
+    schedule.js         Per-stop arrival time propagation from a single anchor stop
     storage.js          localStorage persistence for saved locations
 ```
 
@@ -85,9 +96,9 @@ src/
 For the selected stops, the app fetches a full pairwise driving distance
 (miles) and driving time (minutes, with live traffic where available) matrix
 from the Distance Matrix API, then solves two instances of the traveling
-salesman problem against that matrix - fixed starting stop, no requirement
-to return to the start - once minimizing total distance and once minimizing
-total time.
+salesman problem against that matrix - fixed starting stop, optionally a
+fixed end stop too - once minimizing total distance and once minimizing
+total time. Without a fixed end, the path finishes wherever is cheapest.
 
 `src/lib/tsp.js` picks the solving method based on stop count:
 

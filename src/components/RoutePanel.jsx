@@ -1,3 +1,5 @@
+import RouteStopList from './RouteStopList'
+
 const ROUTE_LABELS = {
   distance: 'Shortest distance',
   time: 'Fastest time',
@@ -7,30 +9,54 @@ export default function RoutePanel({
   selectedLocations,
   startId,
   onStartChange,
+  endId,
+  onEndChange,
   onCalculate,
   loading,
   error,
-  routes,
+  routesResult,
+  routeViews,
   visibleRoutes,
   onToggleVisible,
+  onReorder,
+  onResetOrder,
+  onDurationChange,
+  onAnchorChange,
 }) {
   const canCalculate = selectedLocations.length >= 2 && !loading
+  const identicalOrder =
+    routeViews && routeViews.distance.order.map((loc) => loc.id).join(',') === routeViews.time.order.map((loc) => loc.id).join(',')
 
   return (
     <div className="route-panel">
       <h2>Calculate routes</h2>
 
       {selectedLocations.length >= 2 && (
-        <label className="field">
-          <span>Start point</span>
-          <select value={startId} onChange={(e) => onStartChange(e.target.value)}>
-            {selectedLocations.map((loc) => (
-              <option key={loc.id} value={loc.id}>
-                {loc.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        <>
+          <label className="field">
+            <span>Start point</span>
+            <select value={startId} onChange={(e) => onStartChange(e.target.value)}>
+              {selectedLocations.map((loc) => (
+                <option key={loc.id} value={loc.id}>
+                  {loc.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="field">
+            <span>End point (optional)</span>
+            <select value={endId ?? ''} onChange={(e) => onEndChange(e.target.value || null)}>
+              <option value="">No fixed end</option>
+              {selectedLocations
+                .filter((loc) => loc.id !== startId)
+                .map((loc) => (
+                  <option key={loc.id} value={loc.id}>
+                    {loc.name}
+                  </option>
+                ))}
+            </select>
+          </label>
+        </>
       )}
 
       <div className="route-controls">
@@ -44,47 +70,42 @@ export default function RoutePanel({
 
       {error && <p className="form-error">{error}</p>}
 
-      {routes && (
+      {routeViews && (
         <div className="route-results">
-          {routes.identicalOrder && (
+          {identicalOrder && (
             <p className="identical-routes-banner">
               The shortest-distance route and the fastest-time route visit the stops in the exact same
               order.
             </p>
           )}
 
-          {(['distance', 'time']).map((key) => (
-            <div key={key} className="route-summary">
-              <h3>
-                <label className="route-toggle">
-                  <input
-                    type="checkbox"
-                    checked={visibleRoutes[key]}
-                    onChange={() => onToggleVisible(key)}
-                  />
-                  <span className={`swatch swatch-${key}`} />
-                  {ROUTE_LABELS[key]}
-                </label>
-              </h3>
-              <p className="route-stats">
-                {routes[key].totalMiles.toFixed(1)} miles · {formatMinutes(routes[key].totalMinutes)}
-              </p>
-              <ol>
-                {routes[key].order.map((loc) => (
-                  <li key={loc.id}>{loc.name}</li>
-                ))}
-              </ol>
-            </div>
-          ))}
+          {['distance', 'time'].map((key) => {
+            const view = routeViews[key]
+            const isModified = view.order.map((loc) => loc.id).join(',') !== routesResult[key].order.map((loc) => loc.id).join(',')
+            return (
+              <RouteStopList
+                key={key}
+                routeKey={key}
+                label={ROUTE_LABELS[key]}
+                order={view.order}
+                totalMiles={view.totalMiles}
+                totalMinutes={view.totalMinutes}
+                stopDurations={view.stopDurations}
+                anchor={view.anchor}
+                referenceLocations={routesResult.locations}
+                durationMinutes={routesResult.matrices.durationMinutes}
+                visible={visibleRoutes[key]}
+                onToggleVisible={() => onToggleVisible(key)}
+                isModified={isModified}
+                onReorder={(newOrder) => onReorder(key, newOrder)}
+                onResetOrder={() => onResetOrder(key)}
+                onDurationChange={(locId, minutes) => onDurationChange(key, locId, minutes)}
+                onAnchorChange={(locId, time) => onAnchorChange(key, locId, time)}
+              />
+            )
+          })}
         </div>
       )}
     </div>
   )
-}
-
-function formatMinutes(totalMinutes) {
-  const rounded = Math.round(totalMinutes)
-  const hours = Math.floor(rounded / 60)
-  const minutes = rounded % 60
-  return hours > 0 ? `${hours} hr ${minutes} min` : `${minutes} min`
 }
