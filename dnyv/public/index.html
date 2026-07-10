@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Department of New Yorker Verification — Official Website of the City of New York</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-cyrillic-ext.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-devanagari.woff2") format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-greek-ext.woff2") format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-greek.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-cyrillic-ext.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-devanagari.woff2") format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-greek-ext.woff2") format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-greek.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-cyrillic-ext.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-devanagari.woff2") format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-greek-ext.woff2") format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-greek.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-cyrillic-ext.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-devanagari.woff2") format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-greek-ext.woff2") format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-greek.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/assets/fonts/noto-sans-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@500,600&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000000; --white:#FFFFFF;
+    --blue-40:#103FEF; --blue-10:#050560; --blue-70:#70BAFF; --blue-80:#B5DBFF; --blue-95:#EAF1FF;
+    --gray-20:#333333; --gray-30:#555555; --gray-40:#777777; --gray-70:#CCCCCC; --gray-80:#DDDDDD; --gray-90:#EEEEEE; --gray-95:#F5F5F5;
+    --green-40:#00B703; --yellow-40:#FFB320; --red-40:#EC131E;
+    --display:'Clash Grotesk','Space Grotesk','Noto Sans',system-ui,sans-serif;
+    --body:'Noto Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --maxline:800px; --wrap:1200px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:var(--body);font-weight:400;color:var(--black);background:var(--white);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--blue-40);text-decoration:underline;text-underline-offset:2px;}
+  a:hover{color:var(--blue-10);}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--blue-40);outline-offset:2px;}
+  h1,h2,h3,h4,h5{font-family:var(--display);font-weight:600;line-height:1.15;margin:0 0 .5em;color:var(--black);}
+  h1{font-size:42px;letter-spacing:-.2px;line-height:1.12;}
+  h2{font-size:31px;line-height:1.18;margin-top:0;}
+  h3{font-size:23px;font-weight:600;line-height:1.3;}
+  h4{font-size:20px;font-weight:600;}
+  p{margin:0 0 1.1em;max-width:var(--maxline);}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
+  .col{max-width:var(--maxline);}
+  .btn{display:inline-block;background:var(--blue-40);color:var(--white);font-family:var(--body);font-weight:600;font-size:17px;text-decoration:none;padding:14px 28px;border:none;border-radius:2px;cursor:pointer;line-height:1.2;}
+  .btn:hover{background:var(--blue-10);color:var(--white);}
+  .btn.secondary{background:var(--white);color:var(--blue-40);box-shadow:inset 0 0 0 2px var(--blue-40);}
+  .btn.secondary:hover{background:var(--blue-95);color:var(--blue-10);}
+  .eyebrow{font-family:var(--body);font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-30);margin-bottom:12px;}
+
+  /* ---------- Gov banner ---------- */
+  .gov-banner{background:var(--gray-90);font-size:13px;color:var(--gray-20);border-bottom:1px solid var(--gray-80);}
+  .gov-banner .wrap{display:flex;align-items:center;gap:8px;min-height:34px;flex-wrap:wrap;padding-top:5px;padding-bottom:5px;}
+  .gov-banner .flag{width:16px;height:11px;flex:none;}
+  .gov-banner button{background:none;border:none;color:var(--blue-40);font-family:var(--body);font-size:13px;text-decoration:underline;cursor:pointer;padding:0;font-weight:600;}
+  .gov-detail{display:none;padding:12px 0 16px;font-size:13px;color:var(--gray-30);gap:32px;}
+  .gov-detail.open{display:flex;flex-wrap:wrap;}
+  .gov-detail div{max-width:420px;display:flex;gap:10px;}
+  .gov-detail strong{color:var(--gray-20);}
+
+  /* ---------- Utility bar ---------- */
+  .util{background:var(--black);color:var(--white);font-size:14px;}
+  .util .wrap{display:flex;align-items:center;justify-content:flex-end;gap:24px;min-height:40px;}
+  .util a{color:var(--white);text-decoration:none;font-weight:500;}
+  .util a:hover{text-decoration:underline;}
+
+  /* ---------- Masthead ---------- */
+  .masthead{background:var(--white);border-bottom:1px solid var(--gray-80);}
+  .masthead .wrap{display:flex;align-items:center;gap:20px;padding-top:18px;padding-bottom:18px;}
+  .brand{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--black);}
+  .brand:hover{color:var(--black);}
+  :root{--nyc-logo:url("data:image/png;base64,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");}
+  .seal{height:46px;aspect-ratio:3794/1278;width:auto;flex:none;display:block;background:var(--nyc-logo) left center/contain no-repeat;}
+  .brand-txt strong{display:block;font-family:var(--display);font-weight:600;font-size:20px;line-height:1.1;letter-spacing:-.2px;}
+  .brand-txt span{display:block;font-size:13px;color:var(--gray-30);font-weight:500;margin-top:2px;}
+  .search{margin-left:auto;display:flex;max-width:320px;width:100%;}
+  .search input{flex:1;border:2px solid var(--black);border-right:none;padding:10px 14px;font-family:var(--body);font-size:15px;border-radius:2px 0 0 2px;min-width:0;}
+  .search button{background:var(--blue-40);border:2px solid var(--blue-40);color:var(--white);padding:0 18px;border-radius:0 2px 2px 0;cursor:pointer;font-weight:600;}
+  .search button:hover{background:var(--blue-10);border-color:var(--blue-10);}
+
+  /* ---------- Primary nav ---------- */
+  .nav{background:var(--white);border-bottom:2px solid var(--black);position:sticky;top:0;z-index:40;}
+  .nav .wrap{display:flex;align-items:stretch;gap:0;}
+  #primary-links{display:flex;flex-wrap:wrap;}
+  .nav a{color:var(--black);text-decoration:none;font-weight:600;font-size:16px;padding:16px 18px;display:flex;align-items:center;border-bottom:4px solid transparent;white-space:nowrap;}
+  .nav a:hover{background:var(--gray-95);color:var(--blue-10);}
+  .nav a.active{border-bottom-color:var(--blue-40);color:var(--blue-10);}
+  .menu-toggle{display:none;margin-left:auto;background:none;border:none;font-family:var(--body);font-weight:600;font-size:16px;padding:14px 0;cursor:pointer;align-items:center;gap:8px;}
+
+  /* ---------- Alert ribbon ---------- */
+  .alert{background:var(--blue-95);border-bottom:1px solid var(--blue-80);}
+  .alert .wrap{display:flex;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px;font-size:15px;}
+  .alert .dot{width:10px;height:10px;border-radius:50%;background:var(--blue-40);flex:none;}
+  .alert strong{font-weight:700;}
+  .alert a{font-weight:600;}
+  .alert .x{margin-left:auto;background:none;border:none;color:var(--gray-40);font-size:18px;cursor:pointer;line-height:1;padding:4px;}
+  .alert .x:hover{color:var(--black);}
+
+  /* ---------- Breadcrumb ---------- */
+  .crumb{background:var(--gray-95);border-bottom:1px solid var(--gray-90);font-size:14px;color:var(--gray-30);}
+  .crumb .wrap{padding-top:12px;padding-bottom:12px;}
+  .crumb a{color:var(--blue-40);}
+
+  /* ---------- Pages ---------- */
+  .page{display:none;}
+  .page.active{display:block;}
+  section.band{padding:56px 0;}
+  section.band.tint{background:var(--gray-95);}
+  section.band.ink{background:var(--black);color:var(--white);}
+  section.band.ink h1,section.band.ink h2,section.band.ink h3{color:var(--white);}
+
+  /* ---------- Hero ---------- */
+  .herobanner{width:100%;display:block;}
+  .herobanner svg{width:100%;height:auto;display:block;}
+  .hero-copy{padding:44px 0 40px;}
+  .hero-copy h1{font-size:60px;max-width:15ch;letter-spacing:-.5px;line-height:1.05;}
+  .hero-copy .lede{font-size:20px;line-height:1.55;color:var(--gray-20);max-width:var(--maxline);margin-bottom:26px;}
+  .hero-copy .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+
+  /* mission */
+  .mission h2{margin-top:0;}
+  .quicklinks{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px 28px;}
+  .quicklinks li{margin:0;}
+
+  /* card grid (click-through) */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--gray-80);border:1px solid var(--gray-80);margin-top:8px;}
+  .card{background:var(--white);padding:26px 24px;text-decoration:none;color:var(--black);display:flex;flex-direction:column;gap:8px;min-height:140px;}
+  .card:hover{background:var(--blue-95);color:var(--black);}
+  .card .k{font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--blue-40);}
+  .card h4{margin:0;}
+  .card p{font-size:15px;color:var(--gray-30);margin:0;}
+  .card .go{font-weight:600;color:var(--blue-40);margin-top:auto;}
+
+  /* two-track */
+  .tracks{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:16px 0 8px;}
+  .track{border:1px solid var(--gray-80);border-top:6px solid var(--blue-40);padding:28px;background:var(--white);}
+  .track h3{margin-top:0;}
+  .track .tag{font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--gray-40);}
+
+  /* content pages */
+  .content h2{margin-top:48px;}
+  .content h3{margin-top:36px;}
+  .content ul,.content ol{max-width:var(--maxline);padding-left:22px;}
+  .content li{margin-bottom:10px;}
+  .lede{font-size:20px;line-height:1.55;color:var(--gray-20);max-width:var(--maxline);}
+  .rule{height:1px;background:var(--gray-80);border:none;margin:40px 0;max-width:var(--maxline);}
+  .callout{border:1px solid var(--gray-80);border-left:5px solid var(--black);background:var(--gray-95);padding:20px 24px;margin:24px 0;max-width:var(--maxline);}
+  .callout strong{font-family:var(--display);}
+  .pill{display:inline-block;background:var(--black);color:var(--white);font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:5px 12px;border-radius:2px;}
+  .notice{border-left:5px solid var(--blue-40);background:var(--blue-95);padding:18px 22px;margin:8px 0;border-radius:0 3px 3px 0;max-width:var(--maxline);}
+  .notice strong{display:block;font-family:var(--display);font-weight:600;font-size:20px;margin-bottom:4px;}
+  .notice p{margin:0;font-size:16px;}
+
+  /* statute */
+  .statute{font-family:var(--body);max-width:var(--maxline);}
+  .statute .sec{margin-bottom:22px;}
+  .statute .sub{padding-left:26px;margin:6px 0;color:var(--gray-20);}
+  .statute .center{text-align:center;color:var(--gray-30);font-size:15px;}
+
+  /* contact */
+  .infogrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:var(--maxline);margin-top:8px;}
+  .infocard{border:1px solid var(--gray-80);padding:24px;}
+  .infocard h4{margin-top:0;}
+
+  /* form */
+  .form{max-width:520px;border:1px solid var(--gray-80);padding:28px;background:var(--white);}
+  .form label{display:block;font-weight:600;margin-bottom:8px;}
+  .form input[type=email]{width:100%;border:2px solid var(--black);padding:12px 14px;font-family:var(--body);font-size:16px;border-radius:2px;margin-bottom:16px;}
+  .form .ok{display:none;border-left:5px solid var(--green-40);background:#EAF9EA;padding:16px 18px;margin-top:8px;}
+  .form .ok.show{display:block;}
+
+  /* footer */
+  footer{background:var(--black);color:var(--white);padding:56px 0 40px;font-size:15px;}
+  footer h5{font-family:var(--display);font-weight:600;font-size:16px;margin:0 0 14px;color:var(--white);}
+  footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;}
+  footer a{color:var(--gray-70);text-decoration:none;display:block;margin-bottom:9px;}
+  footer a:hover{color:var(--white);text-decoration:underline;}
+  footer .fseal{display:flex;gap:14px;align-items:flex-start;}
+  footer .fseal .seal{height:38px;filter:brightness(0) invert(1);}
+  footer .motto{font-style:italic;color:var(--gray-70);font-size:14px;max-width:34ch;margin-top:10px;}
+  footer .legal{border-top:1px solid var(--gray-20);margin-top:40px;padding-top:22px;color:var(--gray-40);font-size:13px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+
+  @media (max-width:900px){
+    h1{font-size:34px;} .hero-copy h1{font-size:36px;} h2{font-size:26px;} h3{font-size:21px;}
+    body{font-size:16px;}
+    .nav .wrap{flex-wrap:wrap;}
+    .menu-toggle{display:flex;}
+    #primary-links{display:none;flex-direction:column;width:100%;}
+    #primary-links.open{display:flex;}
+    .nav a{width:100%;border-bottom:1px solid var(--gray-90);}
+    .nav a.active{border-bottom:1px solid var(--gray-90);background:var(--blue-95);}
+    .grid,.tracks,.infogrid{grid-template-columns:1fr;}
+    footer .cols{grid-template-columns:1fr 1fr;}
+    .search{display:none;}
+    .masthead .wrap{flex-wrap:wrap;}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<!-- ============ GOV BANNER ============ -->
+<div class="gov-banner">
+  <div class="wrap">
+    <svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"></rect><rect width="6.67" height="14" fill="#1B458F"></rect><rect x="13.33" width="6.67" height="14" fill="#F4831F"></rect><rect x="0.35" y="0.35" width="19.3" height="13.3" fill="none" stroke="#C4C4C4" stroke-width="0.7"></rect></svg>
+    <span>An official website of the City of New York.</span>
+    <button id="gov-toggle" aria-expanded="false">Here's how you know&nbsp;▾</button>
+  </div>
+  <div class="wrap"><div class="gov-detail" id="gov-detail">
+    <div><span aria-hidden="true">🏛️</span><span><strong>Official websites use nyc.gov</strong><br>A nyc.gov website belongs to an official agency of the City of New York government.</span></div>
+    <div><span aria-hidden="true">🔒</span><span><strong>Secure sites use HTTPS</strong><br>A lock or https:// means you've safely connected to a City site. Share sensitive information only on official, secure websites.</span></div>
+  </div></div>
+</div>
+
+<!-- ============ UTILITY BAR ============ -->
+<div class="util"><div class="wrap">
+  <a href="https://www.nyc.gov/site/immigrants/help/language-access.page" target="_blank" rel="noopener noreferrer">Languages</a>
+  <a href="https://portal.311.nyc.gov" target="_blank" rel="noopener noreferrer">311</a>
+  <a href="https://www.nyc.gov/search" target="_blank" rel="noopener noreferrer">Search all NYC.gov websites</a>
+</div></div>
+
+<!-- ============ MASTHEAD ============ -->
+<div class="masthead"><div class="wrap">
+  <a class="brand" href="#home" data-route="home">
+    <span class="seal" aria-hidden="true" id="seal-slot"></span>
+    <span class="brand-txt">
+      <strong>Department of New Yorker Verification</strong>
+      <span>City of New York</span>
+    </span>
+  </a>
+  <div class="search" role="search">
+    <input type="text" aria-label="Search this site" placeholder="Search DNYV">
+    <button type="button" aria-label="Search">→</button>
+  </div>
+</div></div>
+
+<!-- ============ PRIMARY NAV ============ -->
+<nav class="nav" aria-label="Primary"><div class="wrap">
+  <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="primary-links">Menu ▾</button>
+  <div id="primary-links">
+    <a href="#home" data-route="home">Home</a>
+    <a href="#about" data-route="about">About</a>
+    <a href="#how" data-route="how">Verification</a>
+    <a href="#apply-how" data-route="apply-how">How to Apply</a>
+    <a href="#law" data-route="law">The Law</a>
+    <a href="#contact" data-route="contact">Contact</a>
+  </div>
+</div></nav>
+
+<!-- ============ ALERT RIBBON ============ -->
+<div class="alert" id="alert-ribbon"><div class="wrap">
+  <span class="dot" aria-hidden="true"></span>
+  <span><strong>Track 1 verification opens July 18, 2026.</strong> Track 2 to follow. <a href="#apply" data-route="apply">Sign up to be notified →</a></span>
+  <button class="x" id="alert-x" aria-label="Dismiss notice">✕</button>
+</div></div>
+
+<!-- ============ BREADCRUMB ============ -->
+<div class="crumb" id="crumb-bar"><div class="wrap">
+  <a href="#home" data-route="home">Home</a> <span id="crumb-here"></span>
+</div></div>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<div class="page" id="page-home">
+  <div class="herobanner" aria-label="New York City skyline at dusk" id="hero-slot"></div>
+  <section class="hero-copy"><div class="wrap">
+    <div class="eyebrow">Official verification · City of New York</div>
+    <h1>Verify your status as a New Yorker.</h1>
+    <p class="lede">Everyone claims the city. The Department certifies it. Apply for official verification — by origin, or by earning it — and receive a certificate and identification card recognized by the City of New York.</p>
+    <div class="cta-row">
+      <a class="btn" href="#apply" data-route="apply">Get notified when verification opens</a>
+      <a href="#how" data-route="how">How verification works →</a>
+    </div>
+  </div></section>
+
+  <section class="band tint mission"><div class="wrap col">
+    <div class="eyebrow">Our mission</div>
+    <h2>What makes a person a New Yorker?</h2>
+    <p>The Department of New Yorker Verification administers the conferral, denial, and revocation of New Yorker status. Established by Local Law 77 of 2026, it exists to answer — on the record, and by evidence — a question the city has argued about for four hundred years. Residence is an address. The title is earned.</p>
+    <p>On this website you can determine which of the two verification tracks applies to you, review the requirements, read the law that established the Department, and sign up to be notified when applications open.</p>
+    <ul class="quicklinks">
+      <li><a href="#how" data-route="how">Verification tracks</a></li>
+      <li><a href="#apply-how" data-route="apply-how">How to apply</a></li>
+      <li><a href="#conduct" data-route="conduct">Code of Conduct</a></li>
+      <li><a href="#law" data-route="law">Local Law 77</a></li>
+    </ul>
+  </div></section>
+
+  <section class="band"><div class="wrap">
+    <div class="eyebrow">Explore</div>
+    <div class="grid">
+      <a class="card" href="#how" data-route="how"><span class="k">Verification</span><h4>How verification works</h4><p>The two tracks — by origin and by experience — and what each requires.</p><span class="go">Learn more →</span></a>
+      <a class="card" href="#apply-how" data-route="apply-how"><span class="k">Procedure</span><h4>How to apply</h4><p>The process, the evidence accepted, and how the Department decides.</p><span class="go">Learn more →</span></a>
+      <a class="card" href="#conduct" data-route="conduct"><span class="k">Standards</span><h4>Code of Conduct</h4><p>The single cause for denial or revocation. It applies to everyone.</p><span class="go">Learn more →</span></a>
+      <a class="card" href="#law" data-route="law"><span class="k">Legal</span><h4>Read Local Law 77</h4><p>The statute that establishes the Department and its authority.</p><span class="go">Learn more →</span></a>
+    </div>
+  </div></section>
+
+  <section class="band ink"><div class="wrap col">
+    <div class="eyebrow" style="color:var(--blue-70);">Statement of the Department</div>
+    <h2 style="max-width:20ch;">"We do not decide who loves New York. We decide who has earned it."</h2>
+    <a class="btn" href="#about" data-route="about">About the Department</a>
+  </div></section>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<div class="page" id="page-about">
+  <section class="band content"><div class="wrap col">
+    <span class="pill">About</span>
+    <h1 style="margin-top:16px;">About the Department</h1>
+    <p class="lede">The Department of New Yorker Verification administers the conferral, denial, and revocation of New Yorker status. It recognizes two tracks of verification, and no others.</p>
+    <p>For four hundred years, the city has argued about a single question and never once settled it: what makes a person a New Yorker? Residence is not the answer — residence is an address. The Department was established to resolve the question the way the city resolves everything else that matters: by evidence, on the record, with the burden on the applicant.</p>
+    <h2>What the Department does</h2>
+    <ul>
+      <li>Receives, reviews, and adjudicates applications for verification under Track 1 and Track 2.</li>
+      <li>Issues, denies, and revokes certificates and identification evidencing New Yorker status.</li>
+      <li>Maintains the official register of verified New Yorkers, and a separate register of those denied.</li>
+      <li>Administers appeals, and refers false claims of status for penalty.</li>
+    </ul>
+    <h2>Authority</h2>
+    <p>The Department was created by Local Law 77 of 2026, codified at Chapter 77-A of the New York City Charter. It is headed by the Commissioner of New Yorker Verification, known as the Verifier General, and is served by five Borough Verifiers, one for each borough. No Verifying Officer may be a tourist.</p>
+    <div class="callout"><strong>A person from New York is not necessarily a New Yorker.</strong><br>The Department draws this distinction deliberately. Geography is an accident. Respect is a choice. See the <a href="#conduct" data-route="conduct">Code of Conduct</a>.</div>
+    <a class="btn" href="#apply-how" data-route="apply-how">See how to apply</a>
+  </div></section>
+</div>
+
+<!-- ============ VERIFICATION (HOW IT WORKS) ============ -->
+<div class="page" id="page-how">
+  <section class="band content"><div class="wrap col">
+    <span class="pill">Verification</span>
+    <h1 style="margin-top:16px;">How Verification Works</h1>
+    <p class="lede">The Department recognizes two distinct paths to verified New Yorker status. There are no honorary exceptions, no celebrity courtesies, and no donations that can move the line. You are born into it, or you earn it.</p>
+    <p>Every applicant must file under one Track and one Track only. Choose the Track that fits the life you have actually lived.</p>
+    <div class="tracks">
+      <div class="track">
+        <span class="tag">Form NYV-1 · Opening July 18, 2026</span>
+        <h3>Track 1 — By Origin</h3>
+        <p>For those who came of age in the city. Permanent and non-revocable by tenure.</p>
+        <a href="#how" data-route="how" onclick="document.getElementById('t1').scrollIntoView({behavior:'smooth'});return false;">Jump to Track 1 →</a>
+      </div>
+      <div class="track">
+        <span class="tag">Form NYV-2 · In development</span>
+        <h3>Track 2 — By Experience</h3>
+        <p>For those not born to it. A points test scored against a schedule of qualifying experiences.</p>
+        <a href="#how" data-route="how" onclick="document.getElementById('t2').scrollIntoView({behavior:'smooth'});return false;">Jump to Track 2 →</a>
+      </div>
+    </div>
+
+    <hr class="rule">
+    <h2 id="t1">Track 1 — Verification by Origin</h2>
+    <p>Track 1 is for those who came of age in New York City. It is the shortest path and the most absolute. You either came up here, or you did not.</p>
+    <p>A Track 1 New Yorker was formed inside the city — its dangers, its rhythms, its specific and unrepeatable childhood — whether born in a borough or arrived as a child. That formation cannot be reproduced later in life, at any price or effort. For this reason, Track 1 status is <strong>permanent and non-revocable by tenure.</strong> You were raised here. You are a New Yorker. The matter is closed.*</p>
+    <p><strong>Requirements — the High School Requirement, plus one pathway:</strong></p>
+    <ul>
+      <li><strong>The High School Requirement (all Track 1 applicants).</strong> Documented attendance at, or graduation from, a high school located within the five boroughs.</li>
+      <li><strong>Pathway A — By Birth.</strong> A birth certificate establishing birth within one of the five boroughs.</li>
+      <li><strong>Pathway B — By Childhood Enrollment</strong> (in lieu of a borough birth certificate). Documented continuous enrollment in New York City schools beginning within grades one through four, maintained without interruption through the High School Requirement.</li>
+    </ul>
+    <div class="callout">Pathway B exists because birth is only one proof of a New York childhood, and not the only one that counts. The child who arrived at six from somewhere far away and went through the whole of it — the school, the commute, the summers, the fear, the boredom, the wonder — is as much a New Yorker as the one born at Mount Sinai. The enrollment must be continuous. The experience of navigating your formative years in New York is what counts.</div>
+    <p style="font-size:15px;color:var(--gray-40);">* Origin protects you from the points test. It does not protect you from the one thing that can strip any New Yorker of the Title, native or earned — see the <a href="#conduct" data-route="conduct">Code of Conduct</a>.</p>
+
+    <hr class="rule">
+    <h2 id="t2">Track 2 — Verification by Experience</h2>
+    <div class="notice" style="border-left-color:var(--yellow-40);background:#FFF6E6;"><strong>Track 2 opens in a later phase.</strong><p>The Department is launching Track 1 first. Track 2 opens once the schedule of qualifying experiences is finalized.</p></div>
+    <p style="margin-top:20px;">Track 2 is for those not born to it. It is modeled on a skilled-immigration points test, because that is what it is: a petition to be admitted, on merit, to a people.</p>
+    <p><strong>The threshold is 1,000 points,</strong> scored against the Department's published schedule of qualifying experiences. It is set to be achievable but grueling. A person who has lived here fully, suffered here honestly, and learned from that suffering can reach it. A person who has merely been present cannot. The requirements are exhausting to complete on purpose.</p>
+    <p>Two rules govern the count, and neither can be waived:</p>
+    <h3>The Tenure Cap</h3>
+    <p>No more than 500 points may come from time alone. You cannot wait your way in. A decade of residence in which nothing was learned makes you a long-term resident, not a New Yorker.</p>
+    <h3>The Mandatory Suffering Clause</h3>
+    <p>No fewer than 200 points must come from hardship endured and survived. <strong>The Department does not recognize a New Yorker who has not suffered.</strong> Grit is not a bonus. It is the prerequisite. You become one of us by being hurt by the city and choosing to stay anyway.</p>
+    <p>The full schedule of qualifying experiences — and the points each is worth — is published as the rules of the Department, and takes effect when Track 2 opens.</p>
+    <a class="btn" href="#apply" data-route="apply">Get notified when verification opens</a>
+  </div></section>
+</div>
+
+<!-- ============ HOW TO APPLY ============ -->
+<div class="page" id="page-apply-how">
+  <section class="band content"><div class="wrap col">
+    <span class="pill">Procedure</span>
+    <h1 style="margin-top:16px;">How to Apply</h1>
+    <p class="lede">The Department does not presume you are a New Yorker because you say so, because you feel it, or because you have been here a while. Every claim rests on the applicant, and every claim rises or falls on evidence.</p>
+    <h2>The Process</h2>
+    <ol>
+      <li><strong>Determine your Track.</strong> Verification by Origin, or by Experience. You may file under one Track only.</li>
+      <li>Gather the documentation for each claim you intend to make.</li>
+      <li>Fill out your application (<a href="#apply" data-route="apply">application form</a>). Incomplete files are returned, not reviewed.</li>
+      <li>Submit your application, attesting that every statement in it is true.</li>
+      <li>Await review by the Borough Verifier for the borough of your current or most recent residence.</li>
+      <li>Receive your determination.</li>
+    </ol>
+    <h2>Accepted Evidence</h2>
+    <p>The Department receives sworn affidavits, leases, utility statements, dated receipts, timestamped photographs, transit history, and the testimony of witnesses in good standing. A witness in good standing is one who is themselves verified, or who is a bodega, corner store, or deli proprietor. The sworn statement of a bodega proprietor carries particular weight. No one has observed the applicant more closely, or provided for them more faithfully.</p>
+    <h2>Determinations</h2>
+    <p>Every application resolves to one of three outcomes.</p>
+    <ul>
+      <li><strong>Verified.</strong> Status is conferred. A certificate and identification card are issued.</li>
+      <li><strong>Denied.</strong> Status is refused. The applicant is given the reason and the point of failure.</li>
+      <li><strong>Returned for Insufficient Suffering.</strong> The point threshold was met; the Mandatory Suffering Clause was not. This is not a denial. It is an instruction to go live a little more.</li>
+    </ul>
+    <h2>Appeals</h2>
+    <p>A denied applicant may appeal once. All appeals must be submitted no later than 90 days from denial. The filing fee is one documented act of genuine kindness performed for a stranger. There is no monetary fee.</p>
+    <h2>False Claims</h2>
+    <p>To claim verified status without holding it is a violation, subject to civil penalty or a program of remedial experience. You can report violators with documented proof at <a href="#" onclick="return false;">impostors@dnyv.nyc</a>.</p>
+  </div></section>
+</div>
+
+<!-- ============ CODE OF CONDUCT ============ -->
+<div class="page" id="page-conduct">
+  <section class="band content"><div class="wrap col">
+    <span class="pill">Standards</span>
+    <h1 style="margin-top:16px;">Code of Conduct</h1>
+    <p class="lede">Notwithstanding any quantity of points accrued, any evidence submitted, or any status previously granted under either Track, there is a single and absolute cause for the denial or revocation of the Title.</p>
+    <div class="notice" style="border-left-color:var(--red-40);background:#FCEBEC;"><strong style="color:var(--red-40);">Disrespect of the City or its people.</strong><p>It supersedes every point on the board and every certificate ever issued.</p></div>
+    <p style="margin-top:24px;">New York is a melting pot or it is nothing. To be verified — under either Track — you must be at peace with all of it: every language spoken on every train, every nationality, every faith, every borough, every newcomer who arrived yesterday with a suitcase and a plan. That openness is not a bonus. It is the entire moral content of the Title.</p>
+    <h2>Grounds for automatic and permanent revocation, regardless of points or origin</h2>
+    <ul>
+      <li>Contempt for any nationality, language, religion, or people of the City.</li>
+      <li>Treating the diversity of the City as a problem rather than its purpose.</li>
+      <li>Claiming to have "discovered" a neighborhood already full of people who live there. To erase the people already home is to disrespect them.</li>
+      <li>Disrespect of the City itself.</li>
+    </ul>
+    <div class="callout">This applies with equal force to the native-born. A person raised in a borough who holds the City's people in contempt is recorded as <strong>a person from New York, but not a New Yorker.</strong> Geography is an accident. Respect is a choice.</div>
+  </div></section>
+</div>
+
+<!-- ============ THE LAW ============ -->
+<div class="page" id="page-law">
+  <section class="band content"><div class="wrap col">
+    <span class="pill">Legal</span>
+    <h1 style="margin-top:16px;">Legal</h1>
+    <p class="lede">Local Law 77 of the Year 2026 · Chapter 77-A of the New York City Charter</p>
+    <p>The Department publishes here the full text of its enabling legislation. A government that presumes to certify its people should, at the least, make plain the law under which it does so. The statute is reproduced in its entirety below, and the public is invited to read it.</p>
+    <p>Local Law 77 establishes the Department, defines the status of New Yorker, sets the two Tracks of verification, and provides for the certification, denial, and revocation of the Title. The rules published elsewhere on this website — the schedule of qualifying experiences, the standards of evidence, the procedures of application — are promulgated under the authority of this law. Where the rules and the statute appear to conflict, the statute governs.</p>
+    <p>The law was introduced in the Council, enacted on June 11, 2026, and took effect one hundred eighty days thereafter. Its text follows.</p>
+
+    <hr class="rule">
+
+    <div class="statute">
+      <p class="center">— A LOCAL LAW —<br>To amend the New York city charter, in relation to establishing a department of New Yorker verification, defining the status of New Yorker, and providing for the certification, denial, and revocation thereof.</p>
+      <p><em>Be it enacted by the Council as follows:</em></p>
+
+      <div class="sec"><b>§ 1. Legislative findings and intent.</b></div>
+      <div class="sec">The Council finds and declares that the question of what entitles a person to claim the status of New Yorker has remained in continuous and unresolved public dispute within the city for a period of not less than four hundred (400) years, and that said dispute, while a cherished feature of civic life, has produced no orderly, evidentiary, or administrable standard.</div>
+      <div class="sec">The Council further finds that a substantial majority of the residents of the city were born outside its boundaries — more than one-third beyond the borders of the nation itself — and that the city has, throughout its history, been constituted principally of persons who chose it rather than persons born to it. The Council finds this fact to be not a complication in defining the New Yorker, but the very foundation of the definition.</div>
+      <div class="sec">The Council further finds that recent public controversy, including a widely circulated remark by a prominent native-born entertainer to the effect that the status of New Yorker is conferred by birth alone, has revived the dispute in acute form, and has demonstrated the absence of any neutral body competent to adjudicate competing claims.</div>
+      <div class="sec">The Council further finds that mere residence, tenancy, or physical presence within the five (5) boroughs, however prolonged, is insufficient in itself to confer the status of New Yorker; that the status is properly understood not as a matter of who a person is but of what a person has done, and what the city has done to that person in return; and that the status is therefore one that may be earned, and, once earned, fairly claimed.</div>
+      <div class="sec">The Council finds that the earning of such status is inseparable from hardship; that a person becomes a New Yorker in significant part by suffering the ordinary and extraordinary trials of the city and choosing nonetheless to remain; and that grit so acquired is the truest evidence of belonging.</div>
+      <div class="sec">The Council finds, finally and above all, that the city of New York is a city of all nations, all tongues, and all peoples, and that no person who holds the peoples of the city in contempt may be a New Yorker, irrespective of birth, tenure, or accomplishment. The Council declares that respect for the city and its people is the sole indispensable qualification, and the only one the absence of which no quantity of other merit may cure.</div>
+      <div class="sec">The Council therefore declares it to be in the best interest of the city to establish a department charged with the verification of New Yorker status upon a uniform evidentiary standard, and enacts this local law to that end.</div>
+
+      <div class="sec"><b>§ 2.</b> The New York city charter is amended by adding a new chapter 77-A to read as follows:</div>
+
+      <p class="center" style="color:var(--black);font-weight:600;font-size:18px;">CHAPTER 77-A<br>DEPARTMENT OF NEW YORKER VERIFICATION</p>
+
+      <div class="sec"><b>§ 3301. Department; commissioner.</b> There shall be a department of New Yorker verification, the head of which shall be the commissioner of New Yorker verification, who shall be known, and may sue and be sued, as the Verifier General. The commissioner shall, at the time of appointment, hold verified status as a New Yorker pursuant to this chapter, and shall have held such status for not less than ten (10) years. The department shall not be headed by a tourist.</div>
+
+      <div class="sec"><b>§ 3302. Deputies.</b> The commissioner shall appoint five (5) deputies, one assigned to each of the boroughs, who shall be known respectively as the Borough Verifier for Manhattan, the Borough Verifier for Brooklyn, the Borough Verifier for Queens, the Borough Verifier for The Bronx, and the Borough Verifier for Staten Island. No borough shall be left unverified, and no Borough Verifier shall be assigned to a borough other than one in which such deputy has resided.</div>
+
+      <div class="sec"><b>§ 3303. Powers and duties of the commissioner.</b> Except as otherwise provided by law, the commissioner shall have charge and control of and be responsible for all those functions and operations of the city relating to the verification of New Yorker status, including, without limitation, the following:
+        <div class="sub">a. to receive, review, and adjudicate all applications for verification of New Yorker status;</div>
+        <div class="sub">b. to issue, deny, and revoke certificates and instruments of identification evidencing such status;</div>
+        <div class="sub">c. to promulgate rules establishing the schedule of qualifying experiences, the point values assigned thereto, the standards of evidence required, and all procedures necessary to carry out this chapter;</div>
+        <div class="sub">d. to maintain a register of verified New Yorkers and a separate register of persons denied or revoked;</div>
+        <div class="sub">e. to administer the appeals process established by section 3309 of this chapter; and</div>
+        <div class="sub">f. to take all such further measures as the dignity and gravity of the New Yorker require.</div>
+      </div>
+
+      <div class="sec"><b>§ 3304. Definitions.</b> As used in this chapter, the following terms shall have the following meanings:
+        <div class="sub">a. The term "New Yorker" means a person whose status as such has been verified by the department pursuant to either track of verification established by section 3305 of this chapter. The term does not include a person who merely resides, works, or is present within the city.</div>
+        <div class="sub">b. The term "the Title" means the status of New Yorker.</div>
+        <div class="sub">c. The term "Applicant" means any person petitioning the department for verification, who in all proceedings bears the burden of proof.</div>
+        <div class="sub">d. The term "borough" means any of Manhattan, Brooklyn, Queens, The Bronx, and Staten Island, and no other place.</div>
+        <div class="sub">e. The term "Tribulation" means any hardship, ordeal, indignity, loss, fright, infestation, larceny committed against, or general suffering visited upon an Applicant by the city or its conditions, the endurance of which, without flight, tends to establish the Applicant's standing.</div>
+        <div class="sub">f. The term "tourist" means any person who is not a New Yorker, and is used herein without affection.</div>
+      </div>
+
+      <div class="sec"><b>§ 3305. Tracks of verification.</b> The status of New Yorker may be verified by one (1) of two (2) tracks, and by no other means. No honorary, ceremonial, or discretionary conferral of the Title shall be permitted, irrespective of the fame, wealth, sentiment, or charitable contribution of any person.
+        <div class="sub">a. <em>Track 1; verification by origin.</em> An Applicant who establishes, by documentary evidence, (1) attendance at or graduation from a high school located within the city, and (2) either (i) birth within a borough, or (ii) continuous enrollment in the city's schools commencing within grades one through four and maintained without interruption through the high school requirement, shall be verified as a New Yorker. Such status, once verified, is permanent and shall not be revoked by reason of the Applicant's subsequent departure from the city, except as provided in section 3307.</div>
+        <div class="sub">b. <em>Track 2; verification by experience.</em> An Applicant who does not qualify under Track 1 may be verified upon a showing, by evidence satisfactory to the department, of qualifying experience sufficient to meet the threshold and conditions established by section 3306 and by the rules of the department.</div>
+      </div>
+
+      <div class="sec"><b>§ 3306. Standard for verification by experience; mandatory conditions.</b> The commissioner shall by rule establish a points threshold for verification under Track 2, together with a schedule of qualifying experiences and their respective values. Such rules shall, at minimum, give effect to the following conditions, which the Council deems essential and non-waivable:
+        <div class="sub">a. <em>Tenure cap.</em> No more than one-half (½) of the points required for verification may be derived from duration of residence alone. A person may not wait into the Title.</div>
+        <div class="sub">b. <em>Mandatory suffering.</em> No Applicant shall be verified under Track 2 without demonstrating a minimum quantity of Tribulation, as established by rule. The department shall not recognize a New Yorker who has not suffered.</div>
+        <div class="sub">c. <em>Achievability.</em> The threshold shall be set so as to be difficult but attainable by a person who has genuinely lived the life of the city, and shall not be set at a level designed to be impossible.</div>
+      </div>
+
+      <div class="sec"><b>§ 3307. Disqualification.</b> Notwithstanding any other provision of this chapter, and notwithstanding any quantity of points accrued, any documentary proof submitted, or any verification previously granted under either track, the department shall deny or revoke the Title upon a finding that the Applicant or holder has demonstrated contempt for the city or for any of its peoples. The following, without limitation, constitute such contempt:
+        <div class="sub">a. contempt for any nationality, language, religion, or people that constitute the city;</div>
+        <div class="sub">b. treatment of the diversity of the city as a defect rather than as its purpose;</div>
+        <div class="sub">c. the purported "discovery" of any neighborhood already inhabited, such claim being deemed an erasure of, and an insult to, the persons resident therein; and</div>
+        <div class="sub">d. disrespect of the city itself.</div>
+      </div>
+      <div class="sec">This section applies with equal force to persons verified under Track 1. A person born and raised within a borough who is found to hold its peoples in contempt shall be recorded by the department as a person <em>from</em> New York, but <em>not a New Yorker</em>, the Council finding geography to be an accident and respect to be a choice.</div>
+
+      <div class="sec"><b>§ 3308. Investigatory powers; evidence; right of inquiry.</b> For the purpose of ascertaining the truth of any application, the commissioner and each Borough Verifier shall have power to receive sworn affidavits, to examine documentary records including but not limited to transit fare histories, leases, and utility statements, and to receive the testimony of witnesses in good standing, including the proprietors of bodegas, corner stores, and delis, whose sworn statements the department may accord particular weight. Refusal by any witness to attest truthfully, or the knowing submission of fraudulent evidence to the department, shall be punishable as provided in section 3310.</div>
+
+      <div class="sec"><b>§ 3309. Appeals.</b> An Applicant denied verification may appeal once to the commissioner. The fee for such appeal shall be one (1) documented act of genuine kindness performed for a stranger, the sufficiency of which the commissioner shall determine.</div>
+
+      <div class="sec"><b>§ 3310. False claim of status; penalties.</b> Any person who, not being verified, knowingly and falsely represents himself or herself to be a verified New Yorker shall be liable for a civil penalty of not more than five hundred dollars ($500), or for a supervised program of remedial experience the terms of which the commissioner shall fix, or for both. The department shall exercise leniency toward any person whose false claim is found to arise from earnest aspiration rather than from deceit.</div>
+
+      <div class="sec"><b>§ 3311. Severability.</b> If any provision of this chapter, or its application to any person or circumstance, is held invalid, such invalidity shall not affect other provisions or applications that can be given effect without the invalid provision, and to this end the provisions of this chapter are declared severable.</div>
+
+      <div class="sec"><b>§ 3. Severability.</b> If any section, subdivision, sentence, clause, phrase, or other portion of this local law is, for any reason, declared unconstitutional or invalid, in whole or in part, by any court of competent jurisdiction, such portion shall be deemed severable, and such unconstitutionality or invalidity shall not affect the validity of the remaining portions of this law, which shall continue in full force and effect.</div>
+
+      <div class="sec"><b>§ 4. Effective date.</b> This local law shall take effect on the first day of the month next succeeding a period of one hundred eighty (180) days after its enactment, except that the commissioner may, prior to such effective date, take such measures as are necessary for its implementation, including the promulgation of rules and the appointment of Borough Verifiers.</div>
+
+      <hr class="rule">
+      <p class="center">Passed by the Council on June 11, 2026. Approved by the Mayor on June 24, 2026.<br>Received the following vote: 48 for, 2 against, 1 abstention.<br><strong>ROSA M. FONTAINE</strong>, City Clerk, Clerk of the Council.</p>
+    </div>
+  </div></section>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div class="page" id="page-contact">
+  <section class="band content"><div class="wrap col">
+    <span class="pill">Contact</span>
+    <h1 style="margin-top:16px;">Contact the Department</h1>
+    <p class="lede">The Department corresponds by mail and email. It does not adjudicate status by telephone, and it will not do so on the street, however forcefully asked.</p>
+    <div class="infogrid">
+      <div class="infocard">
+        <h4>By mail</h4>
+        <p>Department of New Yorker Verification<br>Office of the Verifier General<br>1 Centre Street<br>New York, NY 10007</p>
+      </div>
+      <div class="infocard">
+        <h4>By email</h4>
+        <p>General inquiries: <a href="#" onclick="return false;">verify@dnyv.nyc</a><br>Appeals: <a href="#" onclick="return false;">appeals@dnyv.nyc</a><br>Report an impostor: <a href="#" onclick="return false;">impostors@dnyv.nyc</a></p>
+      </div>
+      <div class="infocard">
+        <h4>Borough Verifiers</h4>
+        <p>Each borough is served by its own Verifier. Correspondence is routed automatically based on your residence of record.</p>
+      </div>
+      <div class="infocard">
+        <h4>In person</h4>
+        <p>Walk-in adjudication is not available. Do not attempt to prove you are a New Yorker to the security officer in the lobby. It has been tried.</p>
+      </div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ============ APPLY ============ -->
+<div class="page" id="page-apply">
+  <section class="band content"><div class="wrap col">
+    <span class="pill">Apply</span>
+    <h1 style="margin-top:16px;">Apply for Verification</h1>
+    <p class="lede">The Department is opening verification in two phases.</p>
+    <p><strong>Track 1 — Verification by Origin</strong> opens first. If you came of age in New York City, you can prepare now and file as soon as the window opens.</p>
+    <p><strong>Track 2 — Verification by Experience</strong> opens in a later phase, once the schedule of qualifying experiences is finalized.</p>
+
+    <hr class="rule">
+    <h2>Track 1 — Verification by Origin</h2>
+    <p style="font-weight:700;color:var(--blue-40);margin-top:-8px;">Opening July 18, 2026.</p>
+    <p>The documentary path, for those born in a borough or raised in the city's schools from childhood. Have ready:</p>
+    <ul>
+      <li>Your New York City high school record.</li>
+      <li>Either your borough birth certificate, or your continuous NYC school enrollment records, beginning within grades one through four.</li>
+    </ul>
+    <p>Review the full requirements under <a href="#how" data-route="how">How Verification Works</a>.</p>
+
+    <hr class="rule">
+    <h3>Get notified</h3>
+    <div class="form">
+      <label for="notify-email">Email address</label>
+      <input type="email" id="notify-email" placeholder="you@example.com" autocomplete="email">
+      <button class="btn" type="button" id="notify-btn">Notify me</button>
+      <div class="ok" id="notify-ok"><strong>You're on the list.</strong><br>The Department will contact you as each track opens.</div>
+    </div>
+    <p style="font-size:15px;color:var(--gray-30);margin-top:14px;">The Department will contact you as each track opens. It will not otherwise write to you or share your address.</p>
+
+    <hr class="rule">
+    <h3>Before you file</h3>
+    <p>Read the <a href="#conduct" data-route="conduct">Code of Conduct</a>. It is the one requirement no amount of preparation, points, or paperwork can satisfy after the fact. Know it before you apply, under either Track.</p>
+  </div></section>
+</div>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer><div class="wrap">
+  <div class="cols">
+    <div>
+      <div class="fseal">
+        <span class="seal" aria-hidden="true" id="seal-slot-foot"></span>
+        <div>
+          <h5 style="margin-bottom:4px;">Department of New Yorker Verification</h5>
+          <div style="color:var(--gray-70);font-size:14px;">City of New York</div>
+          <p class="motto">"We do not decide who loves New York. We decide who has earned it."</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h5>Verification</h5>
+      <a href="#how" data-route="how">How Verification Works</a>
+      <a href="#apply-how" data-route="apply-how">How to Apply</a>
+      <a href="#conduct" data-route="conduct">Code of Conduct</a>
+      <a href="#apply" data-route="apply">Apply</a>
+    </div>
+    <div>
+      <h5>The Department</h5>
+      <a href="#about" data-route="about">About</a>
+      <a href="#law" data-route="law">Local Law 77</a>
+      <a href="#contact" data-route="contact">Contact</a>
+    </div>
+    <div>
+      <h5>City of New York</h5>
+      <a href="https://www.nyc.gov" target="_blank" rel="noopener noreferrer">NYC.gov</a>
+      <a href="https://portal.311.nyc.gov" target="_blank" rel="noopener noreferrer">311</a>
+      <a href="https://www.nyc.gov/html/misc/html/accessibility.html" target="_blank" rel="noopener noreferrer">Accessibility</a>
+      <a href="https://www.nyc.gov/home/privacy-policy.page" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="legal">
+    <span>© City of New York, 2026. All Rights Reserved.</span>
+    <span>Established by Local Law 77 of 2026 · Chapter 77-A, NYC Charter</span>
+  </div>
+</div></footer>
+
+<script>
+// ---------- Original DNYV seal ----------
+const SEAL = `
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Seal of the Department of New Yorker Verification">
+  <defs>
+    <path id="topArc" d="M 12.5,44 A 38,38 0 0 1 87.5,44"/>
+    <path id="botArc" d="M 16,50 A 34,34 0 0 0 84,50"/>
+  </defs>
+  <!-- double-ring border -->
+  <circle cx="50" cy="50" r="48" fill="none" stroke="#050560" stroke-width="1.3"/>
+  <circle cx="50" cy="50" r="44.5" fill="none" stroke="#050560" stroke-width="0.7"/>
+  <!-- inner emblem ring -->
+  <circle cx="50" cy="50" r="29" fill="none" stroke="#050560" stroke-width="0.7"/>
+  <!-- band text -->
+  <text font-family="'Clash Grotesk','Space Grotesk',sans-serif" font-size="4.7" font-weight="600" fill="#050560" letter-spacing="0.3">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">DEPARTMENT OF NEW YORKER VERIFICATION</textPath>
+  </text>
+  <text font-family="'Clash Grotesk','Space Grotesk',sans-serif" font-size="5" font-weight="600" fill="#050560" letter-spacing="1.2">
+    <textPath href="#botArc" startOffset="50%" text-anchor="middle">CITY OF NEW YORK</textPath>
+  </text>
+  <!-- star separators at 9 and 3 o'clock -->
+  <polygon fill="#050560" points="13,47.8 13.494,49.321 15.092,49.32 13.799,50.26 14.293,51.78 13,50.84 11.707,51.78 12.201,50.26 10.908,49.32 12.506,49.321"/>
+  <polygon fill="#050560" points="87,47.8 87.494,49.321 89.092,49.32 87.799,50.26 88.293,51.78 87,50.84 85.707,51.78 86.201,50.26 84.908,49.32 86.506,49.321"/>
+  <!-- central skyline device -->
+  <g fill="#050560">
+    <rect x="32" y="51" width="5" height="9"/>
+    <rect x="37.4" y="46" width="6" height="14"/>
+    <rect x="43.8" y="43" width="4" height="17"/>
+    <rect x="47.5" y="36" width="5" height="24"/>
+    <polygon points="50,29 47.6,36.4 52.4,36.4"/>
+    <rect x="49.7" y="27" width="0.6" height="9"/>
+    <rect x="52.5" y="43" width="4" height="17"/>
+    <rect x="56.9" y="46" width="6" height="14"/>
+    <rect x="63" y="51" width="5" height="9"/>
+    <rect x="31" y="60" width="38" height="1.4"/>
+  </g>
+  <!-- date -->
+  <rect x="45" y="64.2" width="10" height="0.5" fill="#050560"/>
+  <text x="50" y="70.5" text-anchor="middle" font-family="'Clash Grotesk','Space Grotesk',sans-serif" font-size="4.4" font-weight="600" fill="#050560" letter-spacing="0.8">EST. 2026</text>
+</svg>`;
+/* seal replaced by NYC wordmark (CSS background on .seal) */
+
+// ---------- Hero skyline (original SVG, dusk blue/orange gradient) ----------
+const HERO = `
+<svg viewBox="0 0 1200 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of the New York City skyline at dusk">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#050560"/>
+      <stop offset="45%" stop-color="#103FEF"/>
+      <stop offset="78%" stop-color="#5b7fe0"/>
+      <stop offset="100%" stop-color="#FFB320"/>
+    </linearGradient>
+    <linearGradient id="far" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a1f6e"/><stop offset="100%" stop-color="#20347f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="340" fill="url(#sky)"/>
+  <circle cx="920" cy="250" r="70" fill="#FFD37A" opacity="0.55"/>
+  <circle cx="920" cy="250" r="42" fill="#FFE6B0" opacity="0.65"/>
+  <g fill="url(#far)" opacity="0.85">
+    <rect x="20" y="200" width="60" height="140"/><rect x="90" y="170" width="45" height="170"/><rect x="150" y="215" width="70" height="125"/><rect x="240" y="150" width="40" height="190"/><rect x="300" y="195" width="80" height="145"/><rect x="400" y="175" width="55" height="165"/><rect x="470" y="205" width="65" height="135"/><rect x="560" y="160" width="48" height="180"/><rect x="630" y="200" width="70" height="140"/><rect x="720" y="185" width="52" height="155"/><rect x="790" y="210" width="72" height="130"/><rect x="980" y="185" width="60" height="155"/><rect x="1055" y="205" width="70" height="135"/><rect x="1140" y="180" width="50" height="160"/>
+  </g>
+  <g fill="#050560">
+    <rect x="0" y="250" width="90" height="90"/>
+    <rect x="95" y="220" width="70" height="120"/>
+    <rect x="150" y="255" width="80" height="85"/>
+    <rect x="250" y="120" width="46" height="220"/><rect x="266" y="95" width="14" height="30"/><rect x="271" y="78" width="4" height="20"/>
+    <rect x="320" y="240" width="95" height="100"/>
+    <rect x="410" y="210" width="70" height="130"/>
+    <rect x="490" y="250" width="90" height="90"/>
+    <rect x="600" y="175" width="40" height="165"/><rect x="645" y="175" width="40" height="165"/>
+    <rect x="700" y="245" width="85" height="95"/>
+    <rect x="790" y="215" width="60" height="125"/>
+    <rect x="860" y="255" width="95" height="85"/>
+    <polygon points="1000,340 1000,180 1020,150 1040,180 1040,340"/>
+    <rect x="1060" y="235" width="80" height="105"/>
+    <rect x="1150" y="255" width="60" height="85"/>
+  </g>
+  <g fill="#FFD37A" opacity="0.85">
+    <rect x="262" y="140" width="4" height="6"/><rect x="272" y="140" width="4" height="6"/><rect x="262" y="160" width="4" height="6"/><rect x="282" y="160" width="4" height="6"/>
+    <rect x="612" y="195" width="5" height="7"/><rect x="624" y="195" width="5" height="7"/><rect x="657" y="210" width="5" height="7"/><rect x="669" y="210" width="5" height="7"/>
+    <rect x="1012" y="200" width="5" height="7"/><rect x="1024" y="220" width="5" height="7"/>
+    <rect x="120" y="245" width="5" height="7"/><rect x="135" y="270" width="5" height="7"/>
+    <rect x="430" y="235" width="5" height="7"/><rect x="455" y="260" width="5" height="7"/>
+  </g>
+</svg>`;
+document.getElementById('hero-slot').innerHTML = HERO;
+
+
+// ---------- Router ----------
+const titles = {home:'',about:'About',how:'How Verification Works',conduct:'Code of Conduct','apply-how':'How to Apply',law:'The Law',contact:'Contact',apply:'Apply'};
+const navRoutes = ['home','about','how','apply-how','law','contact'];
+function navigate(route){
+  if(!titles.hasOwnProperty(route)) route='home';
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById('page-'+route);
+  if(el) el.classList.add('active');
+  document.querySelectorAll('.nav a[data-route]').forEach(a=>{
+    a.classList.toggle('active', a.getAttribute('data-route')===route);
+  });
+  const here=document.getElementById('crumb-here');
+  here.innerHTML = route==='home' ? '' : ' › <span style="color:var(--gray-30)">'+titles[route]+'</span>';
+  document.getElementById('crumb-bar').style.display = route==='home' ? 'none':'block';
+  window.scrollTo(0,0);
+  document.getElementById('primary-links').classList.remove('open');
+  document.getElementById('menu-toggle').setAttribute('aria-expanded','false');
+}
+document.addEventListener('click',e=>{
+  const link=e.target.closest('[data-route]');
+  if(link){e.preventDefault();const r=link.getAttribute('data-route');history.replaceState(null,'','#'+r);navigate(r);}
+});
+window.addEventListener('hashchange',()=>navigate(location.hash.replace('#','')||'home'));
+
+// gov banner toggle
+document.getElementById('gov-toggle').addEventListener('click',function(){
+  const d=document.getElementById('gov-detail');const open=d.classList.toggle('open');
+  this.setAttribute('aria-expanded',open);this.innerHTML = open ? "Here's how you know&nbsp;▴" : "Here's how you know&nbsp;▾";
+});
+// mobile menu
+document.getElementById('menu-toggle').addEventListener('click',function(){
+  const l=document.getElementById('primary-links');const open=l.classList.toggle('open');
+  this.setAttribute('aria-expanded',open);
+});
+// alert dismiss
+document.getElementById('alert-x').addEventListener('click',function(){
+  document.getElementById('alert-ribbon').style.display='none';
+});
+// notify form
+document.getElementById('notify-btn').addEventListener('click',async function(){
+  const btn=this;
+  const email=document.getElementById('notify-email');
+  if(!(email.value && /\S+@\S+\.\S+/.test(email.value))){
+    email.focus();email.style.borderColor='#EC131E';return;
+  }
+  email.style.borderColor='';
+  btn.disabled=true;
+  try{
+    const res=await fetch('/api/notify',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email.value.trim()})
+    });
+    if(!res.ok) throw new Error('signup failed');
+    document.getElementById('notify-ok').classList.add('show');email.value='';
+  }catch(err){
+    email.focus();email.style.borderColor='#EC131E';
+  }finally{
+    btn.disabled=false;
+  }
+});
+// init
+navigate(location.hash.replace('#','')||'home');
+</script>
+
+
+</body></html>

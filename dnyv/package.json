@@ -1,0 +1,10 @@
+{
+  "name": "dnyv-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Department of New Yorker Verification — informational site and waitlist",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  }
+}
