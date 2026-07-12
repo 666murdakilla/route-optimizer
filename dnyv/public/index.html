@@ -560,6 +560,20 @@
   .form .ok{display:none;border-left:5px solid var(--green-40);background:#EAF9EA;padding:16px 18px;margin-top:8px;}
   .form .ok.show{display:block;}
 
+  /* track 1 application form */
+  .form input[type=text],.form input[type=tel]{width:100%;border:2px solid var(--black);padding:12px 14px;font-family:var(--body);font-size:16px;border-radius:2px;margin-bottom:16px;}
+  .form input[type=file]{width:100%;border:2px solid var(--black);padding:10px 12px;font-family:var(--body);font-size:15px;border-radius:2px;margin-bottom:6px;background:var(--white);}
+  .form .hint{font-size:14px;color:var(--gray-30);margin:0 0 16px;}
+  .form fieldset{border:2px solid var(--black);padding:14px 16px;margin:0 0 16px;border-radius:2px;}
+  .form fieldset label,.form .check{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin-bottom:10px;cursor:pointer;}
+  .form fieldset label:last-child{margin-bottom:0;}
+  .form .check{margin-bottom:16px;}
+  .form input[type=radio],.form input[type=checkbox]{width:18px;height:18px;accent-color:var(--blue-40);flex:none;margin-top:3px;}
+  .form h4{margin:22px 0 12px;}
+  .form h4:first-child{margin-top:0;}
+  .form .err{display:none;border-left:5px solid var(--red-40);background:#FCEBEC;padding:16px 18px;margin-top:8px;}
+  .form .err.show{display:block;}
+
   /* footer */
   footer{background:var(--black);color:var(--white);padding:56px 0 40px;font-size:15px;}
   footer h5{font-family:var(--display);font-weight:600;font-size:16px;margin:0 0 14px;color:var(--white);}
@@ -950,6 +964,7 @@
       <li>Either your borough birth certificate, or your continuous NYC school enrollment records, beginning within grades one through four.</li>
     </ul>
     <p>Review the full requirements under <a href="#how" data-route="how">How Verification Works</a>.</p>
+    <p><a class="btn" href="#apply-track1" data-route="apply-track1">File your Track 1 application</a></p>
 
     <hr class="rule">
     <h3>Get notified</h3>
@@ -964,6 +979,49 @@
     <hr class="rule">
     <h3>Before you file</h3>
     <p>Read the <a href="#conduct" data-route="conduct">Code of Conduct</a>. It is the one requirement no amount of preparation, points, or paperwork can satisfy after the fact. Know it before you apply, under either Track.</p>
+  </div></section>
+</div>
+
+<!-- ============ TRACK 1 APPLICATION ============ -->
+<div class="page" id="page-apply-track1">
+  <section class="band content"><div class="wrap col">
+    <span class="pill">Apply</span>
+    <h1 style="margin-top:16px;">Track 1 Application</h1>
+    <p class="lede">Verification by Origin. Complete every field and attach legible copies of your records. Incomplete files are returned, not reviewed.</p>
+    <p>Documents are accepted as PDF or photographs, up to 20&nbsp;MB per file. Your records are transmitted securely, held privately, and reviewed by a human Borough Verifier. They are not shared.</p>
+    <hr class="rule">
+    <div class="form">
+      <h4>Applicant</h4>
+      <label for="t1-name">Full legal name</label>
+      <input type="text" id="t1-name" autocomplete="name">
+      <label for="t1-email">Email address</label>
+      <input type="email" id="t1-email" placeholder="you@example.com" autocomplete="email">
+      <label for="t1-phone">Telephone (optional)</label>
+      <input type="tel" id="t1-phone" autocomplete="tel">
+
+      <h4>High school record</h4>
+      <label for="t1-school">New York City high school attended</label>
+      <input type="text" id="t1-school" placeholder="School name and borough">
+      <label for="t1-hs-files">High school record</label>
+      <input type="file" id="t1-hs-files" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,application/pdf,image/*">
+      <p class="hint">Transcript, diploma, or report cards. 1 to 3 files.</p>
+
+      <h4>Proof of origin</h4>
+      <fieldset id="t1-originbox">
+        <label><input type="radio" name="t1-origin" value="birth_certificate"><span>Borough birth certificate</span></label>
+        <label><input type="radio" name="t1-origin" value="school_enrollment"><span>Continuous NYC school enrollment records, beginning within grades one through four</span></label>
+      </fieldset>
+      <label for="t1-origin-files">Supporting records</label>
+      <input type="file" id="t1-origin-files" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,application/pdf,image/*">
+      <p class="hint">1 to 10 files.</p>
+
+      <h4>Attestation</h4>
+      <label class="check" for="t1-attest"><input type="checkbox" id="t1-attest"><span>I attest that every statement in this application, and every record attached to it, is true.</span></label>
+
+      <button class="btn" type="button" id="t1-submit">Submit application</button>
+      <div class="ok" id="t1-ok"><strong>Application received.</strong><br>Your file number is <strong id="t1-file-number"></strong>. Keep it. The Department will contact you at the email address provided. Files are reviewed in the order received.</div>
+      <div class="err" id="t1-err"><strong>Your file could not be received.</strong><br><span id="t1-err-detail"></span></div>
+    </div>
   </div></section>
 </div>
 
@@ -1099,7 +1157,7 @@ document.getElementById('hero-slot').innerHTML = HERO;
 
 
 // ---------- Router ----------
-const titles = {home:'',about:'About',how:'How Verification Works',conduct:'Code of Conduct','apply-how':'How to Apply',law:'The Law',contact:'Contact',apply:'Apply'};
+const titles = {home:'',about:'About',how:'How Verification Works',conduct:'Code of Conduct','apply-how':'How to Apply',law:'The Law',contact:'Contact',apply:'Apply','apply-track1':'Track 1 Application'};
 const navRoutes = ['home','about','how','apply-how','law','contact'];
 function navigate(route){
   if(!titles.hasOwnProperty(route)) route='home';
@@ -1159,6 +1217,70 @@ document.getElementById('notify-btn').addEventListener('click',async function(){
     btn.disabled=false;
   }
 });
+// track 1 application form
+(function(){
+  const $=id=>document.getElementById(id);
+  const btn=$('t1-submit'); if(!btn) return;
+  const EXT_MIME={pdf:'application/pdf',jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp',heic:'image/heic',heif:'image/heif'};
+  const ALLOWED=new Set(Object.values(EXT_MIME));
+  const MAX=20*1024*1024;
+  const typeOf=f=>ALLOWED.has(f.type)?f.type:(EXT_MIME[f.name.split('.').pop().toLowerCase()]||null);
+  const mark=(el,bad)=>{el.style.borderColor=bad?'#EC131E':'';};
+
+  btn.addEventListener('click',async function(){
+    const name=$('t1-name'),email=$('t1-email'),phone=$('t1-phone'),school=$('t1-school'),
+          hs=$('t1-hs-files'),od=$('t1-origin-files'),attest=$('t1-attest'),
+          originbox=$('t1-originbox'),ok=$('t1-ok'),err=$('t1-err'),errd=$('t1-err-detail');
+    ok.classList.remove('show');err.classList.remove('show');
+    const origin=document.querySelector('input[name=t1-origin]:checked');
+
+    let bad=false;
+    const need=(el,pass)=>{mark(el,!pass);bad=bad||!pass;};
+    need(name,name.value.trim().length>=2);
+    need(email,/\S+@\S+\.\S+/.test(email.value));
+    need(school,school.value.trim().length>=2);
+    const filesOk=list=>[...list].every(f=>typeOf(f)&&f.size>0&&f.size<=MAX);
+    need(hs,hs.files.length>=1&&hs.files.length<=3&&filesOk(hs.files));
+    need(od,od.files.length>=1&&od.files.length<=10&&filesOk(od.files));
+    mark(originbox,!origin);bad=bad||!origin;
+    if(!attest.checked){attest.focus();bad=true;}
+    if(bad){
+      errd.textContent=attest.checked?'Check the highlighted fields. Documents must be PDF or photographs, up to 20 MB each.':'Complete the highlighted fields and sign the attestation.';
+      err.classList.add('show');return;
+    }
+
+    btn.disabled=true;
+    const label=btn.textContent;
+    btn.textContent='Transmitting…';
+    try{
+      const allFiles=[...hs.files,...od.files];
+      const payload={
+        full_name:name.value.trim(),email:email.value.trim(),phone:phone.value.trim()||null,
+        high_school:school.value.trim(),origin_kind:origin.value,attested:attest.checked,
+        files:[...hs.files].map(f=>({kind:'high_school_record',name:f.name,type:typeOf(f),size:f.size}))
+          .concat([...od.files].map(f=>({kind:'origin_document',name:f.name,type:typeOf(f),size:f.size})))
+      };
+      const open=await fetch('/api/apply',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      if(!open.ok) throw new Error('open failed');
+      const {application_id,uploads}=await open.json();
+      for(let i=0;i<allFiles.length;i++){
+        const put=await fetch(uploads[i].url,{method:'PUT',headers:{'Content-Type':typeOf(allFiles[i])},body:allFiles[i]});
+        if(!put.ok) throw new Error('upload failed');
+      }
+      const seal=await fetch('/api/apply-finalize',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({application_id})});
+      if(!seal.ok) throw new Error('seal failed');
+      const d=await seal.json();
+      $('t1-file-number').textContent=d.file_number;
+      ok.classList.add('show');
+      btn.textContent='Application submitted';
+    }catch(e){
+      errd.textContent='The Department could not receive your file. Check your connection and try again.';
+      err.classList.add('show');
+      btn.disabled=false;btn.textContent=label;
+    }
+  });
+})();
+
 // init
 navigate(location.hash.replace('#','')||'home');
 </script>
