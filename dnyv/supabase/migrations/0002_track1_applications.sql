@@ -14,7 +14,11 @@ create table if not exists public.applications (
   full_name text not null,
   email text not null,
   phone text,
+  mailing_address text not null,
+  date_of_birth date not null,
   high_school text not null,
+  best_pizza text not null,
+  comments text,
   origin_kind text not null check (origin_kind in ('birth_certificate','school_enrollment')),
   -- Determination fields are set later by the reviewer (admin build step).
   determination text check (determination in ('verified','denied','returned_for_insufficient_suffering')),

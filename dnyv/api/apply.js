@@ -27,12 +27,21 @@ export default async function handler(req, res) {
   const full_name = str(b.full_name, 200);
   const email = str(b.email, 320)?.toLowerCase() ?? null;
   const phone = b.phone == null || b.phone === '' ? null : str(b.phone, 40);
+  const mailing_address = str(b.mailing_address, 500);
+  const date_of_birth = typeof b.date_of_birth === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(b.date_of_birth) &&
+    !Number.isNaN(Date.parse(b.date_of_birth)) &&
+    b.date_of_birth >= '1900-01-01' && Date.parse(b.date_of_birth) < Date.now()
+      ? b.date_of_birth : null;
   const high_school = str(b.high_school, 300);
+  const best_pizza = str(b.best_pizza, 300);
+  const comments = b.comments == null || b.comments === '' ? null : str(b.comments, 2000);
   const origin_kind = ORIGIN_KINDS.has(b.origin_kind) ? b.origin_kind : null;
   const files = Array.isArray(b.files) ? b.files : null;
 
-  if (!full_name || !email || !EMAIL_RE.test(email) || !high_school || !origin_kind ||
-      b.attested !== true || (b.phone && phone === null) || !files) {
+  if (!full_name || !email || !EMAIL_RE.test(email) || !mailing_address || !date_of_birth ||
+      !high_school || !best_pizza || !origin_kind ||
+      b.attested !== true || (b.phone && phone === null) ||
+      (b.comments && comments === null) || !files) {
     return res.status(400).json({ error: 'Incomplete application' });
   }
 
@@ -61,7 +70,7 @@ export default async function handler(req, res) {
 
   const { data: app, error: appError } = await supabase
     .from('applications')
-    .insert({ full_name, email, phone, high_school, origin_kind })
+    .insert({ full_name, email, phone, mailing_address, date_of_birth, high_school, best_pizza, comments, origin_kind })
     .select('id')
     .single();
   if (appError) {
