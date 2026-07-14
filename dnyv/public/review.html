@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Reviewer Console — Department of New Yorker Verification</title>
+<style>
+@font-face{font-family:'Noto Sans';font-style:normal;font-weight:400;font-display:swap;src:url("/assets/fonts/noto-sans-latin.woff2") format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Noto Sans';font-style:normal;font-weight:600;font-display:swap;src:url("/assets/fonts/noto-sans-latin.woff2") format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Noto Sans';font-style:normal;font-weight:700;font-display:swap;src:url("/assets/fonts/noto-sans-latin.woff2") format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url("/assets/fonts/space-grotesk-latin.woff2") format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url("/assets/fonts/space-grotesk-latin.woff2") format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+
+:root{
+  --black:#000;--white:#fff;
+  --blue-40:#103FEF;--blue-10:#050560;--blue-95:#EAF1FF;
+  --gray-20:#333;--gray-30:#555;--gray-40:#777;--gray-70:#CCC;--gray-80:#DDD;--gray-90:#EEE;--gray-95:#F5F5F5;
+  --green-40:#00B703;--yellow-40:#FFB320;--red-40:#EC131E;
+  --display:'Space Grotesk','Noto Sans',system-ui,sans-serif;
+  --body:'Noto Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--body);color:var(--black);background:var(--gray-95);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.15;}
+a{color:var(--blue-40);text-underline-offset:2px;}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--blue-40);outline-offset:2px;}
+
+.masthead{background:var(--black);color:var(--white);}
+.masthead .in{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.masthead .title{font-family:var(--display);font-weight:600;font-size:18px;color:var(--white);}
+.masthead .title span{color:var(--gray-70);font-weight:400;}
+.masthead .who{font-size:14px;color:var(--gray-70);display:flex;align-items:center;gap:14px;}
+.masthead button{background:none;border:1px solid var(--gray-40);color:var(--white);font-family:var(--body);font-size:13px;padding:5px 12px;border-radius:2px;cursor:pointer;}
+.masthead button:hover{background:var(--gray-20);}
+
+.wrap{max-width:1100px;margin:0 auto;padding:32px 24px;}
+.card{background:var(--white);border:1px solid var(--gray-80);border-radius:3px;}
+.btn{display:inline-block;background:var(--blue-40);color:var(--white);font-family:var(--body);font-weight:600;font-size:16px;border:none;border-radius:2px;padding:13px 26px;cursor:pointer;line-height:1.2;}
+.btn:hover{background:var(--blue-10);}
+.btn:disabled{opacity:.5;cursor:default;}
+.btn.secondary{background:var(--white);color:var(--blue-40);box-shadow:inset 0 0 0 2px var(--blue-40);}
+.btn.secondary:hover{background:var(--blue-95);}
+.hidden{display:none!important;}
+.muted{color:var(--gray-30);}
+.eyebrow{font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-30);}
+
+/* login */
+.login{max-width:440px;margin:8vh auto;padding:36px;}
+.login h1{font-size:26px;margin-bottom:8px;}
+.login p{color:var(--gray-30);margin-bottom:22px;font-size:15px;}
+.login label{display:block;font-weight:600;margin-bottom:8px;}
+.login input{width:100%;border:2px solid var(--black);padding:12px 14px;font-family:var(--body);font-size:16px;border-radius:2px;margin-bottom:16px;}
+.login .note{display:none;border-left:5px solid var(--green-40);background:#EAF9EA;padding:14px 16px;margin-top:18px;font-size:15px;}
+.login .note.show{display:block;}
+.login .note.err{border-left-color:var(--red-40);background:#FCEBEC;}
+
+/* queue */
+.qhead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap;}
+.qhead h1{font-size:28px;}
+table{width:100%;border-collapse:collapse;background:var(--white);}
+th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--gray-90);font-size:15px;}
+th{font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--gray-30);background:var(--gray-95);}
+tbody tr:hover,tr.row:hover{background:var(--blue-95);cursor:pointer;}
+tr.row:hover{background:var(--blue-95);cursor:pointer;}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:2px;letter-spacing:.02em;}
+.tag.pending{background:var(--gray-90);color:var(--gray-20);}
+.tag.verified{background:#EAF9EA;color:#0a7d0c;}
+.tag.denied{background:#FCEBEC;color:#b30d16;}
+.tag.returned{background:#FFF4E0;color:#9a6400;}
+.filenum{font-family:var(--display);font-weight:600;}
+
+/* detail */
+.back{background:none;border:none;color:var(--blue-40);font-family:var(--body);font-size:15px;cursor:pointer;padding:0;margin-bottom:18px;}
+.dgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start;}
+.section{padding:24px;margin-bottom:24px;}
+.section h2{font-size:20px;margin-bottom:16px;}
+.field{margin-bottom:14px;}
+.field .k{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gray-40);margin-bottom:2px;}
+.field .v{font-size:16px;white-space:pre-wrap;}
+.doc{border:1px solid var(--gray-80);border-radius:3px;padding:14px 16px;margin-bottom:14px;}
+.doc .dh{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.doc .dh .name{font-weight:600;font-size:15px;word-break:break-all;}
+.doc img{max-width:100%;border:1px solid var(--gray-80);border-radius:2px;display:block;}
+.doc iframe{width:100%;height:520px;border:1px solid var(--gray-80);border-radius:2px;}
+.dkind{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gray-40);}
+
+.determine label{display:block;font-weight:600;margin-bottom:8px;}
+.determine textarea{width:100%;border:2px solid var(--black);padding:12px 14px;font-family:var(--body);font-size:15px;border-radius:2px;margin-bottom:16px;min-height:90px;resize:vertical;}
+.dbtns{display:flex;flex-direction:column;gap:10px;}
+.dbtns .btn{width:100%;text-align:center;}
+.btn.verify{background:var(--green-40);}
+.btn.verify:hover{background:#0a7d0c;}
+.btn.deny{background:var(--red-40);}
+.btn.deny:hover{background:#b30d16;}
+.btn.return{background:var(--yellow-40);color:var(--black);}
+.btn.return:hover{background:#e09e10;}
+.decided{border-left:5px solid var(--blue-40);background:var(--blue-95);padding:16px 18px;font-size:15px;}
+.decided strong{font-family:var(--display);}
+.err-msg{display:none;color:var(--red-40);font-size:14px;margin-top:10px;}
+.err-msg.show{display:block;}
+
+@media (max-width:760px){.dgrid{grid-template-columns:1fr;}.masthead .in{gap:8px;}}
+</style>
+</head>
+<body>
+
+<header class="masthead"><div class="in">
+  <div class="title">DNYV <span>· Reviewer Console</span></div>
+  <div class="who" id="who" style="visibility:hidden;"><span id="who-email"></span><button id="logout">Sign out</button></div>
+</div></header>
+
+<!-- LOGIN -->
+<section id="view-login" class="card login hidden">
+  <div class="eyebrow" style="margin-bottom:12px;">Restricted</div>
+  <h1>Reviewer sign-in</h1>
+  <p>Enter your Department email. We'll send a one-time sign-in link. No password required.</p>
+  <label for="email">Email address</label>
+  <input type="email" id="email" autocomplete="email" placeholder="you@example.com">
+  <button class="btn" id="send-link" type="button">Email me a sign-in link</button>
+  <div class="note" id="login-note"></div>
+</section>
+
+<!-- QUEUE -->
+<section id="view-queue" class="wrap hidden">
+  <div class="qhead">
+    <h1>Review queue</h1>
+    <div class="muted" id="queue-count"></div>
+  </div>
+  <div class="card" style="overflow-x:auto;">
+    <table>
+      <thead><tr><th>File No.</th><th>Applicant</th><th>Filed</th><th>Status</th></tr></thead>
+      <tbody id="queue-body"></tbody>
+    </table>
+  </div>
+  <p class="muted" id="queue-empty" style="margin-top:20px;display:none;">No submitted applications yet.</p>
+</section>
+
+<!-- DETAIL -->
+<section id="view-detail" class="wrap hidden">
+  <button class="back" id="back">← Back to queue</button>
+  <div class="qhead">
+    <h1 id="d-title"></h1>
+    <div id="d-status"></div>
+  </div>
+  <div class="dgrid">
+    <div>
+      <div class="card section">
+        <h2>Applicant</h2>
+        <div id="d-fields"></div>
+      </div>
+      <div class="card section">
+        <h2>Documents</h2>
+        <div id="d-docs"></div>
+      </div>
+    </div>
+    <div>
+      <div class="card section determine">
+        <h2>Determination</h2>
+        <div id="d-decided" class="decided hidden"></div>
+        <div id="d-form">
+          <label for="d-notes">Notes / reason <span class="muted" style="font-weight:400;">(optional)</span></label>
+          <textarea id="d-notes" placeholder="Recorded with the determination."></textarea>
+          <div class="dbtns">
+            <button class="btn verify" data-d="verified">Verified</button>
+            <button class="btn deny" data-d="denied">Denied</button>
+            <button class="btn return" data-d="returned_for_insufficient_suffering">Returned for Insufficient Suffering</button>
+          </div>
+          <div class="err-msg" id="d-err">Could not record the determination. Try again.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const OUTCOMES = {
+  verified:{label:'Verified',cls:'verified'},
+  denied:{label:'Denied',cls:'denied'},
+  returned_for_insufficient_suffering:{label:'Returned for Insufficient Suffering',cls:'returned'},
+};
+const $=id=>document.getElementById(id);
+let CFG=null, currentId=null;
+
+function tok(){ try{return JSON.parse(localStorage.getItem('dnyv_session')||'null');}catch(e){return null;} }
+function setTok(s){ s?localStorage.setItem('dnyv_session',JSON.stringify(s)):localStorage.removeItem('dnyv_session'); }
+function show(view){ ['login','queue','detail'].forEach(v=>$('view-'+v).classList.toggle('hidden',v!==view)); }
+function esc(s){ const d=document.createElement('div'); d.textContent=s==null?'':String(s); return d.innerHTML; }
+function fmtDate(s){ if(!s)return '—'; const d=new Date(s); return d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'})+' '+d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}); }
+function fmtDOB(s){ if(!s)return '—'; const d=new Date(s+'T00:00:00'); return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); }
+function fmtSize(b){ return b>=1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB'; }
+function fileNo(app){ const y=new Date(app.submitted_at||app.determined_at||Date.now()).getFullYear(); return 'DNYV-'+y+'-'+String(app.file_number).padStart(6,'0'); }
+
+// --- authenticated API calls, with one refresh retry on 401 ---
+async function api(path,opts={}){
+  const attempt=async()=>{
+    const s=tok();
+    return fetch(path,{...opts,headers:{...(opts.headers||{}),'Content-Type':'application/json','Authorization':'Bearer '+(s?s.access_token:'')}});
+  };
+  let r=await attempt();
+  if(r.status===401){ if(await refresh()){ r=await attempt(); } }
+  if(r.status===401||r.status===403){ setTok(null); show('login'); throw new Error('unauthorized'); }
+  return r;
+}
+async function refresh(){
+  const s=tok(); if(!s||!s.refresh_token||!CFG) return false;
+  try{
+    const r=await fetch(CFG.url+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:{'apikey':CFG.anonKey,'Content-Type':'application/json'},body:JSON.stringify({refresh_token:s.refresh_token})});
+    if(!r.ok) return false;
+    const d=await r.json(); setTok({access_token:d.access_token,refresh_token:d.refresh_token,email:s.email}); return true;
+  }catch(e){ return false; }
+}
+
+// --- login ---
+$('send-link').addEventListener('click',async function(){
+  const email=$('email').value.trim(); const note=$('login-note');
+  note.className='note';
+  if(!/\S+@\S+\.\S+/.test(email)){ $('email').focus(); return; }
+  this.disabled=true; const label=this.textContent; this.textContent='Sending…';
+  try{
+    const r=await fetch(CFG.url+'/auth/v1/otp?redirect_to='+encodeURIComponent(location.origin+'/review'),{
+      method:'POST',headers:{'apikey':CFG.anonKey,'Content-Type':'application/json'},
+      body:JSON.stringify({email,create_user:false})
+    });
+    // Supabase returns 200 even for unknown emails (to avoid leaking who has an account).
+    if(!r.ok && r.status!==429){ throw new Error('send failed'); }
+    note.textContent = r.status===429 ? 'Too many requests. Wait a minute and try again.' : 'Check your email. If this address is a registered reviewer, a sign-in link is on its way. The link expires in one hour.';
+    note.className = r.status===429 ? 'note err show' : 'note show';
+  }catch(e){
+    note.textContent='Could not send the link. Try again in a moment.'; note.className='note err show';
+  }finally{ this.disabled=false; this.textContent=label; }
+});
+$('email').addEventListener('keydown',e=>{ if(e.key==='Enter') $('send-link').click(); });
+$('logout').addEventListener('click',()=>{ setTok(null); $('who').style.visibility='hidden'; show('login'); });
+
+// --- queue ---
+async function loadQueue(){
+  const r=await api('/api/review/list'); const d=await r.json();
+  const apps=d.applications||[];
+  $('queue-count').textContent=apps.length+(apps.length===1?' application':' applications');
+  $('queue-empty').style.display=apps.length?'none':'block';
+  $('queue-body').innerHTML=apps.map(a=>{
+    const o=a.determination?OUTCOMES[a.determination]:null;
+    const tag=o?`<span class="tag ${o.cls}">${o.label}</span>`:`<span class="tag pending">Awaiting review</span>`;
+    return `<tr class="row" data-id="${a.id}"><td class="filenum">${fileNo(a)}</td><td>${esc(a.full_name)}</td><td>${fmtDate(a.submitted_at)}</td><td>${tag}</td></tr>`;
+  }).join('');
+  $('queue-body').querySelectorAll('tr.row').forEach(tr=>tr.addEventListener('click',()=>openDetail(tr.dataset.id)));
+  show('queue');
+}
+
+// --- detail ---
+function fieldRow(k,v){ return `<div class="field"><div class="k">${esc(k)}</div><div class="v">${esc(v)||'—'}</div></div>`; }
+async function openDetail(id){
+  currentId=id;
+  const r=await api('/api/review/application?id='+encodeURIComponent(id)); const d=await r.json();
+  const a=d.application;
+  $('d-title').textContent=fileNo(a);
+  const o=a.determination?OUTCOMES[a.determination]:null;
+  $('d-status').innerHTML=o?`<span class="tag ${o.cls}">${o.label}</span>`:`<span class="tag pending">Awaiting review</span>`;
+  const originLabel=a.origin_kind==='birth_certificate'?'Borough birth certificate':'Continuous NYC school enrollment records';
+  $('d-fields').innerHTML=
+    fieldRow('Full legal name',a.full_name)+
+    fieldRow('Date of birth',fmtDOB(a.date_of_birth))+
+    fieldRow('Mailing address',a.mailing_address)+
+    fieldRow('Email',a.email)+
+    fieldRow('Telephone',a.phone)+
+    fieldRow('NYC high school',a.high_school)+
+    fieldRow('Proof of origin',originLabel)+
+    fieldRow('Best pizza',a.best_pizza)+
+    fieldRow('Additional comments',a.comments)+
+    fieldRow('Filed',fmtDate(a.submitted_at));
+
+  $('d-docs').innerHTML=(d.documents||[]).map(doc=>{
+    const kindLabel=doc.kind==='high_school_record'?'High school record':'Proof of origin';
+    let preview='';
+    if(doc.url){
+      if(doc.mime_type && doc.mime_type.startsWith('image/')) preview=`<img src="${esc(doc.url)}" alt="${esc(doc.original_filename)}">`;
+      else if(doc.mime_type==='application/pdf') preview=`<iframe src="${esc(doc.url)}" title="${esc(doc.original_filename)}"></iframe>`;
+    }
+    const open=doc.url?`<a href="${esc(doc.url)}" target="_blank" rel="noopener">Open ↗</a>`:`<span class="muted">unavailable</span>`;
+    return `<div class="doc"><div class="dh"><span class="name">${esc(doc.original_filename)}</span>${open}</div>`+
+           `<div class="dkind">${kindLabel} · ${esc(doc.mime_type)} · ${fmtSize(doc.size_bytes)}</div>`+
+           (preview?`<div style="margin-top:12px;">${preview}</div>`:'')+`</div>`;
+  }).join('')||'<p class="muted">No documents.</p>';
+
+  // determination panel
+  $('d-err').classList.remove('show');
+  if(a.determination){
+    $('d-decided').className='decided';
+    $('d-decided').innerHTML=`<strong>${OUTCOMES[a.determination].label}.</strong> Recorded ${fmtDate(a.determined_at)}.`+(a.determination_notes?`<br><span class="muted">${esc(a.determination_notes)}</span>`:'');
+    $('d-form').classList.add('hidden');
+  }else{
+    $('d-decided').className='decided hidden';
+    $('d-form').classList.remove('hidden');
+    $('d-notes').value='';
+  }
+  show('detail');
+  window.scrollTo(0,0);
+}
+$('back').addEventListener('click',loadQueue);
+document.querySelectorAll('.dbtns .btn').forEach(btn=>btn.addEventListener('click',async function(){
+  const determination=this.dataset.d;
+  const o=OUTCOMES[determination];
+  if(!confirm('Record determination: '+o.label+'?\n\nThis is the official outcome for this application.')) return;
+  document.querySelectorAll('.dbtns .btn').forEach(b=>b.disabled=true);
+  $('d-err').classList.remove('show');
+  try{
+    const r=await api('/api/review/determine',{method:'POST',body:JSON.stringify({application_id:currentId,determination,notes:$('d-notes').value})});
+    if(!r.ok) throw new Error('failed');
+    await openDetail(currentId);
+  }catch(e){
+    $('d-err').classList.add('show');
+    document.querySelectorAll('.dbtns .btn').forEach(b=>b.disabled=false);
+  }
+}));
+
+// --- boot: handle magic-link callback, then route ---
+(async function(){
+  try{ CFG=await (await fetch('/api/review/config')).json(); }
+  catch(e){ document.body.innerHTML='<div class="wrap"><p>Console unavailable. Try again shortly.</p></div>'; return; }
+
+  // magic-link returns tokens in the URL hash
+  if(location.hash.includes('access_token')){
+    const p=new URLSearchParams(location.hash.slice(1));
+    if(p.get('access_token')){
+      setTok({access_token:p.get('access_token'),refresh_token:p.get('refresh_token'),email:null});
+    }
+    history.replaceState(null,'',location.pathname);
+  }
+  // error back from Supabase (expired/invalid link)
+  if(location.hash.includes('error')){ history.replaceState(null,'',location.pathname); }
+
+  if(!tok()){ show('login'); return; }
+  // validate session by loading the queue; fills in email from token
+  try{
+    const s=tok();
+    if(s && s.access_token){
+      const parts=s.access_token.split('.');
+      if(parts[1]){ const claims=JSON.parse(atob(parts[1].replace(/-/g,'+').replace(/_/g,'/'))); if(claims.email){ $('who-email').textContent=claims.email; } }
+    }
+    $('who').style.visibility='visible';
+    await loadQueue();
+  }catch(e){ /* api() already routed to login on 401 */ }
+})();
+</script>
+</body></html>
