@@ -1006,8 +1006,8 @@
 
       <h4>Photograph</h4>
       <label for="t1-headshot">Headshot</label>
-      <input type="file" id="t1-headshot" accept=".jpg,.jpeg,.png,.webp,.heic,.heif,image/*">
-      <p class="hint">A clear, recent photograph of your face, plainly lit and facing forward. Used to produce your identification card if you are verified. One image (JPG, PNG, or HEIC) — not a PDF.</p>
+      <input type="file" id="t1-headshot" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
+      <p class="hint">A clear, recent photograph of your face, plainly lit and facing forward. Used to produce your identification card if you are verified. One image, JPG or PNG.</p>
 
       <h4>High school record</h4>
       <label for="t1-school">New York City high school attended</label>
@@ -1241,6 +1241,7 @@ document.getElementById('notify-btn').addEventListener('click',async function(){
   const EXT_MIME={pdf:'application/pdf',jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp',heic:'image/heic',heif:'image/heif'};
   const ALLOWED=new Set(Object.values(EXT_MIME));
   const IMG=new Set(['image/jpeg','image/png','image/webp','image/heic','image/heif']);
+  const HEADIMG=new Set(['image/jpeg','image/png']);
   const MAX=20*1024*1024;
   const typeOf=f=>ALLOWED.has(f.type)?f.type:(EXT_MIME[f.name.split('.').pop().toLowerCase()]||null);
   const mark=(el,bad)=>{el.style.borderColor=bad?'#EC131E':'';};
@@ -1262,7 +1263,7 @@ document.getElementById('notify-btn').addEventListener('click',async function(){
     need(school,school.value.trim().length>=2);
     need(pizza,pizza.value.trim().length>=2);
     const filesOk=list=>[...list].every(f=>typeOf(f)&&f.size>0&&f.size<=MAX);
-    need(headshot,headshot.files.length===1&&IMG.has(typeOf(headshot.files[0]))&&headshot.files[0].size<=MAX);
+    need(headshot,headshot.files.length===1&&HEADIMG.has(typeOf(headshot.files[0]))&&headshot.files[0].size<=MAX);
     need(hs,hs.files.length>=1&&hs.files.length<=3&&filesOk(hs.files));
     need(od,od.files.length>=1&&od.files.length<=10&&filesOk(od.files));
     mark(originbox,!origin);bad=bad||!origin;

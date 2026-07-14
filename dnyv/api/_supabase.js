@@ -12,6 +12,9 @@ export const IMAGE_MIME = new Set([
 ]);
 // Documents in general may be PDFs or photographs; a headshot must be an image.
 export const ALLOWED_MIME = new Set(['application/pdf', ...IMAGE_MIME]);
+// A headshot must be JPEG or PNG — the only formats that embed into the
+// certificate/ID PDF without conversion.
+export const HEADSHOT_MIME = new Set(['image/jpeg', 'image/png']);
 
 export function getServiceClient() {
   const url = process.env.SUPABASE_URL;

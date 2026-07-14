@@ -1,4 +1,4 @@
-import { getServiceClient, BUCKET, MAX_FILE_BYTES, ALLOWED_MIME, IMAGE_MIME } from './_supabase.js';
+import { getServiceClient, BUCKET, MAX_FILE_BYTES, ALLOWED_MIME, HEADSHOT_MIME } from './_supabase.js';
 
 // Opens a Track 1 application file: validates the applicant's answers,
 // creates a draft application row plus one row per expected document, and
@@ -58,7 +58,7 @@ export default async function handler(req, res) {
         KINDS.has(f.kind) &&
         typeof f.name === 'string' && f.name.length >= 1 && f.name.length <= 300 &&
         typeof f.type === 'string' &&
-        (f.kind === 'headshot' ? IMAGE_MIME.has(f.type) : ALLOWED_MIME.has(f.type)) &&
+        (f.kind === 'headshot' ? HEADSHOT_MIME.has(f.type) : ALLOWED_MIME.has(f.type)) &&
         Number.isInteger(f.size) && f.size > 0 && f.size <= MAX_FILE_BYTES,
     );
   if (!filesValid) {
