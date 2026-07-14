@@ -1,11 +1,11 @@
-import { getServiceClient, BUCKET, MAX_FILE_BYTES, ALLOWED_MIME } from './_supabase.js';
+import { getServiceClient, BUCKET, MAX_FILE_BYTES, ALLOWED_MIME, IMAGE_MIME } from './_supabase.js';
 
 // Opens a Track 1 application file: validates the applicant's answers,
 // creates a draft application row plus one row per expected document, and
 // returns short-lived signed upload URLs so the browser sends the documents
 // straight to the private bucket (they never pass through this function).
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const KINDS = new Set(['high_school_record', 'origin_document']);
+const KINDS = new Set(['high_school_record', 'origin_document', 'headshot']);
 const ORIGIN_KINDS = new Set(['birth_certificate', 'school_enrollment']);
 
 function str(v, max) {
@@ -47,19 +47,22 @@ export default async function handler(req, res) {
 
   const hsCount = files.filter((f) => f?.kind === 'high_school_record').length;
   const originCount = files.filter((f) => f?.kind === 'origin_document').length;
+  const headshotCount = files.filter((f) => f?.kind === 'headshot').length;
   const filesValid =
-    files.length === hsCount + originCount &&
+    files.length === hsCount + originCount + headshotCount &&
     hsCount >= 1 && hsCount <= 3 &&
     originCount >= 1 && originCount <= 10 &&
+    headshotCount === 1 &&
     files.every(
       (f) =>
         KINDS.has(f.kind) &&
         typeof f.name === 'string' && f.name.length >= 1 && f.name.length <= 300 &&
-        typeof f.type === 'string' && ALLOWED_MIME.has(f.type) &&
+        typeof f.type === 'string' &&
+        (f.kind === 'headshot' ? IMAGE_MIME.has(f.type) : ALLOWED_MIME.has(f.type)) &&
         Number.isInteger(f.size) && f.size > 0 && f.size <= MAX_FILE_BYTES,
     );
   if (!filesValid) {
-    return res.status(400).json({ error: 'Documents must be PDF or photographs, up to 20 MB each' });
+    return res.status(400).json({ error: 'Documents must be PDF or photographs, up to 20 MB each; a headshot photograph is required' });
   }
 
   const supabase = getServiceClient();

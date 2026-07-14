@@ -270,7 +270,7 @@ async function openDetail(id){
     fieldRow('Filed',fmtDate(a.submitted_at));
 
   $('d-docs').innerHTML=(d.documents||[]).map(doc=>{
-    const kindLabel=doc.kind==='high_school_record'?'High school record':'Proof of origin';
+    const kindLabel={high_school_record:'High school record',origin_document:'Proof of origin',headshot:'Photograph'}[doc.kind]||doc.kind;
     let preview='';
     if(doc.url){
       if(doc.mime_type && doc.mime_type.startsWith('image/')) preview=`<img src="${esc(doc.url)}" alt="${esc(doc.original_filename)}">`;

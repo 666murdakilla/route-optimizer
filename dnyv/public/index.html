@@ -1004,6 +1004,11 @@
       <label for="t1-phone">Telephone (optional)</label>
       <input type="tel" id="t1-phone" autocomplete="tel">
 
+      <h4>Photograph</h4>
+      <label for="t1-headshot">Headshot</label>
+      <input type="file" id="t1-headshot" accept=".jpg,.jpeg,.png,.webp,.heic,.heif,image/*">
+      <p class="hint">A clear, recent photograph of your face, plainly lit and facing forward. Used to produce your identification card if you are verified. One image (JPG, PNG, or HEIC) — not a PDF.</p>
+
       <h4>High school record</h4>
       <label for="t1-school">New York City high school attended</label>
       <input type="text" id="t1-school" placeholder="School name and borough">
@@ -1235,6 +1240,7 @@ document.getElementById('notify-btn').addEventListener('click',async function(){
   const btn=$('t1-submit'); if(!btn) return;
   const EXT_MIME={pdf:'application/pdf',jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp',heic:'image/heic',heif:'image/heif'};
   const ALLOWED=new Set(Object.values(EXT_MIME));
+  const IMG=new Set(['image/jpeg','image/png','image/webp','image/heic','image/heif']);
   const MAX=20*1024*1024;
   const typeOf=f=>ALLOWED.has(f.type)?f.type:(EXT_MIME[f.name.split('.').pop().toLowerCase()]||null);
   const mark=(el,bad)=>{el.style.borderColor=bad?'#EC131E':'';};
@@ -1242,7 +1248,7 @@ document.getElementById('notify-btn').addEventListener('click',async function(){
   btn.addEventListener('click',async function(){
     const name=$('t1-name'),dob=$('t1-dob'),address=$('t1-address'),email=$('t1-email'),
           phone=$('t1-phone'),school=$('t1-school'),pizza=$('t1-pizza'),comments=$('t1-comments'),
-          hs=$('t1-hs-files'),od=$('t1-origin-files'),attest=$('t1-attest'),
+          headshot=$('t1-headshot'),hs=$('t1-hs-files'),od=$('t1-origin-files'),attest=$('t1-attest'),
           originbox=$('t1-originbox'),ok=$('t1-ok'),err=$('t1-err'),errd=$('t1-err-detail');
     ok.classList.remove('show');err.classList.remove('show');
     const origin=document.querySelector('input[name=t1-origin]:checked');
@@ -1256,6 +1262,7 @@ document.getElementById('notify-btn').addEventListener('click',async function(){
     need(school,school.value.trim().length>=2);
     need(pizza,pizza.value.trim().length>=2);
     const filesOk=list=>[...list].every(f=>typeOf(f)&&f.size>0&&f.size<=MAX);
+    need(headshot,headshot.files.length===1&&IMG.has(typeOf(headshot.files[0]))&&headshot.files[0].size<=MAX);
     need(hs,hs.files.length>=1&&hs.files.length<=3&&filesOk(hs.files));
     need(od,od.files.length>=1&&od.files.length<=10&&filesOk(od.files));
     mark(originbox,!origin);bad=bad||!origin;
@@ -1269,14 +1276,18 @@ document.getElementById('notify-btn').addEventListener('click',async function(){
     const label=btn.textContent;
     btn.textContent='Transmitting…';
     try{
-      const allFiles=[...hs.files,...od.files];
+      const entries=[
+        ...[...headshot.files].map(f=>({file:f,kind:'headshot'})),
+        ...[...hs.files].map(f=>({file:f,kind:'high_school_record'})),
+        ...[...od.files].map(f=>({file:f,kind:'origin_document'})),
+      ];
+      const allFiles=entries.map(e=>e.file);
       const payload={
         full_name:name.value.trim(),date_of_birth:dob.value,mailing_address:address.value.trim(),
         email:email.value.trim(),phone:phone.value.trim()||null,
         high_school:school.value.trim(),best_pizza:pizza.value.trim(),
         comments:comments.value.trim()||null,origin_kind:origin.value,attested:attest.checked,
-        files:[...hs.files].map(f=>({kind:'high_school_record',name:f.name,type:typeOf(f),size:f.size}))
-          .concat([...od.files].map(f=>({kind:'origin_document',name:f.name,type:typeOf(f),size:f.size})))
+        files:entries.map(e=>({kind:e.kind,name:e.file.name,type:typeOf(e.file),size:e.file.size}))
       };
       const open=await fetch('/api/apply',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       if(!open.ok) throw new Error('open failed');
