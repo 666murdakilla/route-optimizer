@@ -657,7 +657,7 @@
 <!-- ============ ALERT RIBBON ============ -->
 <div class="alert" id="alert-ribbon"><div class="wrap">
   <span class="dot" aria-hidden="true"></span>
-  <span><strong>Track 1 verification opens July 18, 2026.</strong> Track 2 to follow. <a href="#apply" data-route="apply">Sign up to be notified →</a></span>
+  <span><strong>Track 1 verification is now open.</strong> <a href="#apply-track1" data-route="apply-track1">Get verified →</a> Track 2 to follow; <a href="#apply" data-route="apply">get notified</a>.</span>
   <button class="x" id="alert-x" aria-label="Dismiss notice">✕</button>
 </div></div>
 
@@ -676,7 +676,7 @@
     <h1>Verify your status as a New Yorker.</h1>
     <p class="lede">Everyone claims the city. The Department certifies it. Apply for official verification as a New Yorker — by origin, or by earning it — and receive a certificate and identification card recognized by the City of New York.</p>
     <div class="cta-row">
-      <a class="btn" href="#apply" data-route="apply">Get notified when verification opens</a>
+      <a class="btn" href="#apply-track1" data-route="apply-track1">Get verified</a>
       <a href="#how" data-route="how">How verification works →</a>
     </div>
   </div></section>
@@ -685,7 +685,7 @@
     <div class="eyebrow">Our mission</div>
     <h2>What makes a person a New Yorker?</h2>
     <p>The Department of New Yorker Verification administers the conferral, denial, and revocation of New Yorker status. Established by Local Law 77 of 2026, it exists to answer — on the record, and by evidence — a question the city has argued about for four hundred years. What makes a New Yorker? Residence is an address. The title is earned.</p>
-    <p>On this website you can determine which of the two verification tracks applies to you, review the requirements, read the law that established the Department, and sign up to be notified when applications open.</p>
+    <p>On this website you can determine which of the two verification tracks applies to you, review the requirements, read the law that established the Department, and — if you came of age in the city — file your Track 1 application. Verification by Experience opens in a later phase.</p>
     <ul class="quicklinks">
       <li><a href="#how" data-route="how">Verification tracks</a></li>
       <li><a href="#apply-how" data-route="apply-how">How to apply</a></li>
@@ -778,7 +778,7 @@
     <h3>The Mandatory Suffering Clause</h3>
     <p>No fewer than 200 points must come from hardship endured and survived. <strong>The Department does not recognize a New Yorker who has not suffered.</strong> Grit is not a bonus. It is the prerequisite. You become one of us by being hurt by the city and choosing to stay anyway.</p>
     <p>The full schedule of qualifying experiences — and the points each is worth — is published as the rules of the Department, and takes effect when Track 2 opens.</p>
-    <a class="btn" href="#apply" data-route="apply">Get notified when verification opens</a>
+    <a class="btn" href="#apply-track1" data-route="apply-track1">Get verified</a>
   </div></section>
 </div>
 
@@ -953,12 +953,12 @@
     <span class="pill">Apply</span>
     <h1 style="margin-top:16px;">Apply for Verification</h1>
     <p class="lede">The Department is opening verification in two phases.</p>
-    <p><strong>Track 1 — Verification by Origin</strong> opens first. If you came of age in New York City, you can prepare now and file as soon as the window opens.</p>
+    <p><strong>Track 1 — Verification by Origin</strong> is now open. If you came of age in New York City, you can file today.</p>
     <p><strong>Track 2 — Verification by Experience</strong> opens in a later phase, once the schedule of qualifying experiences is finalized.</p>
 
     <hr class="rule">
     <h2>Track 1 — Verification by Origin</h2>
-    <p style="font-weight:700;color:var(--blue-40);margin-top:-8px;">Opening July 18, 2026.</p>
+    <p style="font-weight:700;color:var(--blue-40);margin-top:-8px;">Now open.</p>
     <p>The documentary path, for those born in a borough or raised in the city's schools from childhood. Have ready:</p>
     <ul>
       <li>Your New York City high school record.</li>
@@ -968,14 +968,17 @@
     <p><a class="btn" href="#apply-track1" data-route="apply-track1">File your Track 1 application</a></p>
 
     <hr class="rule">
-    <h3>Get notified</h3>
+    <h2>Track 2 — Verification by Experience</h2>
+    <p style="font-weight:700;color:var(--gray-30);margin-top:-8px;">Opens in a later phase.</p>
+    <h3>Get notified about Track 2</h3>
+    <p>Verification by Experience opens once the schedule of qualifying experiences is finalized. Leave your email and the Department will write when it does.</p>
     <div class="form">
       <label for="notify-email">Email address</label>
       <input type="email" id="notify-email" placeholder="you@example.com" autocomplete="email">
       <button class="btn" type="button" id="notify-btn">Notify me</button>
-      <div class="ok" id="notify-ok"><strong>You're on the list.</strong><br>The Department will contact you as each track opens.</div>
+      <div class="ok" id="notify-ok"><strong>You're on the list.</strong><br>The Department will contact you when Track 2 opens.</div>
     </div>
-    <p style="font-size:15px;color:var(--gray-30);margin-top:14px;">The Department will contact you as each track opens. It will not otherwise write to you or share your address.</p>
+    <p style="font-size:15px;color:var(--gray-30);margin-top:14px;">The Department will contact you when Track 2 opens. It will not otherwise write to you or share your address.</p>
 
     <hr class="rule">
     <h3>Before you file</h3>
@@ -1042,6 +1045,43 @@
   </div></section>
 </div>
 
+<!-- ============ PRIVACY NOTICE ============ -->
+<div class="page" id="page-privacy">
+  <section class="band content"><div class="wrap col">
+    <span class="pill">Notice</span>
+    <h1 style="margin-top:16px;">Privacy Notice</h1>
+    <p class="lede">This notice explains what the Department collects when you use this website, why, how it is protected, and how long it is kept. Verification requires sensitive records; the Department treats them accordingly.</p>
+
+    <h2>What the Department collects</h2>
+    <ul>
+      <li><strong>Application information.</strong> When you file a Track 1 application, the Department collects your name, date of birth, mailing address, email address, telephone (if provided), the New York City high school you attended, and the other answers you supply on the form.</li>
+      <li><strong>Documents and photograph.</strong> The records you upload — a borough birth certificate or continuous NYC school-enrollment records, your high school record, and a headshot photograph — are collected to adjudicate your claim and, if you are verified, to produce your certificate and identification card.</li>
+      <li><strong>Waitlist.</strong> If you ask to be notified when Track 2 opens, the Department stores your email address for that purpose.</li>
+      <li><strong>Correspondence.</strong> If you write to the Department, it keeps your message in order to respond.</li>
+    </ul>
+
+    <h2>How it is used</h2>
+    <p>Your information is used only to review your application, to reach a determination, to issue a certificate and identification card if you are verified, and to correspond with you about your file. It is not used for any other purpose, and it is not sold.</p>
+
+    <h2>How it is protected</h2>
+    <p>Uploaded documents are held in private storage that is not publicly accessible. Application data is stored in a database that cannot be read by the public. Documents are viewable only by an authenticated reviewer, through links that expire shortly after they are opened. Every application is reviewed by a human Borough Verifier.</p>
+
+    <h2>Who it is shared with</h2>
+    <p>The Department does not share your information, except where required by law. Your records are seen only by the Department's reviewer.</p>
+
+    <h2>How long it is kept</h2>
+    <p>Application records are kept for at least ninety (90) days. After a determination is reached and that period has passed, the Department deletes the source documents and photograph you uploaded. It retains a minimal register entry — your name, file number, the date, and the determination — and, if you were verified, the certificate and identification card issued to you. Waitlist emails are kept until Track 2 opens or until you ask to be removed.</p>
+
+    <h2>Your choices</h2>
+    <p>You may ask the Department what it holds about you, or ask it to delete your information, by writing to <a href="mailto:verify@dnyv.nyc">verify@dnyv.nyc</a>. The Department will honor a deletion request except where it must keep a record by law. Removing your data ends any application in progress.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this notice may be directed to <a href="mailto:verify@dnyv.nyc">verify@dnyv.nyc</a>.</p>
+
+    <p style="font-size:14px;color:var(--gray-40);margin-top:24px;">This notice may be updated as the Department's practices change. Material changes will be posted on this page.</p>
+  </div></section>
+</div>
+
 </main>
 
 <!-- ============ FOOTER ============ -->
@@ -1069,6 +1109,7 @@
       <a href="#about" data-route="about">About</a>
       <a href="#law" data-route="law">Local Law 77</a>
       <a href="#contact" data-route="contact">Contact</a>
+      <a href="#privacy" data-route="privacy">Privacy Notice</a>
     </div>
     <div>
       <h5>City of New York</h5>
@@ -1174,7 +1215,7 @@ document.getElementById('hero-slot').innerHTML = HERO;
 
 
 // ---------- Router ----------
-const titles = {home:'',about:'About',how:'How Verification Works',conduct:'Code of Conduct','apply-how':'How to Apply',law:'The Law',contact:'Contact',apply:'Apply','apply-track1':'Track 1 Application'};
+const titles = {home:'',about:'About',how:'How Verification Works',conduct:'Code of Conduct','apply-how':'How to Apply',law:'The Law',contact:'Contact',apply:'Apply','apply-track1':'Track 1 Application',privacy:'Privacy Notice'};
 const navRoutes = ['home','about','how','apply-how','law','contact'];
 function navigate(route){
   if(!titles.hasOwnProperty(route)) route='home';

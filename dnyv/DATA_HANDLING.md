@@ -34,26 +34,39 @@ public fetch of a document URL returns an error, not the file).
 - **Personal access tokens** (Supabase/Vercel/Resend) used to build this. Treat these
   as keys to the whole system — see "Token hygiene" below.
 
-## Retention — the decision you need to make
+## Retention policy (decided)
 
-**Right now there is no automatic deletion.** Every application, every document, and
-every waitlist email persists indefinitely until someone deletes it by hand. For a
-system holding birth certificates and photos, "keep everything forever" is the wrong
-default. Decide a retention policy and apply it. A reasonable starting point:
+Every application is kept for **at least 90 days**. After a determination is reached and
+90 days have passed:
 
-- **Denied / Returned applications:** delete the uploaded documents (and optionally the
-  whole record) shortly after the determination is communicated — e.g. 30–90 days.
-  There's little reason to retain someone's birth certificate after you've told them no.
-- **Verified applications:** you may want to keep a minimal record (name, file number,
-  determination, date) for the register, but you can still **delete the raw documents
-  and headshot** once the certificate/ID has been issued. The determination doesn't
-  require keeping the source files forever.
-- **Waitlist emails:** delete after launch once they've served their purpose, or when
-  someone asks to be removed.
-- **Abandoned drafts:** applications that never finish uploading sit as `status='draft'`
-  with no readable documents. Periodically delete old drafts.
+- **Delete the source documents and the headshot** the applicant uploaded (birth
+  certificate / enrollment records / high school record / photo).
+- **Retain a minimal register entry:** name, file number, date, and outcome.
+- **Retain the issued certificate and DNYV identification card** for verified applicants.
+- **Waitlist emails:** kept until Track 2 opens or until someone asks to be removed.
+- **Abandoned drafts** (`status='draft'`, documents never finished uploading): delete
+  periodically; they hold no readable documents.
 
-Data minimization is the principle: keep the least you need, for the shortest time.
+The public Privacy Notice on the site states this policy to applicants.
+
+### Implementation note — required before the purge can run
+
+The certificate and ID card are currently generated **on demand** from the applicant's
+data **and their headshot**; nothing is stored. To satisfy "retain the certificate and
+ID after deleting the photograph," the system must **persist the generated certificate
+PDF at the moment of verification** (the headshot is baked into that PDF), so the source
+photo can then be safely deleted while the ID lives on inside the stored certificate.
+
+So the retention automation has two parts, neither built yet:
+1. **On `Verified`:** generate and store the certificate PDF in a private bucket keyed to
+   the application, so it survives source-document deletion.
+2. **A scheduled purge job** (e.g. a daily Vercel Cron or Supabase scheduled function)
+   that finds applications determined more than 90 days ago, deletes their source
+   documents + headshot from storage, clears the document rows, and keeps the register
+   fields + stored certificate.
+
+Until that automation exists, apply the policy **manually** using the two-step deletion
+below. Data minimization is the principle: keep the least you need, for the shortest time.
 
 ## Deleting data correctly (two steps)
 
