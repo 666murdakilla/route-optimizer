@@ -1,4 +1,5 @@
 import { getServiceClient, BUCKET } from './_supabase.js';
+import { sendApplicationReceived } from './_email.js';
 
 // Seals a Track 1 application: verifies that every expected document actually
 // arrived in the private bucket, then marks the file submitted and returns
@@ -29,7 +30,7 @@ export default async function handler(req, res) {
 
   const { data: app, error: appError } = await supabase
     .from('applications')
-    .select('id, status, file_number, submitted_at, created_at')
+    .select('id, status, file_number, submitted_at, created_at, full_name, email')
     .eq('id', id)
     .single();
   if (appError || !app) {
@@ -81,8 +82,14 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Filing failed' });
   }
 
-  return res.status(200).json({
-    ok: true,
-    file_number: fileNumber(app.file_number, new Date(now).getFullYear()),
-  });
+  const fileNo = fileNumber(app.file_number, new Date(now).getFullYear());
+
+  // Confirmation email — best-effort; a failure here must not fail the filing.
+  try {
+    await sendApplicationReceived({ to: app.email, name: app.full_name, fileNumber: fileNo });
+  } catch (err) {
+    console.error('apply-finalize: confirmation email threw', err);
+  }
+
+  return res.status(200).json({ ok: true, file_number: fileNo });
 }
