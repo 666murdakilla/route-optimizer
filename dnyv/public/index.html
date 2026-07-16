@@ -657,7 +657,7 @@
 <!-- ============ ALERT RIBBON ============ -->
 <div class="alert" id="alert-ribbon"><div class="wrap">
   <span class="dot" aria-hidden="true"></span>
-  <span><strong>Track 1 verification is now open.</strong> <a href="#apply-track1" data-route="apply-track1">Get verified →</a> Track 2 to follow; <a href="#apply" data-route="apply">get notified</a>.</span>
+  <span><strong>Track 1 verification is now open.</strong> <a href="#apply" data-route="apply">Get verified →</a> Track 2 to follow; <a href="#apply" data-route="apply">get notified</a>.</span>
   <button class="x" id="alert-x" aria-label="Dismiss notice">✕</button>
 </div></div>
 
@@ -676,7 +676,7 @@
     <h1>Verify your status as a New Yorker.</h1>
     <p class="lede">Everyone claims the city. The Department certifies it. Apply for official verification as a New Yorker — by origin, or by earning it — and receive a certificate and identification card recognized by the City of New York.</p>
     <div class="cta-row">
-      <a class="btn" href="#apply-track1" data-route="apply-track1">Get verified</a>
+      <a class="btn" href="#apply" data-route="apply">Get verified</a>
       <a href="#how" data-route="how">How verification works →</a>
     </div>
   </div></section>
@@ -778,7 +778,7 @@
     <h3>The Mandatory Suffering Clause</h3>
     <p>No fewer than 200 points must come from hardship endured and survived. <strong>The Department does not recognize a New Yorker who has not suffered.</strong> Grit is not a bonus. It is the prerequisite. You become one of us by being hurt by the city and choosing to stay anyway.</p>
     <p>The full schedule of qualifying experiences — and the points each is worth — is published as the rules of the Department, and takes effect when Track 2 opens.</p>
-    <a class="btn" href="#apply-track1" data-route="apply-track1">Get verified</a>
+    <a class="btn" href="#apply" data-route="apply">Get verified</a>
   </div></section>
 </div>
 
@@ -790,13 +790,14 @@
     <p class="lede">The Department does not presume you are a New Yorker because you say so, because you feel it, or because you have been here a while. Every claim rests on the applicant, and every claim rises or falls on evidence.</p>
     <h2>The Process</h2>
     <ol>
-      <li><strong>Determine your Track.</strong> Verification by Origin, or by Experience. You may file under one Track only.</li>
+      <li><strong><a href="#apply" data-route="apply">Determine your Track.</a></strong> Verification by Origin, or by Experience. You may file under one Track only.</li>
       <li>Gather the documentation for each claim you intend to make.</li>
-      <li>Fill out your application (<a href="#apply" data-route="apply">application form</a>). Incomplete files are returned, not reviewed.</li>
+      <li>Fill out your application. Incomplete files are returned, not reviewed.</li>
       <li>Submit your application, attesting that every statement in it is true.</li>
       <li>Await review by the Borough Verifier for the borough of your current or most recent residence.</li>
       <li>Receive your determination.</li>
     </ol>
+    <p style="margin-top:24px;"><a class="btn" href="#apply" data-route="apply">Get verified</a></p>
     <h2>Accepted Evidence</h2>
     <p>The Department receives sworn affidavits, leases, utility statements, dated receipts, timestamped photographs, transit history, and the testimony of witnesses in good standing. A witness in good standing is one who is themselves verified, or who is a bodega, corner store, or deli proprietor. The sworn statement of a bodega proprietor carries particular weight. No one has observed the applicant more closely, or provided for them more faithfully.</p>
     <h2>Determinations</h2>
@@ -1036,7 +1037,7 @@
       <textarea id="t1-comments" rows="4"></textarea>
 
       <h4>Attestation</h4>
-      <label class="check" for="t1-attest"><input type="checkbox" id="t1-attest"><span>I attest that every statement in this application, and every record attached to it, is true.</span></label>
+      <label class="check" for="t1-attest"><input type="checkbox" id="t1-attest"><span>I attest that every statement in this application, and every record attached to it, is pretty much true.</span></label>
 
       <button class="btn" type="button" id="t1-submit">Submit application</button>
       <div class="ok" id="t1-ok"><strong>Application received.</strong><br>Your file number is <strong id="t1-file-number"></strong>. Keep it. The Department will contact you at the email address provided. Files are reviewed in the order received.</div>
