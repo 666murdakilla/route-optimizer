@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useGoogleMaps } from './hooks/useGoogleMaps'
 import { loadLocations, saveLocations } from './lib/storage'
 import { computeRoutes, recomputeRouteTotals } from './lib/computeRoutes'
+import { loadSavedRoutes, saveSavedRoutes } from './lib/savedRoutes'
 import MapView from './components/MapView'
 import LocationForm from './components/LocationForm'
 import LocationList from './components/LocationList'
@@ -14,6 +15,7 @@ export default function App() {
   const [selectedIds, setSelectedIds] = useState(() => new Set())
   const [startId, setStartId] = useState(null)
   const [endId, setEndId] = useState(null)
+  const [savedRoutes, setSavedRoutes] = useState(() => loadSavedRoutes())
   // routesResult holds the solver's raw output plus the distance/duration
   // matrices it was solved against; routeViews holds what's actually
   // displayed (order/totals/per-stop schedule), which manual reordering and
@@ -29,6 +31,10 @@ export default function App() {
   useEffect(() => {
     saveLocations(locations)
   }, [locations])
+
+  useEffect(() => {
+    saveSavedRoutes(savedRoutes)
+  }, [savedRoutes])
 
   // Keep the chosen start point valid as the selection changes, defaulting
   // to the first-selected location (in the order locations were added).
@@ -162,6 +168,24 @@ export default function App() {
     })
   }
 
+  function handleSaveRoute(routeKey, day) {
+    const view = routeViews[routeKey]
+    setSavedRoutes((prev) => ({
+      ...prev,
+      [day]: {
+        savedAt: new Date().toISOString(),
+        routeKey,
+        order: view.order,
+        totalMiles: view.totalMiles,
+        totalMinutes: view.totalMinutes,
+      },
+    }))
+  }
+
+  function handleDeleteSavedRoute(day) {
+    setSavedRoutes((prev) => ({ ...prev, [day]: null }))
+  }
+
   return (
     <div className="app">
       <header className="app-header">
@@ -231,6 +255,9 @@ export default function App() {
               onResetOrder={handleResetOrder}
               onDurationChange={handleDurationChange}
               onAnchorChange={handleAnchorChange}
+              onSaveRoute={handleSaveRoute}
+              savedRoutes={savedRoutes}
+              onDeleteSavedRoute={handleDeleteSavedRoute}
             />
           )}
         </section>

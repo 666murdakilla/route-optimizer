@@ -1,4 +1,5 @@
 import RouteStopList from './RouteStopList'
+import SavedRoutesPanel from './SavedRoutesPanel'
 
 const ROUTE_LABELS = {
   distance: 'Shortest distance',
@@ -22,6 +23,9 @@ export default function RoutePanel({
   onResetOrder,
   onDurationChange,
   onAnchorChange,
+  onSaveRoute,
+  savedRoutes,
+  onDeleteSavedRoute,
 }) {
   const canCalculate = selectedLocations.length >= 2 && !loading
   const identicalOrder =
@@ -101,11 +105,14 @@ export default function RoutePanel({
                 onResetOrder={() => onResetOrder(key)}
                 onDurationChange={(locId, minutes) => onDurationChange(key, locId, minutes)}
                 onAnchorChange={(locId, time) => onAnchorChange(key, locId, time)}
+                onSaveRoute={(day) => onSaveRoute(key, day)}
               />
             )
           })}
         </div>
       )}
+
+      <SavedRoutesPanel savedRoutes={savedRoutes} onDelete={onDeleteSavedRoute} />
     </div>
   )
 }

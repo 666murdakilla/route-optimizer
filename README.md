@@ -31,6 +31,12 @@ client-side.
   stop and the rest are estimated automatically (forward and backward)
   using real drive times and each stop's dwell duration, staying in sync as
   you reorder stops or change durations.
+- Every route has an "Open in Google Maps" link (a plain maps.google.com
+  directions URL - no extra API calls) that opens the current stop order for
+  turn-by-turn navigation.
+- Save the current state of either route to a day of the week (Monday-Sunday,
+  one route per day, persisted to `localStorage`) for quick recall later -
+  each saved route keeps its own stop order, totals, and Google Maps link.
 
 ## Getting a Google Maps API key
 
@@ -76,10 +82,12 @@ what to fix instead of a blank/broken map.
 ```
 src/
   components/
-    MapView.jsx        Map, markers, info windows, route polylines
-    LocationForm.jsx    Add-location form (Places Autocomplete + geocode fallback)
-    LocationList.jsx    Location table with select/delete
-    RoutePanel.jsx      Start-point picker, calculate button, route results
+    MapView.jsx          Map, markers, info windows, route polylines
+    LocationForm.jsx     Add-location form (Places Autocomplete + geocode fallback)
+    LocationList.jsx     Location table with select/delete
+    RoutePanel.jsx       Start/end point pickers, calculate button, route results
+    RouteStopList.jsx    Drag-and-drop stop list, schedule editing, save-to-day, maps link
+    SavedRoutesPanel.jsx Lists routes saved per day of the week
   hooks/
     useGoogleMaps.js    Loads the Maps JS API once and reports ready/error state
   lib/
@@ -88,7 +96,9 @@ src/
     tsp.js              TSP solver (Held-Karp exact + nearest-neighbor/2-opt fallback)
     computeRoutes.js    Combines the matrix + solver into the two route results
     schedule.js         Per-stop arrival time propagation from a single anchor stop
-    storage.js          localStorage persistence for saved locations
+    mapsLink.js          Builds a Google Maps directions URL from a stop order
+    storage.js           localStorage persistence for saved locations
+    savedRoutes.js        localStorage persistence for routes saved per day
 ```
 
 ## How routes are calculated

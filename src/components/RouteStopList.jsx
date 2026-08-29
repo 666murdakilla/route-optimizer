@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { SortableContext, arrayMove, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { computeArrivalMinutes, dayOffsetLabel, formatDurationMinutes, minutesToInputValue } from '../lib/schedule'
+import { buildGoogleMapsDirectionsUrl } from '../lib/mapsLink'
+import { DAYS_OF_WEEK } from '../lib/savedRoutes'
 
 // One route's (distance- or time-optimized) stop list: drag-and-drop
 // reorderable, with a per-stop arrival time (the "anchor" - see
@@ -24,13 +27,17 @@ export default function RouteStopList({
   onResetOrder,
   onDurationChange,
   onAnchorChange,
+  onSaveRoute,
 }) {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   )
+  const [saveDay, setSaveDay] = useState('')
+  const [savedConfirmation, setSavedConfirmation] = useState('')
 
   const arrivalMinutes = computeArrivalMinutes(order, referenceLocations, durationMinutes, stopDurations, anchor)
+  const mapsUrl = buildGoogleMapsDirectionsUrl(order)
 
   function handleDragEnd(event) {
     const { active, over } = event
@@ -38,6 +45,14 @@ export default function RouteStopList({
     const oldIndex = order.findIndex((loc) => loc.id === active.id)
     const newIndex = order.findIndex((loc) => loc.id === over.id)
     onReorder(arrayMove(order, oldIndex, newIndex))
+  }
+
+  function handleSave() {
+    if (!saveDay) return
+    onSaveRoute(saveDay)
+    setSavedConfirmation(`Saved to ${saveDay}`)
+    setSaveDay('')
+    setTimeout(() => setSavedConfirmation(''), 2500)
   }
 
   return (
@@ -54,7 +69,30 @@ export default function RouteStopList({
       </div>
       <p className="route-stats">
         {totalMiles.toFixed(1)} miles · {formatDurationMinutes(totalMinutes)}
+        {mapsUrl && (
+          <>
+            {' · '}
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
+              Open in Google Maps ↗
+            </a>
+          </>
+        )}
       </p>
+
+      <div className="save-route-control">
+        <select value={saveDay} onChange={(e) => setSaveDay(e.target.value)} aria-label="Save this route to a day">
+          <option value="">Save to day…</option>
+          {DAYS_OF_WEEK.map((day) => (
+            <option key={day} value={day}>
+              {day}
+            </option>
+          ))}
+        </select>
+        <button type="button" onClick={handleSave} disabled={!saveDay}>
+          Save
+        </button>
+        {savedConfirmation && <span className="save-confirmation">{savedConfirmation}</span>}
+      </div>
 
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={order.map((loc) => loc.id)} strategy={verticalListSortingStrategy}>

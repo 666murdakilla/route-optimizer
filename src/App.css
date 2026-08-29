@@ -331,6 +331,93 @@ button {
   margin-bottom: 12px;
 }
 
+.route-stats a {
+  color: var(--accent);
+}
+
+.save-route-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.save-route-control select {
+  padding: 3px 4px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--panel-bg);
+  color: var(--text);
+  font-size: 12px;
+}
+
+.save-route-control button {
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text);
+  font-size: 12px;
+}
+
+.save-route-control button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.save-confirmation {
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.saved-routes-panel {
+  margin-top: 8px;
+}
+
+.saved-routes-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.saved-route-row {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.saved-route-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.saved-route-header strong {
+  font-size: 14px;
+}
+
+.saved-route-label {
+  color: var(--text-muted);
+  font-size: 12px;
+  flex: 1;
+}
+
+.saved-stop-list {
+  margin: 6px 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.saved-route-row a {
+  color: var(--accent);
+  font-size: 13px;
+}
+
 @media (max-width: 900px) {
   .app-layout {
     flex-direction: column;
