@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useGoogleMaps } from './hooks/useGoogleMaps'
 import { loadLocations, saveLocations } from './lib/storage'
-import { computeRoutes, recomputeRouteTotals } from './lib/computeRoutes'
+import { computeRoutes, recomputeRouteTotals, recalculateWithPins } from './lib/computeRoutes'
 import { loadSavedRoutes, saveSavedRoutes } from './lib/savedRoutes'
 import MapView from './components/MapView'
 import LocationForm from './components/LocationForm'
@@ -143,7 +143,34 @@ export default function App() {
         order: routesResult[routeKey].order,
         totalMiles: routesResult[routeKey].totalMiles,
         totalMinutes: routesResult[routeKey].totalMinutes,
+        pinned: {},
       },
+    }))
+  }
+
+  function handleTogglePin(routeKey, locationId) {
+    setRouteViews((prev) => {
+      const current = prev[routeKey]
+      const nextPinned = { ...current.pinned }
+      if (nextPinned[locationId]) delete nextPinned[locationId]
+      else nextPinned[locationId] = true
+      return { ...prev, [routeKey]: { ...current, pinned: nextPinned } }
+    })
+  }
+
+  function handleRecalculate(routeKey) {
+    const view = routeViews[routeKey]
+    const { order, totalMiles, totalMinutes } = recalculateWithPins(
+      view.order,
+      view.pinned,
+      routesResult.locations,
+      routesResult.matrices.distanceMiles,
+      routesResult.matrices.durationMinutes,
+      routeKey,
+    )
+    setRouteViews((prev) => ({
+      ...prev,
+      [routeKey]: { ...prev[routeKey], order, totalMiles, totalMinutes },
     }))
   }
 
@@ -258,6 +285,8 @@ export default function App() {
               onSaveRoute={handleSaveRoute}
               savedRoutes={savedRoutes}
               onDeleteSavedRoute={handleDeleteSavedRoute}
+              onTogglePin={handleTogglePin}
+              onRecalculate={handleRecalculate}
             />
           )}
         </section>
@@ -273,6 +302,7 @@ function routeViewFromSummary(routeSummary) {
     totalMinutes: routeSummary.totalMinutes,
     stopDurations: {},
     anchor: null,
+    pinned: {},
   }
 }
 

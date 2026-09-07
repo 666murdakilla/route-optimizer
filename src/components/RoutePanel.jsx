@@ -26,6 +26,8 @@ export default function RoutePanel({
   onSaveRoute,
   savedRoutes,
   onDeleteSavedRoute,
+  onTogglePin,
+  onRecalculate,
 }) {
   const canCalculate = selectedLocations.length >= 2 && !loading
   const identicalOrder =
@@ -96,6 +98,7 @@ export default function RoutePanel({
                 totalMinutes={view.totalMinutes}
                 stopDurations={view.stopDurations}
                 anchor={view.anchor}
+                pinned={view.pinned}
                 referenceLocations={routesResult.locations}
                 durationMinutes={routesResult.matrices.durationMinutes}
                 visible={visibleRoutes[key]}
@@ -106,6 +109,8 @@ export default function RoutePanel({
                 onDurationChange={(locId, minutes) => onDurationChange(key, locId, minutes)}
                 onAnchorChange={(locId, time) => onAnchorChange(key, locId, time)}
                 onSaveRoute={(day) => onSaveRoute(key, day)}
+                onTogglePin={(locId) => onTogglePin(key, locId)}
+                onRecalculate={() => onRecalculate(key)}
               />
             )
           })}

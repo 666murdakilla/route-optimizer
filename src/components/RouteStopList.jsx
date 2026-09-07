@@ -18,6 +18,7 @@ export default function RouteStopList({
   totalMinutes,
   stopDurations,
   anchor,
+  pinned,
   referenceLocations,
   durationMinutes,
   visible,
@@ -28,6 +29,8 @@ export default function RouteStopList({
   onDurationChange,
   onAnchorChange,
   onSaveRoute,
+  onTogglePin,
+  onRecalculate,
 }) {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
@@ -38,6 +41,7 @@ export default function RouteStopList({
 
   const arrivalMinutes = computeArrivalMinutes(order, referenceLocations, durationMinutes, stopDurations, anchor)
   const mapsUrl = buildGoogleMapsDirectionsUrl(order)
+  const pinnedCount = Object.keys(pinned).length
 
   function handleDragEnd(event) {
     const { active, over } = event
@@ -94,6 +98,13 @@ export default function RouteStopList({
         {savedConfirmation && <span className="save-confirmation">{savedConfirmation}</span>}
       </div>
 
+      <div className="pin-control">
+        <button type="button" onClick={onRecalculate}>
+          Recalculate with pins{pinnedCount > 0 ? ` (${pinnedCount})` : ''}
+        </button>
+        <span className="pin-hint">📌 a stop below to lock it in place, then recalculate the rest around it.</span>
+      </div>
+
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={order.map((loc) => loc.id)} strategy={verticalListSortingStrategy}>
           <ol className="stop-list">
@@ -104,8 +115,11 @@ export default function RouteStopList({
                 index={index}
                 duration={stopDurations[loc.id] ?? 0}
                 arrivalMinutes={arrivalMinutes[index]}
+                pinned={index === 0 ? true : Boolean(pinned[loc.id])}
+                pinDisabled={index === 0}
                 onDurationChange={(minutes) => onDurationChange(loc.id, minutes)}
                 onTimeChange={(time) => onAnchorChange(loc.id, time)}
+                onTogglePin={() => onTogglePin(loc.id)}
               />
             ))}
           </ol>
@@ -115,7 +129,7 @@ export default function RouteStopList({
   )
 }
 
-function StopRow({ loc, index, duration, arrivalMinutes, onDurationChange, onTimeChange }) {
+function StopRow({ loc, index, duration, arrivalMinutes, pinned, pinDisabled, onDurationChange, onTimeChange, onTogglePin }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: loc.id })
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -126,7 +140,7 @@ function StopRow({ loc, index, duration, arrivalMinutes, onDurationChange, onTim
   const offsetLabel = arrivalMinutes !== null ? dayOffsetLabel(arrivalMinutes) : ''
 
   return (
-    <li ref={setNodeRef} style={style} className="stop-row">
+    <li ref={setNodeRef} style={style} className={`stop-row${pinned ? ' stop-row-pinned' : ''}`}>
       <button
         type="button"
         className="drag-handle"
@@ -135,6 +149,17 @@ function StopRow({ loc, index, duration, arrivalMinutes, onDurationChange, onTim
         {...listeners}
       >
         ⠿
+      </button>
+      <button
+        type="button"
+        className={`pin-toggle${pinned ? ' pin-toggle-active' : ''}`}
+        aria-label={pinned ? `Unpin ${loc.name}` : `Pin ${loc.name} in place`}
+        aria-pressed={pinned}
+        disabled={pinDisabled}
+        title={pinDisabled ? 'The start stop is always fixed in place' : undefined}
+        onClick={onTogglePin}
+      >
+        📌
       </button>
       <span className="stop-name">
         {index + 1}. {loc.name}

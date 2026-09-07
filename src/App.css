@@ -275,6 +275,11 @@ button {
   font-size: 13px;
 }
 
+.stop-row-pinned {
+  border-color: var(--accent);
+  border-width: 2px;
+}
+
 .drag-handle {
   background: none;
   border: none;
@@ -284,6 +289,49 @@ button {
   padding: 2px 4px;
   cursor: grab;
   touch-action: none;
+}
+
+.pin-toggle {
+  background: none;
+  border: none;
+  font-size: 14px;
+  line-height: 1;
+  padding: 2px 4px;
+  cursor: pointer;
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.pin-toggle-active {
+  opacity: 1;
+  filter: none;
+}
+
+.pin-toggle:disabled {
+  cursor: not-allowed;
+  opacity: 0.15;
+}
+
+.pin-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.pin-control button {
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text);
+  font-size: 12px;
+}
+
+.pin-hint {
+  color: var(--text-muted);
+  font-size: 12px;
 }
 
 .stop-name {

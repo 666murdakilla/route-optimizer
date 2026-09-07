@@ -1,5 +1,5 @@
 import { getDistanceDurationMatrix, hasUnreachablePair } from './distanceMatrix'
-import { pathCost, solveTSP } from './tsp'
+import { pathCost, solveTSP, solveTSPWithPins } from './tsp'
 
 // Ties the Distance Matrix lookup and the TSP solver together: fetches
 // real-world costs for the selected stops, then solves the same stop set
@@ -55,5 +55,30 @@ export function recomputeRouteTotals(order, locations, distanceMiles, durationMi
   return {
     totalMiles: pathCost(orderIndices, distanceMiles),
     totalMinutes: pathCost(orderIndices, durationMinutes),
+  }
+}
+
+// Re-optimizes a (possibly manually reordered) stop list while keeping some
+// stops locked at their current position: position 0 (the current first
+// stop) is always locked, since the solver needs a fixed start, plus
+// whichever other stops are in `pinnedIds`. Everyone else gets rearranged
+// into the remaining positions to minimize `optimizeFor` ('distance' or
+// 'time'), using the same already-fetched matrices - no new API call.
+export function recalculateWithPins(order, pinnedIds, locations, distanceMiles, durationMinutes, optimizeFor) {
+  const indexById = new Map(locations.map((loc, i) => [loc.id, i]))
+  const pins = {}
+  order.forEach((loc, position) => {
+    if (position === 0 || pinnedIds[loc.id]) {
+      pins[position] = indexById.get(loc.id)
+    }
+  })
+
+  const matrix = optimizeFor === 'time' ? durationMinutes : distanceMiles
+  const result = solveTSPWithPins(matrix, pins)
+
+  return {
+    order: result.order.map((i) => locations[i]),
+    totalMiles: pathCost(result.order, distanceMiles),
+    totalMinutes: pathCost(result.order, durationMinutes),
   }
 }

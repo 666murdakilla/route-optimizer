@@ -27,6 +27,9 @@ client-side.
 - Drag-and-drop manual reordering of either route's stop list, with totals
   recalculated instantly from the already-fetched distance/duration data (no
   extra API calls) and a "reset to optimized order" button per route.
+- Pin any stop (📌) at its current position and hit "Recalculate with pins"
+  to re-optimize every other stop around it - the exact same solver, just
+  constrained to keep pinned stops exactly where they are.
 - Per-stop arrival time and dwell-duration editing: set a time on any one
   stop and the rest are estimated automatically (forward and backward)
   using real drive times and each stop's dwell duration, staying in sync as
@@ -109,6 +112,12 @@ from the Distance Matrix API, then solves two instances of the traveling
 salesman problem against that matrix - fixed starting stop, optionally a
 fixed end stop too - once minimizing total distance and once minimizing
 total time. Without a fixed end, the path finishes wherever is cheapest.
+
+The same solver also powers "Recalculate with pins": position 0 (the
+current start) and any stop you pin are treated as fixed positions, and the
+solver re-optimizes only the remaining, unpinned stops around them - it's
+the general form of the fixed-start/fixed-end solve above, just extended to
+any position in the list.
 
 `src/lib/tsp.js` picks the solving method based on stop count:
 
