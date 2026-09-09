@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DNYV">
+  <rect width="64" height="64" rx="13" fill="#050560"/>
+  <g fill="#ffffff">
+    <!-- left flanking buildings -->
+    <rect x="11" y="37" width="7.5" height="15"/>
+    <rect x="19.5" y="30" width="7" height="22"/>
+    <!-- central tower: base, setback, spire -->
+    <rect x="27.5" y="24" width="9" height="28"/>
+    <rect x="29.5" y="16.5" width="5" height="8"/>
+    <polygon points="32,7 33,16.5 31,16.5"/>
+    <!-- right flanking buildings -->
+    <rect x="37.5" y="30" width="7" height="22"/>
+    <rect x="45.5" y="37" width="7.5" height="15"/>
+  </g>
+  <rect x="9" y="52" width="46" height="2.4" fill="#70BAFF"/>
+</svg>
