@@ -38,13 +38,16 @@ export default async function handler(req, res) {
       ? b.date_of_birth : null;
   const high_school = str(b.high_school, 300);
   const best_pizza = str(b.best_pizza, 300);
+  const worst_subway_station = str(b.worst_subway_station, 300);
+  const ny_story = str(b.ny_story, 4000);
   const comments = b.comments == null || b.comments === '' ? null : str(b.comments, 2000);
   const origin_kind = ORIGIN_KINDS.has(b.origin_kind) ? b.origin_kind : null;
   const files = Array.isArray(b.files) ? b.files : null;
 
   if (!given_names || !surname || !full_name || !borough ||
       !email || !EMAIL_RE.test(email) || !mailing_address || !date_of_birth ||
-      !high_school || !best_pizza || !origin_kind ||
+      !high_school || !best_pizza || !worst_subway_station ||
+      !ny_story || ny_story.length < 20 || !origin_kind ||
       b.attested !== true || (b.phone && phone === null) ||
       (b.comments && comments === null) || !files) {
     return res.status(400).json({ error: 'Incomplete application' });
@@ -78,7 +81,7 @@ export default async function handler(req, res) {
 
   const { data: app, error: appError } = await supabase
     .from('applications')
-    .insert({ full_name, given_names, surname, borough, email, phone, mailing_address, date_of_birth, high_school, best_pizza, comments, origin_kind })
+    .insert({ full_name, given_names, surname, borough, email, phone, mailing_address, date_of_birth, high_school, best_pizza, worst_subway_station, ny_story, comments, origin_kind })
     .select('id')
     .single();
   if (appError) {
