@@ -6,7 +6,7 @@ import { getServiceClient, BUCKET, MAX_FILE_BYTES, ALLOWED_MIME, HEADSHOT_MIME }
 // straight to the private bucket (they never pass through this function).
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const KINDS = new Set(['high_school_record', 'origin_document', 'headshot']);
-const ORIGIN_KINDS = new Set(['birth_certificate', 'school_enrollment']);
+const ORIGIN_KINDS = new Set(['birth_certificate', 'school_enrollment', 'affidavit']);
 const BOROUGHS = new Set(['manhattan', 'brooklyn', 'queens', 'bronx', 'staten_island']);
 
 function str(v, max) {

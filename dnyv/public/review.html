@@ -261,7 +261,8 @@ async function openDetail(id){
   $('d-title').textContent=fileNo(a);
   const o=a.determination?OUTCOMES[a.determination]:null;
   $('d-status').innerHTML=o?`<span class="tag ${o.cls}">${o.label}</span>`:`<span class="tag pending">Awaiting review</span>`;
-  const originLabel=a.origin_kind==='birth_certificate'?'Borough birth certificate':'Continuous NYC school enrollment records';
+  const ORIGIN_LABELS={birth_certificate:'Borough birth certificate',school_enrollment:'Continuous NYC school enrollment records',affidavit:'Supporting affidavits'};
+  const originLabel=ORIGIN_LABELS[a.origin_kind]||a.origin_kind||'—';
   $('d-fields').innerHTML=
     fieldRow('Full legal name',a.full_name)+
     fieldRow('Date of birth',fmtDOB(a.date_of_birth))+
