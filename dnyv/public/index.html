@@ -564,7 +564,8 @@
   .form .ok.show{display:block;}
 
   /* track 1 application form */
-  .form input[type=text],.form input[type=tel],.form input[type=date],.form textarea{width:100%;border:2px solid var(--black);padding:12px 14px;font-family:var(--body);font-size:16px;border-radius:2px;margin-bottom:16px;background:var(--white);color:var(--black);}
+  .form input[type=text],.form input[type=tel],.form input[type=date],.form textarea,.form select{width:100%;border:2px solid var(--black);padding:12px 14px;font-family:var(--body);font-size:16px;border-radius:2px;margin-bottom:16px;background:var(--white);color:var(--black);}
+  .form select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23000' stroke-width='2'/></svg>");background-repeat:no-repeat;background-position:right 14px center;background-size:12px;padding-right:40px;cursor:pointer;}
   .form textarea{resize:vertical;min-height:84px;}
   .form input[type=file]{width:100%;border:2px solid var(--black);padding:10px 12px;font-family:var(--body);font-size:15px;border-radius:2px;margin-bottom:6px;background:var(--white);}
   .form .hint{font-size:14px;color:var(--gray-30);margin:0 0 16px;}
@@ -1000,10 +1001,21 @@
     <hr class="rule">
     <div class="form">
       <h4>Applicant</h4>
-      <label for="t1-name">Full legal name</label>
-      <input type="text" id="t1-name" autocomplete="name">
+      <label for="t1-given">Given name(s)</label>
+      <input type="text" id="t1-given" autocomplete="given-name">
+      <label for="t1-surname">Family name (surname)</label>
+      <input type="text" id="t1-surname" autocomplete="family-name">
       <label for="t1-dob">Date of birth</label>
       <input type="date" id="t1-dob" autocomplete="bday">
+      <label for="t1-borough">Borough of current or most recent residence</label>
+      <select id="t1-borough">
+        <option value="" disabled selected>Select a borough…</option>
+        <option value="manhattan">Manhattan</option>
+        <option value="brooklyn">Brooklyn</option>
+        <option value="queens">Queens</option>
+        <option value="bronx">The Bronx</option>
+        <option value="staten_island">Staten Island</option>
+      </select>
       <label for="t1-address">Current mailing address</label>
       <textarea id="t1-address" rows="3" autocomplete="street-address"></textarea>
       <label for="t1-email">Email address</label>
@@ -1292,17 +1304,21 @@ document.getElementById('notify-btn').addEventListener('click',async function(){
   const mark=(el,bad)=>{el.style.borderColor=bad?'#EC131E':'';};
 
   btn.addEventListener('click',async function(){
-    const name=$('t1-name'),dob=$('t1-dob'),address=$('t1-address'),email=$('t1-email'),
+    const given=$('t1-given'),surname=$('t1-surname'),dob=$('t1-dob'),borough=$('t1-borough'),
+          address=$('t1-address'),email=$('t1-email'),
           phone=$('t1-phone'),school=$('t1-school'),pizza=$('t1-pizza'),comments=$('t1-comments'),
           headshot=$('t1-headshot'),hs=$('t1-hs-files'),od=$('t1-origin-files'),attest=$('t1-attest'),
           originbox=$('t1-originbox'),ok=$('t1-ok'),err=$('t1-err'),errd=$('t1-err-detail');
     ok.classList.remove('show');err.classList.remove('show');
     const origin=document.querySelector('input[name=t1-origin]:checked');
+    const BOROUGHS=['manhattan','brooklyn','queens','bronx','staten_island'];
 
     let bad=false;
     const need=(el,pass)=>{mark(el,!pass);bad=bad||!pass;};
-    need(name,name.value.trim().length>=2);
+    need(given,given.value.trim().length>=1);
+    need(surname,surname.value.trim().length>=1);
     need(dob,/^\d{4}-\d{2}-\d{2}$/.test(dob.value)&&dob.value>='1900-01-01'&&Date.parse(dob.value)<Date.now());
+    need(borough,BOROUGHS.includes(borough.value));
     need(address,address.value.trim().length>=8);
     need(email,/\S+@\S+\.\S+/.test(email.value));
     need(school,school.value.trim().length>=2);
@@ -1329,7 +1345,8 @@ document.getElementById('notify-btn').addEventListener('click',async function(){
       ];
       const allFiles=entries.map(e=>e.file);
       const payload={
-        full_name:name.value.trim(),date_of_birth:dob.value,mailing_address:address.value.trim(),
+        given_names:given.value.trim(),surname:surname.value.trim(),
+        date_of_birth:dob.value,borough:borough.value,mailing_address:address.value.trim(),
         email:email.value.trim(),phone:phone.value.trim()||null,
         high_school:school.value.trim(),best_pizza:pizza.value.trim(),
         comments:comments.value.trim()||null,origin_kind:origin.value,attested:attest.checked,

@@ -7,6 +7,7 @@ import { getServiceClient, BUCKET, MAX_FILE_BYTES, ALLOWED_MIME, HEADSHOT_MIME }
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const KINDS = new Set(['high_school_record', 'origin_document', 'headshot']);
 const ORIGIN_KINDS = new Set(['birth_certificate', 'school_enrollment']);
+const BOROUGHS = new Set(['manhattan', 'brooklyn', 'queens', 'bronx', 'staten_island']);
 
 function str(v, max) {
   return typeof v === 'string' && v.trim().length > 0 && v.trim().length <= max ? v.trim() : null;
@@ -24,7 +25,10 @@ export default async function handler(req, res) {
   }
 
   const b = req.body ?? {};
-  const full_name = str(b.full_name, 200);
+  const given_names = str(b.given_names, 60);
+  const surname = str(b.surname, 40);
+  const full_name = given_names && surname ? `${given_names} ${surname}`.slice(0, 200) : null;
+  const borough = BOROUGHS.has(b.borough) ? b.borough : null;
   const email = str(b.email, 320)?.toLowerCase() ?? null;
   const phone = b.phone == null || b.phone === '' ? null : str(b.phone, 40);
   const mailing_address = str(b.mailing_address, 500);
@@ -38,7 +42,8 @@ export default async function handler(req, res) {
   const origin_kind = ORIGIN_KINDS.has(b.origin_kind) ? b.origin_kind : null;
   const files = Array.isArray(b.files) ? b.files : null;
 
-  if (!full_name || !email || !EMAIL_RE.test(email) || !mailing_address || !date_of_birth ||
+  if (!given_names || !surname || !full_name || !borough ||
+      !email || !EMAIL_RE.test(email) || !mailing_address || !date_of_birth ||
       !high_school || !best_pizza || !origin_kind ||
       b.attested !== true || (b.phone && phone === null) ||
       (b.comments && comments === null) || !files) {
@@ -73,7 +78,7 @@ export default async function handler(req, res) {
 
   const { data: app, error: appError } = await supabase
     .from('applications')
-    .insert({ full_name, email, phone, mailing_address, date_of_birth, high_school, best_pizza, comments, origin_kind })
+    .insert({ full_name, given_names, surname, borough, email, phone, mailing_address, date_of_birth, high_school, best_pizza, comments, origin_kind })
     .select('id')
     .single();
   if (appError) {

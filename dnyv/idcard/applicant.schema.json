@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DNYV ID applicant",
+  "type": "object",
+  "required": [
+    "id_number",
+    "surname",
+    "given_names",
+    "dob",
+    "verified_date",
+    "borough",
+    "track",
+    "photo_src"
+  ],
+  "properties": {
+    "id_number": {
+      "type": "string",
+      "pattern": "^[0-9]{9}$",
+      "description": "Unique 9-digit number. Rendered as NY7 · 0419 · 2261 and NY704192261."
+    },
+    "surname": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "given_names": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60
+    },
+    "signature_name": {
+      "type": "string",
+      "description": "Text drawn in the script signature face. Defaults to first given name + surname."
+    },
+    "dob": {
+      "type": "string",
+      "format": "date"
+    },
+    "verified_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of determination. Track 2 expiry = this + 10 years."
+    },
+    "borough": {
+      "enum": [
+        "manhattan",
+        "brooklyn",
+        "queens",
+        "bronx",
+        "staten_island"
+      ]
+    },
+    "track": {
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "status": {
+      "enum": [
+        "verified",
+        "provisional"
+      ],
+      "default": "verified"
+    },
+    "hologram": {
+      "type": "boolean",
+      "default": true
+    },
+    "photo_src": {
+      "type": "string",
+      "description": "URL or data: URI. Portrait 4:5, min 512×640."
+    }
+  },
+  "additionalProperties": false
+}

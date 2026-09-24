@@ -160,7 +160,8 @@ tr.row:hover{background:var(--blue-95);cursor:pointer;}
       <div class="card section determine">
         <h2>Determination</h2>
         <div id="d-decided" class="decided hidden"></div>
-        <button class="btn hidden" id="dl-cert" style="margin-top:14px;width:100%;">Download certificate (PDF)</button>
+        <button class="btn hidden" id="dl-idcard" style="margin-top:14px;width:100%;">Download New Yorker ID</button>
+        <button class="btn secondary hidden" id="dl-cert" style="margin-top:10px;width:100%;">Download certificate (PDF)</button>
         <div id="d-form">
           <label for="d-notes">Notes / reason <span class="muted" style="font-weight:400;">(optional)</span></label>
           <textarea id="d-notes" placeholder="Recorded with the determination."></textarea>
@@ -298,10 +299,28 @@ async function openDetail(id){
     $('d-notes').value='';
   }
   $('dl-cert').classList.toggle('hidden', a.determination!=='verified');
+  $('dl-idcard').classList.toggle('hidden', a.determination!=='verified');
   show('detail');
   window.scrollTo(0,0);
 }
 $('back').addEventListener('click',loadQueue);
+$('dl-idcard').addEventListener('click',async function(){
+  this.disabled=true; const label=this.textContent; this.textContent='Preparing…';
+  // Open the print window synchronously (inside the click) so pop-up blockers allow it.
+  const w=window.open('','_blank');
+  if(w){ w.document.write('<!doctype html><title>Preparing ID…</title><body style="font-family:sans-serif;padding:40px;color:#555">Preparing the New Yorker ID…</body>'); }
+  try{
+    const r=await api('/api/review/id-card?id='+encodeURIComponent(currentId));
+    if(!r.ok) throw new Error('gen failed');
+    const html=await r.text();
+    if(!w){ alert('Allow pop-ups for this site, then try again.'); return; }
+    w.document.open(); w.document.write(html); w.document.close();
+    // once the card is rendered (fonts + auto-fit), switch to print layout and open the dialog
+    const printWhenReady=()=>{ try{ w.document.body.classList.add('render'); }catch(e){} setTimeout(()=>{ try{ w.focus(); w.print(); }catch(e){} }, 350); };
+    let tries=0; const poll=setInterval(()=>{ tries++; let ready=false; try{ ready=w.document.body&&w.document.body.dataset.ready==='1'; }catch(e){} if(ready||tries>40){ clearInterval(poll); printWhenReady(); } }, 150);
+  }catch(e){ if(w) w.close(); alert('Could not generate the ID card. Try again.'); }
+  finally{ this.disabled=false; this.textContent=label; }
+});
 $('dl-cert').addEventListener('click',async function(){
   this.disabled=true; const label=this.textContent; this.textContent='Preparing…';
   try{
