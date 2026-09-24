@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { sendWaitlistConfirmation } from './_email.js';
 
 // Server-side only: the service role key bypasses RLS and must never be
 // shipped to the browser. The waitlist table has RLS enabled with no
@@ -34,6 +35,16 @@ export default async function handler(req, res) {
   if (error && error.code !== '23505') {
     console.error('notify: insert failed', error);
     return res.status(500).json({ error: 'Signup failed' });
+  }
+
+  // Confirmation email only on a fresh signup — best-effort, and never on a
+  // duplicate, so re-submitting the form does not re-send the email.
+  if (!error) {
+    try {
+      await sendWaitlistConfirmation({ to: email });
+    } catch (err) {
+      console.error('notify: confirmation email threw', err);
+    }
   }
 
   return res.status(200).json({ ok: true });

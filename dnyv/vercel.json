@@ -7,6 +7,9 @@
   "crons": [
     { "path": "/api/keepalive", "schedule": "0 6 * * *" }
   ],
+  "rewrites": [
+    { "source": "/id/:token", "destination": "/api/card?t=:token" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
