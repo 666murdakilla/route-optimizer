@@ -81,6 +81,7 @@ export async function sendVerified({ to, name, fileNumber, cardUrl, certPdf }) {
     `Your New Yorker identification card — bearing your file number and photograph — is ready to view, download, and print here:`, ``,
     cardUrl, ``,
     `The link is issued for your file alone. Keep it to yourself.`, ``,
+    `If you would prefer an official printed identification card — issued on Department stock and mailed to you — write to verify@dnyv.nyc with your file number, and the Department will arrange it.`, ``,
     `Carry the Title with the standing it deserves. You have nothing left to prove — though you will, of course, go on proving it anyway. That is the condition.`, ``,
     CONTACT_TEXT, ``, SIGNOFF,
   ];
@@ -93,6 +94,7 @@ export async function sendVerified({ to, name, fileNumber, cardUrl, certPdf }) {
     p(`Your <strong>New Yorker identification card</strong> — bearing your file number and photograph — is ready to view, download, and print:`) +
     `<p style="margin:0 0 8px;"><a href="${esc(cardUrl)}" style="display:inline-block;background:#103FEF;color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:2px;">View your New Yorker ID card &rarr;</a></p>` +
     p(`The link is issued for your file alone. Keep it to yourself.`, 'color:#555;font-size:13px;') +
+    p(`If you would prefer an official printed identification card — issued on Department stock and mailed to you — write to <a href="mailto:verify@dnyv.nyc" style="color:#103FEF;">verify@dnyv.nyc</a> with your file number, and the Department will arrange it.`) +
     p(`Carry the Title with the standing it deserves. You have nothing left to prove — though you will, of course, go on proving it anyway. That is the condition.`) +
     p(CONTACT_HTML, 'color:#555;') +
     p(SIGNOFF, 'margin-top:24px;color:#555;font-size:14px;')
