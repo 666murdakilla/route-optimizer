@@ -10,6 +10,10 @@
   "rewrites": [
     { "source": "/id/:token", "destination": "/api/card?t=:token" }
   ],
+  "functions": {
+    "api/review/determine.js": { "memory": 1024, "maxDuration": 60, "includeFiles": "node_modules/@sparticuz/chromium/bin/**" },
+    "api/review/certificate.js": { "memory": 1024, "maxDuration": 60, "includeFiles": "node_modules/@sparticuz/chromium/bin/**" }
+  },
   "headers": [
     {
       "source": "/(.*)",

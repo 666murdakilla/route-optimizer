@@ -1,7 +1,7 @@
 import { randomBytes } from 'node:crypto';
 import { getServiceClient } from '../_supabase.js';
 import { requireReviewer } from '../_auth.js';
-import { buildCertificatePdf, certificateFileNumber } from '../_certificate.js';
+import { renderCertificatePdf, certificateFileNumber } from '../_certificate.js';
 import { ensureIdNumber } from '../_id-card.js';
 import { sendVerified, sendDenied, sendReturned } from '../_email.js';
 
@@ -25,7 +25,7 @@ async function notify(supabase, app) {
         if (error) throw new Error('id_card_token assign failed: ' + error.message);
         app.id_card_token = token;
       }
-      const certPdf = await buildCertificatePdf(app);
+      const certPdf = await renderCertificatePdf(app);
       await sendVerified({ to: app.email, name: app.full_name, fileNumber, cardUrl: `${BASE}/id/${token}`, certPdf });
     } else if (app.determination === 'denied') {
       await sendDenied({ to: app.email, name: app.full_name, fileNumber, note: app.determination_notes });

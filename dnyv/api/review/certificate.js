@@ -1,6 +1,6 @@
 import { getServiceClient } from '../_supabase.js';
 import { requireReviewer } from '../_auth.js';
-import { buildCertificatePdf, certificateFileNumber } from '../_certificate.js';
+import { renderCertificatePdf, certificateFileNumber } from '../_certificate.js';
 
 // Reviewer-only: the one-page Certificate of Verification for a verified
 // applicant. PDF generation lives in _certificate.js, shared with the
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
   }
 
   const fileNo = certificateFileNumber(app);
-  const pdfBytes = await buildCertificatePdf(app);
+  const pdfBytes = await renderCertificatePdf(app);
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/pdf');
   res.setHeader('Content-Disposition', `attachment; filename="${fileNo}.pdf"`);
