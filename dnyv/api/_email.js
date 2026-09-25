@@ -12,8 +12,13 @@ const CONTACT_HTML = 'Correspondence regarding your file may be directed to <a h
 const shell = (inner) => `<!doctype html><html><body style="margin:0;background:#f5f5f5;padding:24px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#111;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;background:#fff;border:1px solid #ddd;">
     <tr><td style="background:#050560;padding:20px 28px;">
-      <div style="color:#b5c4ff;font-size:12px;letter-spacing:.08em;text-transform:uppercase;">City of New York</div>
-      <div style="color:#fff;font-size:18px;font-weight:600;margin-top:2px;">Department of New Yorker Verification</div>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td valign="middle" style="padding-right:16px;"><img src="https://dnyv.nyc/assets/dnyv-seal.png" width="52" height="52" alt="Department of New Yorker Verification seal" style="display:block;border:0;"></td>
+        <td valign="middle">
+          <div style="color:#b5c4ff;font-size:12px;letter-spacing:.08em;text-transform:uppercase;">City of New York</div>
+          <div style="color:#fff;font-size:18px;font-weight:600;margin-top:2px;">Department of New Yorker Verification</div>
+        </td>
+      </tr></table>
     </td></tr>
     <tr><td style="padding:28px;font-size:15px;line-height:1.6;">${inner}</td></tr>
   </table></body></html>`;
