@@ -1,6 +1,7 @@
 import { getServiceClient } from '../_supabase.js';
 import { requireReviewer } from '../_auth.js';
 import { renderCertificatePdf, certificateFileNumber } from '../_certificate.js';
+import { ensureIdNumber } from '../_id-card.js';
 
 // Reviewer-only: the one-page Certificate of Verification for a verified
 // applicant. PDF generation lives in _certificate.js, shared with the
@@ -26,6 +27,9 @@ export default async function handler(req, res) {
   if (app.determination !== 'verified') {
     return res.status(409).json({ error: 'A certificate is issued only for a verified application.' });
   }
+
+  // Assign the ID number if it hasn't been (so it matches the ID card).
+  await ensureIdNumber(supabase, app);
 
   const fileNo = certificateFileNumber(app);
   const pdfBytes = await renderCertificatePdf(app);

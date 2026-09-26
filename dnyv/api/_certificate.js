@@ -31,10 +31,15 @@ export function certificateFileNumber(app) {
 export function buildCertificateTokens(app) {
   const b = BOROUGHS[app.borough];
   if (!b) throw new Error('certificate: unknown borough ' + app.borough);
+  const digits = String(app.id_number ?? '').replace(/\D/g, '');
+  if (digits.length !== 9) throw new Error('certificate: a 9-digit id_number must be assigned before rendering');
   const t2 = false;
   const dateIso = String(app.determined_at || app.submitted_at).slice(0, 10);
   return {
     holder_name: app.full_name,
+    // Same random, unique ID number shown on the ID card, in the same format.
+    id_number: 'NY' + digits[0] + ' · ' + digits.slice(1, 5) + ' · ' + digits.slice(5),
+    id_compact: 'NY' + digits,
     file_number: certificateFileNumber(app),
     date_of_determination: longDate(dateIso),
     borough: b.name,
