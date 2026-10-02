@@ -1034,7 +1034,7 @@
       <input type="text" id="t1-school" placeholder="School name and borough">
       <label for="t1-hs-files">High school record</label>
       <input type="file" id="t1-hs-files" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,application/pdf,image/*">
-      <p class="hint">Transcript, diploma, report cards, or a signed affidavit from a parent attesting to the school you attended and for how long. 1 to 3 files.</p>
+      <p class="hint">Transcript, diploma, report cards, or a signed affidavit from a parent attesting to the school you attended and for how long. Strongly recommended, but optional — up to 3 files.</p>
 
       <h4>Proof of origin</h4>
       <fieldset id="t1-originbox">
@@ -1044,7 +1044,7 @@
       </fieldset>
       <label for="t1-origin-files">Supporting records</label>
       <input type="file" id="t1-origin-files" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,application/pdf,image/*">
-      <p class="hint">1 to 10 files.</p>
+      <p class="hint">Strongly recommended, but optional — up to 10 files.</p>
 
       <h4>Additional information</h4>
       <label for="t1-pizza">Best pizza</label>
@@ -1336,8 +1336,8 @@ document.getElementById('notify-btn').addEventListener('click',async function(){
     need(nyStory,nyStory.value.trim().length>=20);
     const filesOk=list=>[...list].every(f=>typeOf(f)&&f.size>0&&f.size<=MAX);
     need(headshot,headshot.files.length===1&&HEADIMG.has(typeOf(headshot.files[0]))&&headshot.files[0].size<=MAX);
-    need(hs,hs.files.length>=1&&hs.files.length<=3&&filesOk(hs.files));
-    need(od,od.files.length>=1&&od.files.length<=10&&filesOk(od.files));
+    need(hs,hs.files.length<=3&&filesOk(hs.files));
+    need(od,od.files.length<=10&&filesOk(od.files));
     mark(originbox,!origin);bad=bad||!origin;
     if(!attest.checked){attest.focus();bad=true;}
     if(bad){

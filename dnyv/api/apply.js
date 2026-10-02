@@ -58,8 +58,8 @@ export default async function handler(req, res) {
   const headshotCount = files.filter((f) => f?.kind === 'headshot').length;
   const filesValid =
     files.length === hsCount + originCount + headshotCount &&
-    hsCount >= 1 && hsCount <= 3 &&
-    originCount >= 1 && originCount <= 10 &&
+    hsCount <= 3 &&
+    originCount <= 10 &&
     headshotCount === 1 &&
     files.every(
       (f) =>
