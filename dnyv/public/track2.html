@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Track 2 — Verification by Experience · Department of New Yorker Verification</title>
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@500,600&display=swap" rel="stylesheet">
+<style>
+  /* ---- Self-hosted body/display fonts (same subsets as the main site) ---- */
+  @font-face{font-family:'Noto Sans';font-style:normal;font-weight:400;font-stretch:100%;font-display:swap;
+    src:url("/assets/fonts/noto-sans-latin.woff2") format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Noto Sans';font-style:normal;font-weight:400;font-stretch:100%;font-display:swap;
+    src:url("/assets/fonts/noto-sans-latin-ext.woff2") format('woff2');
+    unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Noto Sans';font-style:normal;font-weight:700;font-stretch:100%;font-display:swap;
+    src:url("/assets/fonts/noto-sans-latin.woff2") format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+    src:url("/assets/fonts/space-grotesk-latin.woff2") format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;
+    src:url("/assets/fonts/space-grotesk-latin.woff2") format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+
+  :root{
+    --black:#000000; --white:#FFFFFF;
+    --blue-40:#103FEF; --blue-10:#050560; --blue-70:#70BAFF; --blue-80:#B5DBFF; --blue-95:#EAF1FF;
+    --gray-20:#333333; --gray-30:#555555; --gray-40:#777777; --gray-70:#CCCCCC; --gray-80:#DDDDDD; --gray-90:#EEEEEE; --gray-95:#F5F5F5;
+    --green-40:#00B703; --yellow-40:#FFB320; --red-40:#EC131E;
+    --display:'Clash Grotesk','Space Grotesk','Noto Sans',system-ui,sans-serif;
+    --body:'Noto Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --maxline:800px; --wrap:1200px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:var(--body);font-weight:400;color:var(--black);background:var(--white);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--blue-40);text-decoration:underline;text-underline-offset:2px;}
+  a:hover{color:var(--blue-10);}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--blue-40);outline-offset:2px;}
+  h1,h2,h3,h4,h5{font-family:var(--display);font-weight:600;line-height:1.15;margin:0 0 .5em;color:var(--black);}
+  h1{font-size:40px;letter-spacing:-.2px;line-height:1.12;}
+  h2{font-size:28px;line-height:1.18;margin-top:0;}
+  h3{font-size:21px;font-weight:600;line-height:1.3;}
+  p{margin:0 0 1.1em;max-width:var(--maxline);}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
+  .btn{display:inline-block;background:var(--blue-40);color:var(--white);font-family:var(--body);font-weight:600;font-size:17px;text-decoration:none;padding:14px 28px;border:none;border-radius:2px;cursor:pointer;line-height:1.2;}
+  .btn:hover{background:var(--blue-10);color:var(--white);}
+  .btn:disabled{background:var(--gray-70);cursor:not-allowed;}
+  .eyebrow{font-family:var(--body);font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-30);margin-bottom:12px;}
+
+  /* ---------- Draft preview ribbon (internal only) ---------- */
+  .preview{background:#2b2b2b;color:#fff;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;}
+  .preview .wrap{min-height:30px;display:flex;align-items:center;gap:10px;}
+  .preview .tag{background:var(--yellow-40);color:#000;padding:1px 8px;border-radius:2px;}
+
+  /* ---------- Gov banner ---------- */
+  .gov-banner{background:var(--gray-90);font-size:13px;color:var(--gray-20);border-bottom:1px solid var(--gray-80);}
+  .gov-banner .wrap{display:flex;align-items:center;gap:8px;min-height:34px;flex-wrap:wrap;padding-top:5px;padding-bottom:5px;}
+  .gov-banner .flag{width:16px;height:11px;flex:none;}
+
+  /* ---------- Utility bar ---------- */
+  .util{background:var(--black);color:var(--white);font-size:14px;}
+  .util .wrap{display:flex;align-items:center;justify-content:flex-end;gap:24px;min-height:40px;}
+  .util a{color:var(--white);text-decoration:none;font-weight:500;}
+  .util a:hover{text-decoration:underline;}
+
+  /* ---------- Masthead ---------- */
+  .masthead{background:var(--white);border-bottom:1px solid var(--gray-80);}
+  .masthead .wrap{display:flex;align-items:center;gap:20px;padding-top:18px;padding-bottom:18px;}
+  .brand{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--black);}
+  .brand:hover{color:var(--black);}
+  .seal{height:52px;width:52px;flex:none;display:block;background:url("/assets/dnyv-seal.png") center/contain no-repeat;}
+  .brand-txt strong{display:block;font-family:var(--display);font-weight:600;font-size:20px;line-height:1.1;letter-spacing:-.2px;}
+  .brand-txt span{display:block;font-size:13px;color:var(--gray-30);font-weight:500;margin-top:2px;}
+
+  /* ---------- Hero ---------- */
+  .hero{background:var(--blue-95);border-bottom:1px solid var(--gray-80);}
+  .hero .wrap{padding-top:40px;padding-bottom:40px;}
+  .hero h1{max-width:760px;}
+  .hero .lede{font-size:19px;max-width:720px;color:var(--gray-20);margin-bottom:0;}
+
+  /* ---------- Layout: form + rail ---------- */
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:40px;align-items:start;padding-top:40px;padding-bottom:80px;}
+  @media (max-width:900px){.layout{grid-template-columns:1fr;gap:0;}}
+
+  /* ---------- Form ---------- */
+  .intro{border-left:4px solid var(--blue-40);background:var(--blue-95);padding:18px 22px;margin-bottom:32px;}
+  .intro p{margin:0;max-width:none;}
+  .sec{margin-bottom:40px;}
+  .sec > h2{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--black);padding-bottom:8px;margin-bottom:6px;}
+  .sec .count{font-family:var(--body);font-size:13px;font-weight:600;color:var(--gray-40);letter-spacing:.04em;text-transform:uppercase;margin-left:auto;}
+  .sec .blurb{font-size:15px;color:var(--gray-30);margin:10px 0 18px;}
+
+  .item{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--gray-90);}
+  .item:last-child{border-bottom:none;}
+  .item label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;flex:1;font-weight:400;}
+  .item input[type=checkbox]{width:19px;height:19px;accent-color:var(--blue-40);flex:none;margin:2px 0 0;cursor:pointer;}
+  .item .txt{flex:1;}
+  .item .pts{font-family:var(--body);font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;color:var(--gray-40);flex:none;white-space:nowrap;margin-top:1px;}
+  .item.on .pts{color:var(--blue-40);}
+  .item .tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:2px;margin-left:8px;vertical-align:1.5px;}
+  .tag.bonus{background:var(--blue-95);color:var(--blue-10);}
+  .tag.crime{background:#FFF6E6;color:#8a5a00;border:1px solid #FFE6B0;}
+
+  /* counter stepper */
+  .stepper{display:flex;align-items:center;gap:0;flex:none;border:2px solid var(--black);border-radius:2px;overflow:hidden;margin-top:-2px;}
+  .stepper button{width:34px;height:34px;border:none;background:var(--white);font-size:20px;line-height:1;cursor:pointer;color:var(--black);font-family:var(--body);}
+  .stepper button:hover{background:var(--blue-95);}
+  .stepper button:disabled{color:var(--gray-70);cursor:not-allowed;background:var(--white);}
+  .stepper .n{width:40px;text-align:center;font-variant-numeric:tabular-nums;font-weight:700;border-left:2px solid var(--black);border-right:2px solid var(--black);height:34px;line-height:34px;}
+  .item.counter{align-items:center;}
+
+  /* ---------- Disclosure (Trap / Flag) ---------- */
+  .disclosure{border:2px solid var(--black);padding:24px 26px;margin-bottom:40px;background:var(--gray-95);}
+  .disclosure h2{border:none;padding:0;margin-bottom:6px;}
+  .disclosure .blurb{font-size:15px;color:var(--gray-20);margin:0 0 18px;}
+  .disclosure .item{border-bottom:1px solid var(--gray-80);}
+  .disclosure .flag-item input[type=checkbox]{accent-color:var(--red-40);}
+
+  /* ---------- Submit ---------- */
+  .submit-row{margin-top:8px;}
+  .fine{font-size:13.5px;color:var(--gray-40);margin-top:14px;}
+  .confirm{display:none;border-left:5px solid var(--green-40);background:#EAF9EA;padding:20px 22px;margin-top:8px;}
+  .confirm.show{display:block;}
+  .confirm strong{display:block;font-family:var(--display);font-size:19px;margin-bottom:8px;}
+
+  /* identity */
+  .idfields{display:grid;grid-template-columns:1fr 1fr;gap:0 18px;}
+  @media (max-width:560px){.idfields{grid-template-columns:1fr;}}
+  .idfields .full{grid-column:1 / -1;}
+  .f label{display:block;font-weight:600;margin-bottom:8px;}
+  .f label .req{color:var(--red-40);}
+  .f input,.f select{width:100%;border:2px solid var(--black);padding:12px 14px;font-family:var(--body);font-size:16px;border-radius:2px;margin-bottom:16px;background:var(--white);color:var(--black);}
+  .f select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23000' stroke-width='2'/></svg>");background-repeat:no-repeat;background-position:right 14px center;background-size:12px;padding-right:40px;cursor:pointer;}
+
+  /* ---------- Live readout rail ---------- */
+  .rail{position:sticky;top:20px;}
+  @media (max-width:900px){
+    .rail{position:sticky;top:0;z-index:40;margin:0 -24px;}
+    .rail-inner{border-radius:0;border-left:none;border-right:none;}
+    .rail .detail{display:none;}
+    .rail.expanded .detail{display:block;}
+  }
+  .rail-inner{border:2px solid var(--black);border-radius:2px;background:var(--white);overflow:hidden;}
+  .rail .head{background:var(--blue-10);color:var(--white);padding:14px 18px;}
+  .rail .head .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;opacity:.85;}
+  .rail .total{font-family:var(--display);font-weight:600;font-size:34px;line-height:1;margin-top:4px;font-variant-numeric:tabular-nums;}
+  .rail .total .of{font-size:17px;opacity:.75;font-weight:500;}
+  .bar{height:10px;background:rgba(255,255,255,.22);border-radius:999px;overflow:hidden;margin-top:12px;}
+  .bar > span{display:block;height:100%;width:0;background:var(--blue-70);transition:width .18s ease;}
+  .bar.clear > span{background:var(--green-40);}
+  .rail .detail{padding:16px 18px;}
+  .gauge{margin-bottom:16px;}
+  .gauge:last-child{margin-bottom:0;}
+  .gauge .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+  .gauge .lab{font-weight:700;font-size:14px;}
+  .gauge .val{font-variant-numeric:tabular-nums;font-size:14px;color:var(--gray-30);}
+  .gauge .track{height:7px;background:var(--gray-90);border-radius:999px;overflow:hidden;margin-top:7px;}
+  .gauge .track > span{display:block;height:100%;width:0;background:var(--gray-40);transition:width .18s ease;}
+  .gauge.met .track > span{background:var(--green-40);}
+  .gauge.capped .track > span{background:var(--yellow-40);}
+  .gauge .note{font-size:12.5px;margin-top:6px;font-weight:600;}
+  .gauge.met .note{color:var(--green-40);}
+  .gauge.capped .note{color:#8a5a00;}
+  .gauge.unmet .note{color:var(--gray-40);}
+  .rail .flagwarn{font-size:12.5px;color:var(--gray-30);border-top:1px solid var(--gray-90);padding-top:12px;margin-top:4px;}
+  .rail .flagwarn.tripped{color:var(--red-40);font-weight:700;}
+  .rail .toggle{display:none;}
+  @media (max-width:900px){
+    .rail .toggle{display:block;width:100%;background:var(--gray-95);border:none;border-top:1px solid var(--gray-80);padding:9px;font-family:var(--body);font-weight:600;font-size:13px;cursor:pointer;color:var(--blue-40);}
+  }
+
+  footer{background:var(--black);color:var(--gray-70);font-size:14px;padding:30px 0;}
+  footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;}
+  footer a{color:var(--white);}
+</style>
+</head>
+<body>
+
+<!-- DRAFT PREVIEW — internal only; not linked from the live site -->
+<div class="preview"><div class="wrap"><span class="tag">Draft preview</span><span>Track 2 — not yet open to the public. Scoring runs in your browser; nothing is saved or submitted.</span></div></div>
+
+<!-- GOV BANNER -->
+<div class="gov-banner"><div class="wrap">
+  <svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"></rect><rect width="6.67" height="14" fill="#1B458F"></rect><rect x="13.33" width="6.67" height="14" fill="#F4831F"></rect><rect x="0.35" y="0.35" width="19.3" height="13.3" fill="none" stroke="#C4C4C4" stroke-width="0.7"></rect></svg>
+  <span>An "official" website of the City of New York.</span>
+</div></div>
+
+<!-- UTILITY BAR -->
+<div class="util"><div class="wrap">
+  <a href="/#home">Home</a>
+  <a href="/#how">Verification</a>
+  <a href="/#contact">Contact</a>
+</div></div>
+
+<!-- MASTHEAD -->
+<div class="masthead"><div class="wrap">
+  <a class="brand" href="/#home">
+    <span class="seal" aria-hidden="true"></span>
+    <span class="brand-txt">
+      <strong>Department of New Yorker Verification</strong>
+      <span>City of New York</span>
+    </span>
+  </a>
+</div></div>
+
+<!-- HERO -->
+<div class="hero"><div class="wrap">
+  <div class="eyebrow">Track 2 · Verification by Experience</div>
+  <h1>You weren't born here. Prove you became one.</h1>
+  <p class="lede">Track 1 verifies New Yorkers by origin. Track 2 is for everyone else: the ones who arrived, stayed, and paid for it. Answer honestly. The Department keeps score, but the score is not the point — the living is.</p>
+</div></div>
+
+<div class="wrap">
+<div class="layout">
+
+  <!-- ============ FORM ============ -->
+  <form id="t2" novalidate>
+    <div class="intro">
+      <p>This is a petition, not a quiz. Check only what is true. A Verifier reads every file by hand; the running tally on the right is the Department's, for its own use, and it is watching two things above all — how long you have been here, and what the city has cost you.</p>
+    </div>
+
+    <!-- Identity -->
+    <section class="sec" id="sec-identity">
+      <h2>The petitioner</h2>
+      <p class="blurb">Tell us who is applying. The Department addresses everyone formally and remembers everything.</p>
+      <div class="f idfields">
+        <div><label for="given">Given name(s) <span class="req">*</span></label><input id="given" name="given" type="text" autocomplete="given-name"></div>
+        <div><label for="surname">Surname <span class="req">*</span></label><input id="surname" name="surname" type="text" autocomplete="family-name"></div>
+        <div class="full"><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" autocomplete="email"></div>
+        <div><label for="borough">Current borough <span class="req">*</span></label>
+          <select id="borough" name="borough">
+            <option value="" selected disabled>Select…</option>
+            <option value="manhattan">Manhattan</option>
+            <option value="brooklyn">Brooklyn</option>
+            <option value="queens">Queens</option>
+            <option value="bronx">The Bronx</option>
+            <option value="staten_island">Staten Island</option>
+          </select>
+        </div>
+        <div><label for="dob">Date of birth <span class="req">*</span></label><input id="dob" name="dob" type="date"></div>
+      </div>
+    </section>
+
+    <!-- Scored categories render here -->
+    <div id="categories"></div>
+
+    <!-- Disclosure (Trap + Flag) renders here -->
+    <div id="disclosure"></div>
+
+    <!-- Submit -->
+    <div class="submit-row">
+      <button class="btn" type="submit" id="submit">Submit petition</button>
+      <p class="fine">By submitting, you affirm that your answers are true to the best of your memory, which the city has already damaged. Self-reported; spot-checked, not enforced.</p>
+      <div class="confirm" id="confirm" role="status" aria-live="polite">
+        <strong>Application received.</strong>
+        Your petition for verification by experience has entered the queue. A Verifier will review it in the order received, the City being large and the Department being busy. You will hear from us by email. Do not write to ask where you are in line. You are exactly where you are in line.
+      </div>
+    </div>
+  </form>
+
+  <!-- ============ LIVE READOUT ============ -->
+  <aside class="rail" id="rail" aria-label="Running tally">
+    <div class="rail-inner">
+      <div class="head">
+        <div class="k">Running tally</div>
+        <div class="total"><span id="total">0</span> <span class="of">/ 1,000</span></div>
+        <div class="bar" id="totalbar"><span></span></div>
+      </div>
+      <div class="detail">
+        <div class="gauge" id="g-tenure">
+          <div class="row"><span class="lab">Tenure</span><span class="val"><span id="ten-val">0</span> / 500</span></div>
+          <div class="track"><span></span></div>
+          <div class="note" id="ten-note">Counts toward the total, up to 500.</div>
+        </div>
+        <div class="gauge" id="g-suffer">
+          <div class="row"><span class="lab">Suffering</span><span class="val"><span id="suf-val">0</span> / 250</span></div>
+          <div class="track"><span></span></div>
+          <div class="note" id="suf-note">The floor you must clear.</div>
+        </div>
+        <div class="flagwarn" id="flagwarn">Two disclosures end a petition outright, whatever the tally.</div>
+      </div>
+      <button type="button" class="toggle" id="railToggle" aria-expanded="false">Show detail ▾</button>
+    </div>
+  </aside>
+
+</div>
+</div>
+
+<footer><div class="wrap">
+  <span>Department of New Yorker Verification · City of New York</span>
+  <span><a href="/#home">Return to dnyv.nyc</a></span>
+</div></footer>
+
+<script id="t2data" type="application/json">{"meta":{"title":"Track 2 — Verification by Experience","agency":"Department of New Yorker Verification","threshold":1000,"tenureCap":500,"tenureCategory":"Tenure","sufferingFloor":250,"sufferingCategory":"Suffering","note":"Self-reported, honor system. Spot-checked, not enforced."},"categoryOrder":["Tenure","Sustenance","Ground Truth","Suffering","Mastery","Disposition","Trap","Flag"],"items":[{"id":"ten-lived-in-nyc-full-time-50-per-year","category":"Tenure","label":"Lived in NYC full-time (50 per year)","type":"Core","input":"counter","unitPoints":50,"maxUnits":10,"max":500},{"id":"ten-lived-through-a-declared-civic-emergency-without","category":"Tenure","label":"Lived through a declared civic emergency without leaving town (blackout, hurricane, pandemic, complete transit shutdown, bomb cyclone) (25 each)","type":"Core","input":"counter","unitPoints":25,"maxUnits":8,"max":200},{"id":"ten-stayed-in-the-same-apartment-5-years","category":"Tenure","label":"Stayed in the same apartment 5+ years","type":"Core","input":"checkbox","points":40},{"id":"ten-lived-in-4-or-more-different-nyc-apartments","category":"Tenure","label":"Lived in 4 or more different NYC apartments","type":"Core","input":"checkbox","points":30},{"id":"ten-lived-in-an-outer-borough-not-manhattan-for-2-ye","category":"Tenure","label":"Lived in an outer borough (not Manhattan) for 2+ years","type":"Core","input":"checkbox","points":30},{"id":"ten-kept-your-nyc-phone-number-after-leaving","category":"Tenure","label":"Kept your NYC phone number after leaving","type":"Core","input":"checkbox","points":20},{"id":"sus-have-a-standing-bacon-egg-and-cheese-order","category":"Sustenance","label":"Have a standing bacon-egg-and-cheese order","type":"Core","input":"checkbox","points":5},{"id":"sus-eaten-a-slice-folded-standing-up-no-plate","category":"Sustenance","label":"Eaten a slice folded, standing up, no plate","type":"Core","input":"checkbox","points":5},{"id":"sus-eaten-pizza-in-all-five-boroughs-10-points-for-e","category":"Sustenance","label":"Eaten pizza in all five boroughs (10 points for each borough)","type":"Core","input":"checkbox","points":50},{"id":"sus-have-a-pizza-place-you-would-defend-in-a-fistfig","category":"Sustenance","label":"Have a pizza place you would defend in a fistfight","type":"Core","input":"checkbox","points":10},{"id":"sus-eaten-a-street-cart-dirty-water-dog-and-been-fin","category":"Sustenance","label":"Eaten a street-cart dirty-water dog and been fine","type":"Core","input":"checkbox","points":10},{"id":"sus-eaten-from-a-halal-cart-after-midnight","category":"Sustenance","label":"Eaten from a halal cart after midnight","type":"Core","input":"checkbox","points":10},{"id":"sus-have-a-halal-cart-or-food-truck-guy-who-knows-yo","category":"Sustenance","label":"Have a halal cart or food-truck guy who knows your order","type":"Core","input":"checkbox","points":15},{"id":"sus-ate-an-entire-meal-on-foot-without-breaking-stri","category":"Sustenance","label":"Ate an entire meal on foot without breaking stride","type":"Core","input":"checkbox","points":10},{"id":"sus-became-a-regular-somewhere-family-owned-they-kno","category":"Sustenance","label":"Became a regular somewhere family-owned — they know your face","type":"Core","input":"checkbox","points":50},{"id":"sus-your-bodega-cashier-knows-your-name","category":"Sustenance","label":"Your bodega cashier knows your name","type":"Core","input":"checkbox","points":50},{"id":"sus-your-bodega-guy-starts-your-order-the-second-you","category":"Sustenance","label":"Your bodega guy starts your order the second you walk in [BONUS]","type":"Bonus","input":"checkbox","points":25,"bonus":true},{"id":"sus-bought-a-loosie-from-a-bodega","category":"Sustenance","label":"Bought a loosie from a bodega","type":"Crime","input":"checkbox","points":20,"crime":true},{"id":"sus-still-mourn-a-restaurant-that-closed","category":"Sustenance","label":"Still mourn a restaurant that closed","type":"Core","input":"checkbox","points":10},{"id":"sus-have-loud-unsolicited-opinions-about-which-bagel","category":"Sustenance","label":"Have loud, unsolicited opinions about which bagel is best","type":"Core","input":"checkbox","points":20},{"id":"sus-been-to-a-24-hour-diner-at-4-a-m","category":"Sustenance","label":"Been to a 24-hour diner at 4 a.m.","type":"Core","input":"checkbox","points":25},{"id":"sus-fixed-a-hangover-with-a-bacon-egg-and-cheese-and","category":"Sustenance","label":"Fixed a hangover with a bacon-egg-and-cheese and it worked","type":"Core","input":"checkbox","points":10},{"id":"grd-spent-real-time-in-a-borough-actually-been-place","category":"Ground Truth","label":"Spent real time in a borough — actually been places in it, not passed through (20 per borough)","type":"Core","input":"counter","unitPoints":20,"maxUnits":5,"max":100},{"id":"grd-been-to-all-five-boroughs-on-purpose-bonus","category":"Ground Truth","label":"Been to all five boroughs on purpose [BONUS]","type":"Bonus","input":"checkbox","points":30,"bonus":true},{"id":"grd-have-a-neighborhood-you-call-mine","category":"Ground Truth","label":"Have a neighborhood you call \"mine\"","type":"Core","input":"checkbox","points":20},{"id":"grd-have-strong-feelings-about-a-neighborhood-you-ve","category":"Ground Truth","label":"Have strong feelings about a neighborhood you've never lived in","type":"Core","input":"checkbox","points":20},{"id":"grd-gave-a-lost-tourist-correct-directions-from-memo","category":"Ground Truth","label":"Gave a lost tourist correct directions from memory","type":"Core","input":"checkbox","points":25},{"id":"grd-have-a-guy-for-something-a-mechanic-a-locksmith","category":"Ground Truth","label":"Have \"a guy\" for something (a mechanic, a locksmith, a guy who knows a guy)","type":"Core","input":"checkbox","points":30},{"id":"grd-know-which-part-of-the-platform-to-stand-on-for","category":"Ground Truth","label":"Know which part of the platform to stand on for your transfer","type":"Core","input":"checkbox","points":10},{"id":"grd-know-a-transfer-or-a-shortcut-most-people-don-t","category":"Ground Truth","label":"Know a transfer or a shortcut most people don't","type":"Core","input":"checkbox","points":20},{"id":"grd-walked-30-blocks-rather-than-deal-with-the-train","category":"Ground Truth","label":"Walked 30+ blocks rather than deal with the train","type":"Core","input":"checkbox","points":20},{"id":"grd-call-manhattan-the-city-even-while-standing-in-a","category":"Ground Truth","label":"Call Manhattan \"the city\" even while standing in another borough","type":"Core","input":"checkbox","points":20},{"id":"grd-pronounce-houston-street-correctly-how-stun","category":"Ground Truth","label":"Pronounce Houston Street correctly (HOW-stun)","type":"Core","input":"checkbox","points":10},{"id":"grd-say-sixth-avenue-never-avenue-of-the-americas","category":"Ground Truth","label":"Say \"Sixth Avenue,\" never \"Avenue of the Americas\"","type":"Core","input":"checkbox","points":15},{"id":"grd-refer-to-a-park-bar-or-corner-by-a-name-that-isn","category":"Ground Truth","label":"Refer to a park, bar, or corner by a name that isn't on any map","type":"Core","input":"checkbox","points":15},{"id":"grd-have-opinions-about-a-specific-bridge","category":"Ground Truth","label":"Have opinions about a specific bridge","type":"Core","input":"checkbox","points":15},{"id":"grd-know-where-the-street-grid-breaks-and-streets-st","category":"Ground Truth","label":"Know where the street grid breaks and streets stop making sense","type":"Core","input":"checkbox","points":20},{"id":"grd-can-get-anywhere-from-anywhere-as-a-sequence-of","category":"Ground Truth","label":"Can get anywhere from anywhere as a sequence of trains, no phone","type":"Core","input":"checkbox","points":40},{"id":"suf-jumped-a-turnstile","category":"Suffering","label":"Jumped a turnstile","type":"Crime","input":"checkbox","points":50,"crime":true},{"id":"suf-been-robbed-mugged-pickpocketed-or-scammed","category":"Suffering","label":"Been robbed, mugged, pickpocketed, or scammed","type":"Core","input":"checkbox","points":75},{"id":"suf-had-a-bike-phone-or-package-stolen","category":"Suffering","label":"Had a bike, phone, or package stolen","type":"Core","input":"checkbox","points":40},{"id":"suf-cried-in-public-and-not-one-person-reacted","category":"Suffering","label":"Cried in public and not one person reacted","type":"Core","input":"checkbox","points":40},{"id":"suf-had-bedbugs","category":"Suffering","label":"Had bedbugs","type":"Core","input":"checkbox","points":50},{"id":"suf-had-roaches","category":"Suffering","label":"Had roaches","type":"Core","input":"checkbox","points":30},{"id":"suf-had-mice","category":"Suffering","label":"Had mice","type":"Core","input":"checkbox","points":30},{"id":"suf-had-an-actual-rat-inside-your-apartment","category":"Suffering","label":"Had an actual rat inside your apartment","type":"Core","input":"checkbox","points":50},{"id":"suf-lived-somewhere-with-a-tub-in-the-kitchen-or-a-b","category":"Suffering","label":"Lived somewhere with a tub in the kitchen, or a \"bedroom\" with no window","type":"Core","input":"checkbox","points":40},{"id":"suf-survived-a-summer-with-no-air-conditioning","category":"Suffering","label":"Survived a summer with no air conditioning","type":"Core","input":"checkbox","points":50},{"id":"suf-survived-a-winter-where-heat-included-meant-the","category":"Suffering","label":"Survived a winter where \"heat included\" meant the heat never worked","type":"Core","input":"checkbox","points":40},{"id":"suf-been-stuck-on-a-stalled-train-underground-in-the","category":"Suffering","label":"Been stuck on a stalled train, underground, in the dark, no a/c","type":"Core","input":"checkbox","points":40},{"id":"suf-moved-apartments-with-no-elevator-and-no-help-bu","category":"Suffering","label":"Moved apartments with no elevator and no help but one friend with a van","type":"Core","input":"checkbox","points":40},{"id":"suf-paid-a-broker-s-fee-and-felt-the-specific-rage-o","category":"Suffering","label":"Paid a broker's fee and felt the specific rage of it","type":"Core","input":"checkbox","points":40},{"id":"suf-been-priced-out-of-an-apartment-or-a-neighborhoo","category":"Suffering","label":"Been priced out of an apartment or a neighborhood you loved","type":"Core","input":"checkbox","points":40},{"id":"suf-lost-a-security-deposit-and-let-it-go-because-fi","category":"Suffering","label":"Lost a security deposit and let it go because fighting cost more","type":"Core","input":"checkbox","points":30},{"id":"suf-had-a-package-stolen-off-the-stoop-or-out-of-the","category":"Suffering","label":"Had a package stolen off the stoop or out of the lobby","type":"Core","input":"checkbox","points":25},{"id":"suf-got-into-it-with-a-stranger-and-won-or-lost","category":"Suffering","label":"Got into it with a stranger, and won or lost","type":"Core","input":"checkbox","points":30},{"id":"suf-had-a-full-public-breakdown-on-a-stoop-a-bench-o","category":"Suffering","label":"Had a full public breakdown on a stoop, a bench, or a platform","type":"Core","input":"checkbox","points":30},{"id":"suf-been-stuck-in-an-elevator-a-turnstile-or-a-revol","category":"Suffering","label":"Been stuck in an elevator, a turnstile, or a revolving door","type":"Core","input":"checkbox","points":25},{"id":"suf-endured-a-week-with-no-hot-water","category":"Suffering","label":"Endured a week with no hot water","type":"Core","input":"checkbox","points":50},{"id":"suf-survived-jury-duty-downtown","category":"Suffering","label":"Survived jury duty downtown","type":"Core","input":"checkbox","points":20},{"id":"suf-waited-on-a-line-around-the-block-for-something","category":"Suffering","label":"Waited on a line around the block for something stupid and stayed","type":"Core","input":"checkbox","points":20},{"id":"suf-been-on-a-train-when-something-happened-and-the","category":"Suffering","label":"Been on a train when something happened and the whole car became a temporary family","type":"Core","input":"checkbox","points":30},{"id":"suf-stepped-in-something-you-chose-never-to-identify","category":"Suffering","label":"Stepped in something you chose never to identify","type":"Core","input":"checkbox","points":15},{"id":"mas-navigate-the-subway-with-no-map-and-no-phone","category":"Mastery","label":"Navigate the subway with no map and no phone","type":"Core","input":"checkbox","points":50},{"id":"mas-board-an-unfamiliar-line-at-the-exact-spot-the-d","category":"Mastery","label":"Board an unfamiliar line at the exact spot the doors open","type":"Core","input":"checkbox","points":10},{"id":"mas-took-someone-else-s-cab","category":"Mastery","label":"Took someone else's cab","type":"Core","input":"checkbox","points":10},{"id":"mas-tell-an-available-cab-from-an-off-duty-one-by-th","category":"Mastery","label":"Tell an available cab from an off-duty one by the light","type":"Core","input":"checkbox","points":10},{"id":"mas-stand-on-a-moving-train-without-holding-anything","category":"Mastery","label":"Stand on a moving train without holding anything","type":"Core","input":"checkbox","points":25},{"id":"mas-know-the-escalator-rule-and-enforce-it-with-your","category":"Mastery","label":"Know the escalator rule and enforce it with your body","type":"Core","input":"checkbox","points":20},{"id":"mas-tell-a-real-emergency-from-a-subway-performance","category":"Mastery","label":"Tell a real emergency from a subway performance in about one second","type":"Core","input":"checkbox","points":10},{"id":"mas-spot-a-tourist-from-40-feet-by-the-way-they-walk","category":"Mastery","label":"Spot a tourist from 40 feet by the way they walk","type":"Core","input":"checkbox","points":20},{"id":"mas-read-a-car-or-a-block-and-know-exactly-who-s-aro","category":"Mastery","label":"Read a car or a block and know exactly who's around you without looking","type":"Core","input":"checkbox","points":25},{"id":"mas-know-which-subway-door-lands-you-at-your-exit-st","category":"Mastery","label":"Know which subway door lands you at your exit stairs","type":"Core","input":"checkbox","points":20},{"id":"mas-never-once-looked-lost-even-while-completely-los","category":"Mastery","label":"Never once looked lost, even while completely lost","type":"Core","input":"checkbox","points":20},{"id":"dis-been-completely-unbothered-standing-next-to-some","category":"Disposition","label":"Been completely unbothered standing next to someone famous","type":"Core","input":"checkbox","points":40},{"id":"dis-actively-avoid-times-square","category":"Disposition","label":"Actively avoid Times Square","type":"Core","input":"checkbox","points":30},{"id":"dis-as-a-resident-never-once-gone-up-the-empire-stat","category":"Disposition","label":"As a resident, never once gone up the Empire State Building","type":"Core","input":"checkbox","points":20},{"id":"dis-speak-or-regularly-hear-more-than-one-language-a","category":"Disposition","label":"Speak or regularly hear more than one language at home or at work","type":"Core","input":"checkbox","points":30},{"id":"dis-have-a-spot-that-s-yours-a-bench-a-rooftop-a-bar","category":"Disposition","label":"Have a spot that's yours — a bench, a rooftop, a bar, a rock","type":"Core","input":"checkbox","points":25},{"id":"dis-defended-the-city-to-someone-from-out-of-town-wh","category":"Disposition","label":"Defended the city to someone from out of town who was talking trash","type":"Core","input":"checkbox","points":30},{"id":"dis-complain-about-the-city-daily-and-would-fight-an","category":"Disposition","label":"Complain about the city daily and would fight anyone else who did","type":"Core","input":"checkbox","points":30},{"id":"dis-feel-personally-insulted-when-someone-says-they","category":"Disposition","label":"Feel personally insulted when someone says they \"could never live here\"","type":"Core","input":"checkbox","points":20},{"id":"dis-cried-happy-about-the-city-at-least-once-a-bridg","category":"Disposition","label":"Cried happy about the city at least once — a bridge at night, a stranger's kindness","type":"Core","input":"checkbox","points":25},{"id":"dis-helped-a-stranger-money-food-directions-without","category":"Disposition","label":"Helped a stranger — money, food, directions — without making it a thing","type":"Core","input":"checkbox","points":30},{"id":"dis-know-a-neighbor-s-name-and-their-dog-s","category":"Disposition","label":"Know a neighbor's name, and their dog's","type":"Core","input":"checkbox","points":20},{"id":"dis-been-folded-into-a-stoop-party-or-block-party-yo","category":"Disposition","label":"Been folded into a stoop party or block party you weren't invited to","type":"Core","input":"checkbox","points":20},{"id":"dis-carry-a-new-york-you-still-grieve-a-place-a-pers","category":"Disposition","label":"Carry a New York you still grieve — a place, a person, an era that ended","type":"Core","input":"checkbox","points":25},{"id":"dis-believe-the-city-belongs-to-everyone-and-act-lik","category":"Disposition","label":"Believe the city belongs to everyone, and act like it","type":"Core","input":"checkbox","points":30},{"id":"trap-i-moved-here-for-the-nightlife","category":"Trap","label":"I moved here for the nightlife","type":"Trap","input":"trap","points":-25},{"id":"trap-i-think-the-subway-is-dangerous","category":"Trap","label":"I think the subway is \"dangerous\"","type":"Trap","input":"trap","points":-15},{"id":"trap-i-ve-never-been-below-14th-street-or-above-96th","category":"Trap","label":"I've never been below 14th Street or above 96th","type":"Trap","input":"trap","points":-25},{"id":"trap-my-favorite-pizza-is-a-national-chain","category":"Trap","label":"My favorite pizza is a national chain","type":"Trap","input":"trap","points":-30},{"id":"trap-i-ve-taken-a-selfie-with-the-naked-cowboy-on-pur","category":"Trap","label":"I've taken a selfie with the Naked Cowboy on purpose","type":"Trap","input":"trap","points":-20},{"id":"trap-i-call-the-trains-by-color-the-green-line","category":"Trap","label":"I call the trains by color (\"the green line\")","type":"Trap","input":"trap","points":-20},{"id":"trap-i-think-times-square-is-the-heart-of-the-city","category":"Trap","label":"I think Times Square is the heart of the city","type":"Trap","input":"trap","points":-25},{"id":"trap-i-never-get-rained-on-because-i-just-take-a-car","category":"Trap","label":"I never get rained on because I just take a car everywhere","type":"Trap","input":"trap","points":-20},{"id":"trap-i-say-the-big-apple-with-a-straight-face","category":"Trap","label":"I say \"the big apple\" with a straight face","type":"Trap","input":"trap","points":-100},{"id":"trap-i-ve-never-given-a-tourist-directions-not-my-pro","category":"Trap","label":"I've never given a tourist directions — not my problem","type":"Trap","input":"trap","points":-50},{"id":"flag-i-told-people-i-discovered-my-neighborhood-disqu","category":"Flag","label":"I told people I \"discovered\" my neighborhood [DISQUALIFYING]","type":"Flag","input":"flag","points":0},{"id":"trap-i-m-from-new-york-i-am-in-fact-from-westchester","category":"Trap","label":"I'm from New York (I am, in fact, from Westchester / Long Island / New Jersey)","type":"Trap","input":"trap","points":-30},{"id":"flag-i-think-the-city-would-be-better-off-if-a-certai","category":"Flag","label":"I think the city would be better off if a certain kind of person left [DISQUALIFYING]","type":"Flag","input":"flag","points":0},{"id":"suf-had-your-apartment-flood-from-above-and-lost-som","category":"Suffering","label":"Had your apartment flood from above and lost something to it","type":"Core","input":"checkbox","points":50},{"id":"suf-fought-a-landlord-in-housing-court-and-kept-show","category":"Suffering","label":"Fought a landlord in housing court and kept showing up","type":"Core","input":"checkbox","points":40},{"id":"suf-lived-through-an-apartment-fire-or-an-evacuation","category":"Suffering","label":"Lived through an apartment fire, or an evacuation that felt like one","type":"Core","input":"checkbox","points":50},{"id":"suf-carried-groceries-home-by-hand-in-the-rain-and-y","category":"Suffering","label":"Carried groceries home by hand in the rain and your bag broke","type":"Core","input":"checkbox","points":15},{"id":"suf-had-a-neighbor-so-loud-you-learned-their-whole-l","category":"Suffering","label":"Had a neighbor so loud you learned their whole life through the wall","type":"Core","input":"checkbox","points":20},{"id":"suf-waited-out-a-blizzard-with-the-tub-filled-and-th","category":"Suffering","label":"Waited out a blizzard with the tub filled and the windows taped","type":"Core","input":"checkbox","points":25},{"id":"suf-rode-a-rush-hour-train-so-packed-you-didn-t-need","category":"Suffering","label":"Rode a rush-hour train so packed you didn't need to hold on","type":"Core","input":"checkbox","points":20},{"id":"suf-had-a-ceiling-leak-for-months-while-nobody-came","category":"Suffering","label":"Had a ceiling leak for months while nobody came to fix it","type":"Core","input":"checkbox","points":30},{"id":"suf-sweated-through-a-heat-wave-in-a-top-floor-place","category":"Suffering","label":"Sweated through a heat wave in a top-floor place with one window","type":"Core","input":"checkbox","points":40},{"id":"sus-know-your-bodega-cat-s-name","category":"Sustenance","label":"Know your bodega cat's name","type":"Core","input":"checkbox","points":10},{"id":"sus-ordered-from-one-place-enough-that-they-know-you","category":"Sustenance","label":"Ordered from one place enough that they know your buzzer trick","type":"Core","input":"checkbox","points":15},{"id":"sus-have-a-specific-unmovable-opinion-on-which-deli","category":"Sustenance","label":"Have a specific, unmovable opinion on which deli does the BEC right","type":"Core","input":"checkbox","points":10},{"id":"sus-been-fronted-a-dollar-by-your-bodega-when-you-ca","category":"Sustenance","label":"Been fronted a dollar by your bodega when you came up short","type":"Core","input":"checkbox","points":20},{"id":"grd-know-which-staircase-out-of-the-station-you-actu","category":"Ground Truth","label":"Know which staircase out of the station you actually want","type":"Core","input":"checkbox","points":10},{"id":"grd-can-name-the-express-stops-on-a-line-you-ride","category":"Ground Truth","label":"Can name the express stops on a line you ride","type":"Core","input":"checkbox","points":15},{"id":"grd-know-a-block-that-floods-in-the-rain-and-route-a","category":"Ground Truth","label":"Know a block that floods in the rain and route around it","type":"Core","input":"checkbox","points":15},{"id":"grd-been-to-a-place-that-only-exists-if-someone-take","category":"Ground Truth","label":"Been to a place that only exists if someone takes you","type":"Core","input":"checkbox","points":15},{"id":"grd-know-where-to-find-a-clean-bathroom-anywhere-in","category":"Ground Truth","label":"Know where to find a clean bathroom anywhere in midtown","type":"Core","input":"checkbox","points":20},{"id":"grd-can-tell-what-neighborhood-you-re-in-by-sound-an","category":"Ground Truth","label":"Can tell what neighborhood you're in by sound and smell","type":"Core","input":"checkbox","points":20},{"id":"mas-hail-a-cab-catch-a-closing-door-or-make-a-light","category":"Mastery","label":"Hail a cab, catch a closing door, or make a light without breaking pace","type":"Core","input":"checkbox","points":20},{"id":"mas-disappear-into-a-crowd-the-second-you-need-to","category":"Mastery","label":"Disappear into a crowd the second you need to","type":"Core","input":"checkbox","points":20},{"id":"mas-get-a-bartender-s-attention-without-raising-your","category":"Mastery","label":"Get a bartender's attention without raising your voice","type":"Core","input":"checkbox","points":15},{"id":"dis-have-a-stranger-you-see-daily-never-speak-to-and","category":"Disposition","label":"Have a stranger you see daily, never speak to, and would miss","type":"Core","input":"checkbox","points":20},{"id":"dis-given-up-a-seat-or-a-spot-without-being-asked","category":"Disposition","label":"Given up a seat or a spot without being asked","type":"Core","input":"checkbox","points":20},{"id":"dis-know-your-super-s-name-and-treat-him-right","category":"Disposition","label":"Know your super's name and treat him right","type":"Core","input":"checkbox","points":20},{"id":"dis-tipped-past-what-was-comfortable-because-it-was","category":"Disposition","label":"Tipped past what was comfortable because it was the right thing","type":"Core","input":"checkbox","points":20},{"id":"dis-been-the-first-person-to-walk-on-fresh-snow-in-y","category":"Disposition","label":"Been the first person to walk on fresh snow in your hood","type":"Core","input":"checkbox","points":25},{"id":"dis-kept-a-friend-across-three-of-their-apartments-a","category":"Disposition","label":"Kept a friend across three of their apartments and two of yours","type":"Core","input":"checkbox","points":20},{"id":"ten-kept-the-same-bodega-barber-or-laundromat-throug","category":"Tenure","label":"Kept the same bodega, barber, or laundromat through two moves","type":"Core","input":"checkbox","points":20},{"id":"ten-renewed-a-lease-you-knew-was-too-much-because-le","category":"Tenure","label":"Renewed a lease you knew was too much because leaving was worse","type":"Core","input":"checkbox","points":20},{"id":"ten-voted-in-a-city-election","category":"Tenure","label":"Voted in a city election","type":"Core","input":"checkbox","points":25},{"id":"trap-i-think-bodegas-are-unsanitary","category":"Trap","label":"I think bodegas are \"unsanitary\"","type":"Trap","input":"trap","points":-20},{"id":"trap-i-ask-for-the-nearest-starbucks-instead-of-a-cor","category":"Trap","label":"I ask for the nearest Starbucks instead of a corner deli","type":"Trap","input":"trap","points":-15},{"id":"trap-i-call-the-outer-boroughs-not-really-the-city","category":"Trap","label":"I call the outer boroughs \"not really the city\"","type":"Trap","input":"trap","points":-25}]}</script>
+<script>
+(function(){
+  "use strict";
+  var DATA = JSON.parse(document.getElementById('t2data').textContent);
+  var META = DATA.meta;
+  var fmt = function(n){ return n.toLocaleString('en-US'); };
+
+  // ---- state ----
+  var state = {}; // id -> boolean (checkbox/trap/flag) or integer (counter)
+  DATA.items.forEach(function(it){ state[it.id] = (it.input === 'counter') ? 0 : false; });
+
+  var byCat = {};
+  DATA.categoryOrder.forEach(function(c){ byCat[c] = []; });
+  DATA.items.forEach(function(it){ (byCat[it.category] = byCat[it.category] || []).push(it); });
+
+  // Blurbs per scored category (deadpan, agency voice)
+  var BLURBS = {
+    "Tenure": "Time served. The longest road to being a New Yorker is simply staying one. Capped at 500 — past a point, the Department takes your tenure as read.",
+    "Sustenance": "How the city feeds you, and who feeds you by name.",
+    "Ground Truth": "What you actually know, in your feet and your mouth, that no map gives you.",
+    "Suffering": "What it has cost you. This is the one the Department weighs most heavily. You cannot pass on points alone.",
+    "Mastery": "The small fluencies. The body that has learned the place.",
+    "Disposition": "How you hold the city, and how you hold others in it."
+  };
+
+  function ptsLabel(it){
+    if(it.input === 'counter') return it.unitPoints + ' ea · max ' + it.max;
+    var p = it.points;
+    return (p > 0 ? '+' : '') + p;
+  }
+
+  function tag(it){
+    if(it.bonus) return '<span class="tag bonus">Bonus</span>';
+    if(it.crime) return '<span class="tag crime">Crime</span>';
+    return '';
+  }
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  // Strip trailing editorial markers like " [BONUS]" / " [DISQUALIFYING]" — shown as a tag instead.
+  function lbl(it){ return esc(String(it.label).replace(/\s*\[[A-Z][A-Z ]*\]\s*$/,'')); }
+
+  // ---- render scored categories ----
+  var catWrap = document.getElementById('categories');
+  var SCORED = DATA.categoryOrder.filter(function(c){ return c !== 'Trap' && c !== 'Flag'; });
+  SCORED.forEach(function(cat){
+    var items = byCat[cat] || [];
+    if(!items.length) return;
+    var sec = document.createElement('section');
+    sec.className = 'sec';
+    var h = '<h2>' + esc(cat) + '<span class="count">' + items.length + ' item' + (items.length>1?'s':'') + '</span></h2>';
+    if(BLURBS[cat]) h += '<p class="blurb">' + esc(BLURBS[cat]) + '</p>';
+    items.forEach(function(it){
+      if(it.input === 'counter'){
+        h += '<div class="item counter" data-id="'+it.id+'">'
+          + '<div class="txt">' + lbl(it) + '</div>'
+          + '<div class="stepper" data-id="'+it.id+'">'
+          +   '<button type="button" class="dec" aria-label="Decrease">−</button>'
+          +   '<span class="n" id="n-'+it.id+'">0</span>'
+          +   '<button type="button" class="inc" aria-label="Increase">+</button>'
+          + '</div>'
+          + '<div class="pts">'+ptsLabel(it)+'</div>'
+          + '</div>';
+      } else {
+        h += '<div class="item" data-id="'+it.id+'">'
+          + '<label><input type="checkbox" data-id="'+it.id+'">'
+          +   '<span class="txt">' + lbl(it) + tag(it) + '</span>'
+          + '</label>'
+          + '<div class="pts">'+ptsLabel(it)+'</div>'
+          + '</div>';
+      }
+    });
+    sec.innerHTML = h;
+    catWrap.appendChild(sec);
+  });
+
+  // ---- render disclosure (Trap + Flag) ----
+  var disWrap = document.getElementById('disclosure');
+  var traps = byCat['Trap'] || [];
+  var flags = byCat['Flag'] || [];
+  if(traps.length || flags.length){
+    var d = '<section class="disclosure">'
+      + '<h2>The Department also asks the following</h2>'
+      + '<p class="blurb">Answer honestly. These do not earn you anything. Some cost you points; two end the petition where it sits.</p>';
+    traps.forEach(function(it){
+      d += '<div class="item" data-id="'+it.id+'">'
+        + '<label><input type="checkbox" data-id="'+it.id+'">'
+        +   '<span class="txt">' + lbl(it) + '</span>'
+        + '</label>'
+        + '<div class="pts">'+ptsLabel(it)+'</div>'
+        + '</div>';
+    });
+    flags.forEach(function(it){
+      d += '<div class="item flag-item" data-id="'+it.id+'">'
+        + '<label><input type="checkbox" data-id="'+it.id+'">'
+        +   '<span class="txt">' + lbl(it) + '</span>'
+        + '</label>'
+        + '<div class="pts">Disqualifying</div>'
+        + '</div>';
+    });
+    d += '</section>';
+    disWrap.innerHTML = d;
+  }
+
+  // ---- scoring (mirrors SCORING.md — the authoritative server logic will match) ----
+  function rawCategoryTotal(cat){
+    var t = 0;
+    (byCat[cat] || []).forEach(function(it){
+      if(it.input === 'counter'){
+        var u = state[it.id] || 0;
+        t += Math.min(it.max, it.unitPoints * u);
+      } else if(it.input === 'checkbox' || it.input === 'trap'){
+        if(state[it.id]) t += it.points;
+      }
+      // flags contribute 0
+    });
+    return t;
+  }
+
+  function compute(){
+    var tenureRaw = rawCategoryTotal(META.tenureCategory);
+    var tenureContribution = Math.min(META.tenureCap, tenureRaw);
+    var total = tenureContribution;
+    DATA.categoryOrder.forEach(function(c){
+      if(c === META.tenureCategory || c === 'Flag') return;
+      total += rawCategoryTotal(c);
+    });
+    var sufferingTotal = rawCategoryTotal(META.sufferingCategory);
+    var disqualified = (byCat['Flag'] || []).some(function(it){ return state[it.id]; });
+    return {
+      tenureRaw: tenureRaw,
+      tenureContribution: tenureContribution,
+      tenureCapped: tenureRaw >= META.tenureCap,
+      total: total,
+      sufferingTotal: sufferingTotal,
+      sufferingMet: sufferingTotal >= META.sufferingFloor,
+      disqualified: disqualified
+    };
+  }
+
+  // ---- live readout ----
+  var elTotal = document.getElementById('total');
+  var elTotalBar = document.getElementById('totalbar');
+  var elTenVal = document.getElementById('ten-val');
+  var elTenNote = document.getElementById('ten-note');
+  var gTen = document.getElementById('g-tenure');
+  var elSufVal = document.getElementById('suf-val');
+  var elSufNote = document.getElementById('suf-note');
+  var gSuf = document.getElementById('g-suffer');
+  var elFlag = document.getElementById('flagwarn');
+
+  function pct(v, max){ return Math.max(0, Math.min(100, (v / max) * 100)); }
+
+  function render(){
+    var s = compute();
+
+    elTotal.textContent = fmt(s.total);
+    var tp = pct(s.total, META.threshold);
+    elTotalBar.firstElementChild.style.width = tp + '%';
+    elTotalBar.classList.toggle('clear', s.total >= META.threshold);
+
+    // tenure
+    elTenVal.textContent = fmt(s.tenureContribution);
+    gTen.querySelector('.track > span').style.width = pct(s.tenureContribution, META.tenureCap) + '%';
+    gTen.classList.toggle('capped', s.tenureCapped);
+    elTenNote.textContent = s.tenureCapped
+      ? 'Maxed at 500 — tenure taken as read.'
+      : 'Counts toward the total, up to 500.';
+
+    // suffering
+    elSufVal.textContent = fmt(s.sufferingTotal);
+    gSuf.querySelector('.track > span').style.width = pct(s.sufferingTotal, META.sufferingFloor) + '%';
+    gSuf.classList.toggle('met', s.sufferingMet);
+    gSuf.classList.toggle('unmet', !s.sufferingMet);
+    elSufNote.textContent = s.sufferingMet
+      ? 'Floor cleared. The city has had its due.'
+      : 'Below the floor. Points alone will not pass you.';
+
+    // flags
+    elFlag.classList.toggle('tripped', s.disqualified);
+    elFlag.textContent = s.disqualified
+      ? 'A disqualifying disclosure is checked. No tally can undo it.'
+      : 'Two disclosures end a petition outright, whatever the tally.';
+  }
+
+  // ---- events ----
+  document.addEventListener('change', function(e){
+    var cb = e.target.closest('input[type=checkbox][data-id]');
+    if(!cb) return;
+    state[cb.getAttribute('data-id')] = cb.checked;
+    var item = cb.closest('.item');
+    if(item) item.classList.toggle('on', cb.checked);
+    render();
+  });
+
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.stepper button');
+    if(!btn) return;
+    var step = btn.closest('.stepper');
+    var id = step.getAttribute('data-id');
+    var it = DATA.items.filter(function(x){ return x.id === id; })[0];
+    if(!it) return;
+    var u = state[id] || 0;
+    if(btn.classList.contains('inc')) u = Math.min(it.maxUnits, u + 1);
+    else u = Math.max(0, u - 1);
+    state[id] = u;
+    document.getElementById('n-' + id).textContent = u;
+    step.querySelector('.dec').disabled = (u <= 0);
+    step.querySelector('.inc').disabled = (u >= it.maxUnits);
+    step.closest('.item').classList.toggle('on', u > 0);
+    render();
+  });
+
+  // mobile rail toggle
+  var railToggle = document.getElementById('railToggle');
+  var rail = document.getElementById('rail');
+  if(railToggle){
+    railToggle.addEventListener('click', function(){
+      var open = rail.classList.toggle('expanded');
+      railToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      railToggle.textContent = open ? 'Hide detail ▴' : 'Show detail ▾';
+    });
+  }
+
+  // submit — preview only: show the deadpan confirmation, reveal no verdict or number
+  document.getElementById('t2').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('confirm').classList.add('show');
+    document.getElementById('submit').disabled = true;
+    document.getElementById('confirm').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  render();
+})();
+</script>
+</body></html>
