@@ -4,6 +4,7 @@ import { requireReviewer } from '../_auth.js';
 import { renderCertificatePdf, certificateFileNumber } from '../_certificate.js';
 import { ensureIdNumber } from '../_id-card.js';
 import { sendVerified, sendDenied, sendReturned } from '../_email.js';
+import { purgeEvidence } from '../_purge.js';
 
 // Records a determination against a submitted application and notifies the
 // applicant. The three outcomes match the site's official copy.
@@ -71,6 +72,11 @@ export default async function handler(req, res) {
   }
 
   await notify(supabase, data);
+
+  // The determination is recorded and the applicant notified; the evidence
+  // uploads (high-school record, proof of origin) have served their purpose,
+  // so purge the stored files. Best-effort — never undoes the determination.
+  await purgeEvidence(supabase, data.id);
 
   return res.status(200).json({ ok: true, determination: data.determination, determined_at: data.determined_at });
 }

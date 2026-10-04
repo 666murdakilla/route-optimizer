@@ -279,6 +279,12 @@ async function openDetail(id){
 
   $('d-docs').innerHTML=(d.documents||[]).map(doc=>{
     const kindLabel={high_school_record:'High school record',origin_document:'Proof of origin',headshot:'Photograph'}[doc.kind]||doc.kind;
+    if(doc.purged){
+      const when=doc.purged_at?(' on '+esc(String(doc.purged_at).slice(0,10))):'';
+      return `<div class="doc"><div class="dh"><span class="name">${esc(doc.original_filename)}</span><span class="muted">purged${when}</span></div>`+
+             `<div class="dkind">${kindLabel} · ${esc(doc.mime_type)} · ${fmtSize(doc.size_bytes)}</div>`+
+             `<div class="muted" style="margin-top:8px;">File removed after determination. Record retained; the uploaded file is no longer stored.</div></div>`;
+    }
     let preview='';
     if(doc.url){
       if(doc.mime_type && doc.mime_type.startsWith('image/')) preview=`<img src="${esc(doc.url)}" alt="${esc(doc.original_filename)}">`;

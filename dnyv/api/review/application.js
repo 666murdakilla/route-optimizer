@@ -31,7 +31,7 @@ export default async function handler(req, res) {
 
   const { data: docs, error: docsError } = await supabase
     .from('application_documents')
-    .select('id, kind, original_filename, mime_type, size_bytes, storage_path')
+    .select('id, kind, original_filename, mime_type, size_bytes, storage_path, purged_at')
     .eq('application_id', id)
     .order('storage_path');
   if (docsError) {
@@ -41,16 +41,24 @@ export default async function handler(req, res) {
 
   const documents = [];
   for (const d of docs ?? []) {
-    const { data: signed, error: signError } = await supabase.storage
-      .from(BUCKET)
-      .createSignedUrl(d.storage_path, DOC_URL_TTL);
+    const purged = !!d.purged_at;
+    // Purged evidence has no stored file left — don't try to sign a dead path.
+    let url = null;
+    if (!purged) {
+      const { data: signed, error: signError } = await supabase.storage
+        .from(BUCKET)
+        .createSignedUrl(d.storage_path, DOC_URL_TTL);
+      url = signError ? null : signed.signedUrl;
+    }
     documents.push({
       id: d.id,
       kind: d.kind,
       original_filename: d.original_filename,
       mime_type: d.mime_type,
       size_bytes: d.size_bytes,
-      url: signError ? null : signed.signedUrl,
+      purged,
+      purged_at: d.purged_at,
+      url,
     });
   }
 
