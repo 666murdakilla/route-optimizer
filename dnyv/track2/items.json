@@ -1021,6 +1021,47 @@
       "type": "Core",
       "input": "checkbox",
       "points": 25
+    },
+    {
+      "id": "ten-went-to-stuyvesant-high-school",
+      "category": "Tenure",
+      "label": "Went to Stuyvesant High School",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "ten-went-to-bronx-science",
+      "category": "Tenure",
+      "label": "Went to Bronx Science",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 1
+    },
+    {
+      "id": "ten-went-to-brooklyn-tech",
+      "category": "Tenure",
+      "label": "Went to Brooklyn Tech",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 1
+    },
+    {
+      "id": "grd-explored-roosevelt-island",
+      "category": "Ground Truth",
+      "label": "Have explored Roosevelt Island (not just ridden back and forth on the Tram)",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 9
+    },
+    {
+      "id": "sus-bought-a-nutcracker",
+      "category": "Sustenance",
+      "label": "Bought a nutcracker",
+      "type": "Crime",
+      "input": "checkbox",
+      "points": 5,
+      "crime": true
     }
   ]
 }
