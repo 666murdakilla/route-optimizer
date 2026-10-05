@@ -253,8 +253,6 @@
     <!-- Scored categories render here -->
     <div id="categories"></div>
 
-    <!-- Disclosure (Trap + Flag) renders here -->
-    <div id="disclosure"></div>
 
     <!-- Submit -->
     <div class="submit-row">
@@ -279,9 +277,9 @@
         <div class="gates-head">The three gates — each must be met</div>
         <div id="gates"></div>
         <div class="gauge soft" id="g-soft">
-          <div class="row"><span class="lab">Everyday life</span><span class="val"><span id="soft-val">0</span> / <span id="soft-cap">150</span></span></div>
+          <div class="row"><span class="lab">Everyday life</span><span class="val">adds <span id="soft-val">0</span></span></div>
           <div class="track"><span></span></div>
-          <div class="note" id="soft-note">Food, bodega, attitude — counts up to 150.</div>
+          <div class="note" id="soft-note">Food, bodega, attitude — full value up to 150.</div>
         </div>
         <div class="flagwarn" id="flagwarn">Two disclosures end a petition outright, whatever the tally.</div>
       </div>
@@ -339,67 +337,62 @@
   // Strip trailing editorial markers like " [BONUS]" / " [DISQUALIFYING]" — shown as a tag instead.
   function lbl(it){ return esc(String(it.label).replace(/\s*\[[A-Z][A-Z ]*\]\s*$/,'')); }
 
-  // ---- render scored categories ----
+  // ---- render categories ----
+  // Items are grouped by DISPLAY category (it.display || it.category) so that
+  // traps and flags are scattered in among the real items of a category rather
+  // than sitting in their own section — a petitioner can't tell which items
+  // hurt. Per-item point values are deliberately not shown for the same reason;
+  // the running tally on the right is the only feedback. Scoring is unchanged
+  // (it uses it.category: traps stay "Trap", flags stay "Flag").
   var catWrap = document.getElementById('categories');
   var SCORED = DATA.categoryOrder.filter(function(c){ return c !== 'Trap' && c !== 'Flag'; });
+  var byDisplay = {};
+  DATA.items.forEach(function(it){
+    var c = it.display || it.category;
+    (byDisplay[c] = byDisplay[c] || []).push(it);
+  });
+
+  // Spread the hidden (trap/flag) items evenly through the real ones.
+  function interleave(group){
+    var reals = [], hidden = [];
+    group.forEach(function(it){ (it.input === 'trap' || it.input === 'flag') ? hidden.push(it) : reals.push(it); });
+    if(!hidden.length) return reals;
+    var out = [], step = Math.max(1, Math.round(reals.length / (hidden.length + 1))), hi = 0;
+    for(var i = 0; i < reals.length; i++){
+      out.push(reals[i]);
+      if(hi < hidden.length && (i + 1) % step === 0) out.push(hidden[hi++]);
+    }
+    while(hi < hidden.length) out.push(hidden[hi++]);
+    return out;
+  }
+
+  function itemHtml(it){
+    if(it.input === 'counter'){
+      return '<div class="item counter" data-id="'+it.id+'">'
+        + '<div class="txt">' + lbl(it) + '</div>'
+        + '<div class="stepper" data-id="'+it.id+'">'
+        +   '<button type="button" class="dec" aria-label="Decrease">−</button>'
+        +   '<span class="n" id="n-'+it.id+'">0</span>'
+        +   '<button type="button" class="inc" aria-label="Increase">+</button>'
+        + '</div></div>';
+    }
+    return '<div class="item" data-id="'+it.id+'">'
+      + '<label><input type="checkbox" data-id="'+it.id+'">'
+      +   '<span class="txt">' + lbl(it) + tag(it) + '</span>'
+      + '</label></div>';
+  }
+
   SCORED.forEach(function(cat){
-    var items = byCat[cat] || [];
+    var items = interleave(byDisplay[cat] || []);
     if(!items.length) return;
     var sec = document.createElement('section');
     sec.className = 'sec';
     var h = '<h2>' + esc(cat) + '<span class="count">' + items.length + ' item' + (items.length>1?'s':'') + '</span></h2>';
     if(BLURBS[cat]) h += '<p class="blurb">' + esc(BLURBS[cat]) + '</p>';
-    items.forEach(function(it){
-      if(it.input === 'counter'){
-        h += '<div class="item counter" data-id="'+it.id+'">'
-          + '<div class="txt">' + lbl(it) + '</div>'
-          + '<div class="stepper" data-id="'+it.id+'">'
-          +   '<button type="button" class="dec" aria-label="Decrease">−</button>'
-          +   '<span class="n" id="n-'+it.id+'">0</span>'
-          +   '<button type="button" class="inc" aria-label="Increase">+</button>'
-          + '</div>'
-          + '<div class="pts">'+ptsLabel(it)+'</div>'
-          + '</div>';
-      } else {
-        h += '<div class="item" data-id="'+it.id+'">'
-          + '<label><input type="checkbox" data-id="'+it.id+'">'
-          +   '<span class="txt">' + lbl(it) + tag(it) + '</span>'
-          + '</label>'
-          + '<div class="pts">'+ptsLabel(it)+'</div>'
-          + '</div>';
-      }
-    });
+    items.forEach(function(it){ h += itemHtml(it); });
     sec.innerHTML = h;
     catWrap.appendChild(sec);
   });
-
-  // ---- render disclosure (Trap + Flag) ----
-  var disWrap = document.getElementById('disclosure');
-  var traps = byCat['Trap'] || [];
-  var flags = byCat['Flag'] || [];
-  if(traps.length || flags.length){
-    var d = '<section class="disclosure">'
-      + '<h2>The Department also asks the following</h2>'
-      + '<p class="blurb">Answer honestly. These do not earn you anything. Some cost you points; two end the petition where it sits.</p>';
-    traps.forEach(function(it){
-      d += '<div class="item" data-id="'+it.id+'">'
-        + '<label><input type="checkbox" data-id="'+it.id+'">'
-        +   '<span class="txt">' + lbl(it) + '</span>'
-        + '</label>'
-        + '<div class="pts">'+ptsLabel(it)+'</div>'
-        + '</div>';
-    });
-    flags.forEach(function(it){
-      d += '<div class="item flag-item" data-id="'+it.id+'">'
-        + '<label><input type="checkbox" data-id="'+it.id+'">'
-        +   '<span class="txt">' + lbl(it) + '</span>'
-        + '</label>'
-        + '<div class="pts">Disqualifying</div>'
-        + '</div>';
-    });
-    d += '</section>';
-    disWrap.innerHTML = d;
-  }
 
   // ---- scoring (mirrors SCORING.md — the authoritative server logic will match) ----
   function rawCategoryTotal(cat){
@@ -444,11 +437,13 @@
       if(c === META.tenureCategory || c === 'Flag') return;
       gross += rawCategoryTotal(c);
     });
-    // Diminishing returns: everyday-life items contribute at most SOFT_CAP.
+    // Diminishing returns: everyday-life points count in full up to SOFT_CAP,
+    // then at half rate beyond it (a true soft cap, not a hard cliff).
     var softRaw = softRawTotal();
-    var softCounted = Math.min(SOFT_CAP, softRaw);
-    var softOverflow = softRaw - softCounted;
-    var total = gross - softOverflow;
+    var softOver = Math.max(0, softRaw - SOFT_CAP);
+    var softDiscount = Math.round(softOver * 0.5);   // the half that does not count
+    var softCounted = softRaw - softDiscount;        // = SOFT_CAP + ceil(over/2) when over
+    var total = gross - softDiscount;
 
     // Gates (category minimums). Tenure is judged on its capped contribution.
     var gates = GATE_ORDER.filter(function(c){ return MINS[c] != null; }).map(function(c){
@@ -465,7 +460,7 @@
       tenureCapped: tenureRaw >= META.tenureCap,
       softRaw: softRaw,
       softCounted: softCounted,
-      softCapped: softRaw >= SOFT_CAP && SOFT_CAP > 0,
+      softReduced: softOver > 0 && SOFT_CAP > 0,
       gates: gates,
       allGatesMet: allGatesMet,
       disqualified: disqualified
@@ -479,7 +474,6 @@
   var elSoftVal = document.getElementById('soft-val');
   var elSoftNote = document.getElementById('soft-note');
   var gSoft = document.getElementById('g-soft');
-  document.getElementById('soft-cap').textContent = fmt(SOFT_CAP);
 
   // Build one gauge per gate.
   var gatesWrap = document.getElementById('gates');
@@ -516,13 +510,13 @@
       el.querySelector('.note').textContent = note;
     });
 
-    // soft bucket (everyday life)
+    // soft bucket (everyday life) — full value to SOFT_CAP, half rate beyond
     elSoftVal.textContent = fmt(s.softCounted);
-    gSoft.querySelector('.track > span').style.width = pct(s.softCounted, SOFT_CAP) + '%';
-    gSoft.classList.toggle('capped', s.softCapped);
-    elSoftNote.textContent = s.softCapped
-      ? 'Capped. Easy wins stop counting past ' + fmt(SOFT_CAP) + '.'
-      : 'Food, bodega, attitude — counts up to ' + fmt(SOFT_CAP) + '.';
+    gSoft.querySelector('.track > span').style.width = pct(s.softRaw, SOFT_CAP) + '%';
+    gSoft.classList.toggle('capped', s.softReduced);
+    elSoftNote.textContent = s.softReduced
+      ? 'Over ' + fmt(SOFT_CAP) + ' — extra everyday-life points now count at half rate (' + fmt(s.softRaw) + ' claimed, ' + fmt(s.softCounted) + ' counts).'
+      : 'Food, bodega, attitude — full value up to ' + fmt(SOFT_CAP) + '.';
 
     // flags
     elFlag.classList.toggle('tripped', s.disqualified);

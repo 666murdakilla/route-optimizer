@@ -50,8 +50,13 @@ Extra fields: `points` (checkbox/trap/flag); `unitPoints`/`maxUnits`/`max`
 **`soft:true`** — the item is in the capped "everyday life" bucket (see below).
 Soft items appear only in non-gated categories (Sustenance, Mastery, Disposition).
 
-Render grouped by category in `categoryOrder`, JSON order within. `Trap` and
-`Flag` go in a separate honor-system disclosure at the bottom.
+**Presentation:** render grouped by **display category** (`item.display`, falling
+back to `item.category`), so `Trap` and `Flag` items are scattered in among the
+real items of a category rather than sitting in their own section — a petitioner
+must not be able to tell which items hurt. For the same reason the page shows
+**no per-item point values**; the running tally is the only feedback. Scoring is
+independent of display and uses `item.category` (traps stay `Trap`, flags `Flag`),
+so the gates are unaffected by where a trap is shown.
 
 ---
 
@@ -76,9 +81,11 @@ total        = gross − softOverflow
 
 Notes:
 - **Tenure cap** (500) applies to the Tenure category only.
-- **Soft cap** (`softCap`, 150): soft items contribute at most 150 to `total`,
-  no matter how many are checked. They still count in full toward their own
-  category totals — but none of them are in a *gated* category.
+- **Soft cap** (`softCap`, 150): a true soft cap, not a cliff. Everyday-life
+  (soft) points count in full up to 150, then at **half rate** beyond it:
+  `softCounted = softRaw <= 150 ? softRaw : 150 + round((softRaw − 150) / 2)`,
+  and `total` is reduced by the discarded half. They still count in full toward
+  their own category totals — but none of them are in a *gated* category.
 - **Crime items always count.** An item with `crime:true` is never soft-capped
   (the soft set is `item.soft && !item.crime`), so petty-crime street cred always
   adds to the total. Crime items carry a visual "Crime" tag and may be negative

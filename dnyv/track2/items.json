@@ -607,7 +607,8 @@
       "label": "I moved here for the nightlife",
       "type": "Trap",
       "input": "trap",
-      "points": -25
+      "points": -25,
+      "display": "Tenure"
     },
     {
       "id": "trap-i-think-the-subway-is-dangerous",
@@ -615,7 +616,8 @@
       "label": "I think the subway is \"dangerous\"",
       "type": "Trap",
       "input": "trap",
-      "points": -15
+      "points": -15,
+      "display": "Ground Truth"
     },
     {
       "id": "trap-i-ve-never-been-below-14th-street-or-above-96th",
@@ -623,7 +625,8 @@
       "label": "I've never been below 14th Street or above 96th",
       "type": "Trap",
       "input": "trap",
-      "points": -25
+      "points": -25,
+      "display": "Ground Truth"
     },
     {
       "id": "trap-my-favorite-pizza-is-a-national-chain",
@@ -631,7 +634,8 @@
       "label": "My favorite pizza is a national chain",
       "type": "Trap",
       "input": "trap",
-      "points": -30
+      "points": -30,
+      "display": "Sustenance"
     },
     {
       "id": "trap-i-ve-taken-a-selfie-with-the-naked-cowboy-on-pur",
@@ -639,7 +643,8 @@
       "label": "I've taken a selfie with the Naked Cowboy on purpose",
       "type": "Trap",
       "input": "trap",
-      "points": -20
+      "points": -20,
+      "display": "Disposition"
     },
     {
       "id": "trap-i-call-the-trains-by-color-the-green-line",
@@ -647,7 +652,8 @@
       "label": "I call the trains by color (\"the green line\")",
       "type": "Trap",
       "input": "trap",
-      "points": -20
+      "points": -20,
+      "display": "Ground Truth"
     },
     {
       "id": "trap-i-think-times-square-is-the-heart-of-the-city",
@@ -655,7 +661,8 @@
       "label": "I think Times Square is the heart of the city",
       "type": "Trap",
       "input": "trap",
-      "points": -25
+      "points": -25,
+      "display": "Disposition"
     },
     {
       "id": "trap-i-never-get-rained-on-because-i-just-take-a-car",
@@ -663,7 +670,8 @@
       "label": "I never get rained on because I just take a car everywhere",
       "type": "Trap",
       "input": "trap",
-      "points": -20
+      "points": -20,
+      "display": "Mastery"
     },
     {
       "id": "trap-i-say-the-big-apple-with-a-straight-face",
@@ -671,7 +679,8 @@
       "label": "I say \"the big apple\" with a straight face",
       "type": "Trap",
       "input": "trap",
-      "points": -100
+      "points": -100,
+      "display": "Disposition"
     },
     {
       "id": "trap-i-ve-never-given-a-tourist-directions-not-my-pro",
@@ -679,7 +688,8 @@
       "label": "I've never given a tourist directions — not my problem",
       "type": "Trap",
       "input": "trap",
-      "points": -50
+      "points": -50,
+      "display": "Ground Truth"
     },
     {
       "id": "flag-i-told-people-i-discovered-my-neighborhood-disqu",
@@ -687,7 +697,8 @@
       "label": "I told people I \"discovered\" my neighborhood [DISQUALIFYING]",
       "type": "Flag",
       "input": "flag",
-      "points": 0
+      "points": 0,
+      "display": "Disposition"
     },
     {
       "id": "trap-i-m-from-new-york-i-am-in-fact-from-westchester",
@@ -695,7 +706,8 @@
       "label": "I'm from New York (I am, in fact, from Westchester / Long Island / New Jersey)",
       "type": "Trap",
       "input": "trap",
-      "points": -30
+      "points": -30,
+      "display": "Tenure"
     },
     {
       "id": "flag-i-think-the-city-would-be-better-off-if-a-certai",
@@ -703,7 +715,8 @@
       "label": "I think the city would be better off if a certain kind of person left [DISQUALIFYING]",
       "type": "Flag",
       "input": "flag",
-      "points": 0
+      "points": 0,
+      "display": "Disposition"
     },
     {
       "id": "suf-had-your-apartment-flood-from-above-and-lost-som",
@@ -922,7 +935,8 @@
       "label": "I think bodegas are \"unsanitary\"",
       "type": "Trap",
       "input": "trap",
-      "points": -20
+      "points": -20,
+      "display": "Sustenance"
     },
     {
       "id": "trap-i-ask-for-the-nearest-starbucks-instead-of-a-cor",
@@ -930,7 +944,8 @@
       "label": "I ask for the nearest Starbucks instead of a corner deli",
       "type": "Trap",
       "input": "trap",
-      "points": -15
+      "points": -15,
+      "display": "Sustenance"
     },
     {
       "id": "trap-i-call-the-outer-boroughs-not-really-the-city",
@@ -938,7 +953,8 @@
       "label": "I call the outer boroughs \"not really the city\"",
       "type": "Trap",
       "input": "trap",
-      "points": -25
+      "points": -25,
+      "display": "Disposition"
     },
     {
       "id": "sus-have-a-go-to-drug-dealer",
