@@ -855,7 +855,8 @@
       "label": "Hail a cab, catch a closing door, or make a light without breaking pace",
       "type": "Core",
       "input": "checkbox",
-      "points": 15
+      "points": 15,
+      "soft": true
     },
     {
       "id": "mas-disappear-into-a-crowd-the-second-you-need-to",
@@ -871,7 +872,8 @@
       "label": "Have a stranger you see daily, never speak to, and would miss",
       "type": "Core",
       "input": "checkbox",
-      "points": 10
+      "points": 10,
+      "soft": true
     },
     {
       "id": "dis-given-up-a-seat-or-a-spot-without-being-asked",
@@ -887,7 +889,8 @@
       "label": "Know your super's name and treat him right",
       "type": "Core",
       "input": "checkbox",
-      "points": 10
+      "points": 10,
+      "soft": true
     },
     {
       "id": "dis-tipped-past-what-was-comfortable-because-it-was",
@@ -895,7 +898,8 @@
       "label": "Tipped past what was comfortable because it was the right thing",
       "type": "Core",
       "input": "checkbox",
-      "points": 10
+      "points": 10,
+      "soft": true
     },
     {
       "id": "dis-been-the-first-person-to-walk-on-fresh-snow-in-y",
