@@ -1062,6 +1062,24 @@
       "input": "checkbox",
       "points": 5,
       "crime": true
+    },
+    {
+      "id": "dis-fire-escape-like-a-balcony",
+      "category": "Disposition",
+      "label": "Treated a fire escape like a balcony",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5,
+      "soft": true
+    },
+    {
+      "id": "dis-stoop-hang-two-or-more",
+      "category": "Disposition",
+      "label": "Hung out on a stoop with two or more people",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5,
+      "soft": true
     }
   ]
 }
