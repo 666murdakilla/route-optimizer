@@ -134,7 +134,9 @@
   .idfields .full{grid-column:1 / -1;}
   .f label{display:block;font-weight:600;margin-bottom:8px;}
   .f label .req{color:var(--red-40);}
-  .f input,.f select{width:100%;border:2px solid var(--black);padding:12px 14px;font-family:var(--body);font-size:16px;border-radius:2px;margin-bottom:16px;background:var(--white);color:var(--black);}
+  .f input,.f select,.f textarea{width:100%;border:2px solid var(--black);padding:12px 14px;font-family:var(--body);font-size:16px;border-radius:2px;margin-bottom:16px;background:var(--white);color:var(--black);}
+  .f textarea{resize:vertical;min-height:120px;line-height:1.5;}
+  .f .hint{font-size:14px;color:var(--gray-30);margin:-10px 0 16px;}
   .f select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23000' stroke-width='2'/></svg>");background-repeat:no-repeat;background-position:right 14px center;background-size:12px;padding-right:40px;cursor:pointer;}
 
   /* ---------- Live readout rail ---------- */
@@ -253,6 +255,23 @@
     <!-- Scored categories render here -->
     <div id="categories"></div>
 
+    <!-- Free-text questions (same as Track 1) -->
+    <section class="sec" id="sec-words">
+      <h2>In your own words</h2>
+      <p class="blurb">The Department reads these. They are not scored by the instrument, but a Verifier weighs them.</p>
+      <div class="f">
+        <label for="best_pizza">Best pizza <span class="req">*</span></label>
+        <input id="best_pizza" name="best_pizza" type="text" autocomplete="off">
+        <label for="worst_subway">Worst subway station <span class="req">*</span></label>
+        <input id="worst_subway" name="worst_subway" type="text" autocomplete="off">
+        <label for="ny_story">Relate a quintessential New York story (good or bad) <span class="req">*</span></label>
+        <textarea id="ny_story" name="ny_story"></textarea>
+        <p class="hint">At least a few sentences; the more specific, the better.</p>
+        <label for="comments">Anything else the Department should know</label>
+        <textarea id="comments" name="comments" style="min-height:84px;"></textarea>
+        <p class="hint">Optional.</p>
+      </div>
+    </section>
 
     <!-- Submit -->
     <div class="submit-row">
