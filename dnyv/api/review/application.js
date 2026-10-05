@@ -44,11 +44,22 @@ export default async function handler(req, res) {
     const purged = !!d.purged_at;
     // Purged evidence has no stored file left — don't try to sign a dead path.
     let url = null;
+    let preview_url = null;
     if (!purged) {
       const { data: signed, error: signError } = await supabase.storage
         .from(BUCKET)
         .createSignedUrl(d.storage_path, DOC_URL_TTL);
       url = signError ? null : signed.signedUrl;
+      // Headshots and image uploads are full-resolution phone photos (often
+      // several MB). Serve a resized thumbnail for the inline preview so the
+      // console loads fast and stays responsive under load; the full-res image
+      // is still one click away via `url`.
+      if (url && typeof d.mime_type === 'string' && d.mime_type.startsWith('image/')) {
+        const { data: t, error: tErr } = await supabase.storage
+          .from(BUCKET)
+          .createSignedUrl(d.storage_path, DOC_URL_TTL, { transform: { width: 900, height: 900, resize: 'contain' } });
+        preview_url = tErr ? null : t.signedUrl;
+      }
     }
     documents.push({
       id: d.id,
@@ -59,6 +70,7 @@ export default async function handler(req, res) {
       purged,
       purged_at: d.purged_at,
       url,
+      preview_url,
     });
   }
 
