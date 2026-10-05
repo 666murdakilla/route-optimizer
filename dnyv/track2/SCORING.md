@@ -77,8 +77,12 @@ total        = gross − softOverflow
 Notes:
 - **Tenure cap** (500) applies to the Tenure category only.
 - **Soft cap** (`softCap`, 150): soft items contribute at most 150 to `total`,
-  no matter how many are checked (their raw sum is 415). They still count in full
-  toward their own category totals — but none of them are in a *gated* category.
+  no matter how many are checked. They still count in full toward their own
+  category totals — but none of them are in a *gated* category.
+- **Crime items always count.** An item with `crime:true` is never soft-capped
+  (the soft set is `item.soft && !item.crime`), so petty-crime street cred always
+  adds to the total. Crime items carry a visual "Crime" tag and may be negative
+  (e.g. shoplifting from a mom-and-pop is −50).
 - **Traps** subtract and are not capped. **Flags** only disqualify.
 - `total` is not capped at the threshold; it can exceed it.
 

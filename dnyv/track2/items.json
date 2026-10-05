@@ -105,8 +105,7 @@
       "type": "Crime",
       "input": "checkbox",
       "points": 20,
-      "crime": true,
-      "soft": true
+      "crime": true
     },
     {
       "id": "sus-still-mourn-a-restaurant-that-closed",
@@ -940,6 +939,68 @@
       "type": "Trap",
       "input": "trap",
       "points": -25
+    },
+    {
+      "id": "sus-have-a-go-to-drug-dealer",
+      "category": "Sustenance",
+      "label": "Have a go-to drug dealer",
+      "type": "Crime",
+      "input": "checkbox",
+      "points": 15,
+      "crime": true
+    },
+    {
+      "id": "mas-trespassed-to-explore-an-abandoned-place",
+      "category": "Mastery",
+      "label": "Trespassed to explore an abandoned or in-construction place",
+      "type": "Crime",
+      "input": "checkbox",
+      "points": 15,
+      "crime": true
+    },
+    {
+      "id": "mas-rode-between-subway-cars",
+      "category": "Mastery",
+      "label": "Rode between subway cars",
+      "type": "Crime",
+      "input": "checkbox",
+      "points": 5,
+      "crime": true
+    },
+    {
+      "id": "mas-have-a-hustle",
+      "category": "Mastery",
+      "label": "Have a hustle",
+      "type": "Crime",
+      "input": "checkbox",
+      "points": 15,
+      "crime": true
+    },
+    {
+      "id": "dis-shoplifted-from-a-big-box-store",
+      "category": "Disposition",
+      "label": "Shoplifted from a big-box store",
+      "type": "Crime",
+      "input": "checkbox",
+      "points": 15,
+      "crime": true
+    },
+    {
+      "id": "dis-shoplifted-from-a-mom-and-pop-store",
+      "category": "Disposition",
+      "label": "Shoplifted from a mom-and-pop store",
+      "type": "Crime",
+      "input": "checkbox",
+      "points": -50,
+      "crime": true
+    },
+    {
+      "id": "dis-called-out-someone-racist-or-abusive-in-public",
+      "category": "Disposition",
+      "label": "Called out someone being racist or abusive in public",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 25
     }
   ]
 }

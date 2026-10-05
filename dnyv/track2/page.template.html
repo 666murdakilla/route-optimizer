@@ -417,7 +417,8 @@
   }
 
   // Soft ("everyday life") items — capped in aggregate, per diminishing returns.
-  var SOFT = DATA.items.filter(function(it){ return it.soft; });
+  // Crime items are never soft-capped — they always count toward the total.
+  var SOFT = DATA.items.filter(function(it){ return it.soft && !it.crime; });
   var SOFT_CAP = META.softCap || 0;
   // The three gates (category minimums), in display order.
   var GATE_ORDER = ['Tenure', 'Ground Truth', 'Suffering'];
