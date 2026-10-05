@@ -1007,7 +1007,7 @@
       "label": "Shoplifted from a mom-and-pop store",
       "type": "Crime",
       "input": "checkbox",
-      "points": -50,
+      "points": -150,
       "crime": true
     },
     {
