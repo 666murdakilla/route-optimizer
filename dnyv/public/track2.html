@@ -123,6 +123,10 @@
 
   /* ---------- Submit ---------- */
   .submit-row{margin-top:8px;}
+  .attest{display:flex;gap:10px;align-items:flex-start;margin-bottom:18px;font-size:15px;cursor:pointer;}
+  .attest input{width:18px;height:18px;accent-color:var(--blue-40);flex:none;margin-top:2px;}
+  .err{display:none;border-left:5px solid var(--red-40);background:#FCEBEC;padding:14px 18px;margin-top:12px;font-weight:600;}
+  .err.show{display:block;}
   .fine{font-size:13.5px;color:var(--gray-40);margin-top:14px;}
   .confirm{display:none;border-left:5px solid var(--green-40);background:#EAF9EA;padding:20px 22px;margin-top:8px;}
   .confirm.show{display:block;}
@@ -249,6 +253,10 @@
           </select>
         </div>
         <div><label for="dob">Date of birth <span class="req">*</span></label><input id="dob" name="dob" type="date"></div>
+        <div class="full"><label for="headshot">Photograph <span class="req">*</span></label>
+          <input id="headshot" name="headshot" type="file" accept="image/jpeg,image/png">
+          <p class="hint">A head-and-shoulders photo for your ID card. JPEG or PNG, up to 20&nbsp;MB. This is the only document Track&nbsp;2 asks of you.</p>
+        </div>
       </div>
     </section>
 
@@ -275,8 +283,10 @@
 
     <!-- Submit -->
     <div class="submit-row">
+      <label class="attest"><input type="checkbox" id="attested"> <span>I affirm that my answers are true to the best of my memory, which the city has already damaged. <span class="req">*</span></span></label>
       <button class="btn" type="submit" id="submit">Submit petition</button>
-      <p class="fine">By submitting, you affirm that your answers are true to the best of your memory, which the city has already damaged. Self-reported; spot-checked, not enforced.</p>
+      <p class="fine">Self-reported; spot-checked, not enforced.</p>
+      <div class="err" id="err" role="alert"></div>
       <div class="confirm" id="confirm" role="status" aria-live="polite">
         <strong>Application received.</strong>
         Your petition for verification by experience has entered the queue. A Verifier will review it in the order received, the City being large and the Department being busy. You will hear from us by email. Do not write to ask where you are in line. You are exactly where you are in line.
@@ -583,12 +593,57 @@
     });
   }
 
-  // submit — preview only: show the deadpan confirmation, reveal no verdict or number
-  document.getElementById('t2').addEventListener('submit', function(e){
+  // submit — file the petition. The applicant is shown only the deadpan
+  // confirmation; no verdict or number is ever revealed.
+  var submitBtn = document.getElementById('submit');
+  var errBox = document.getElementById('err');
+  function fail(msg){ errBox.textContent = msg; errBox.classList.add('show'); submitBtn.disabled = false; submitBtn.textContent = 'Submit petition'; }
+
+  document.getElementById('t2').addEventListener('submit', async function(e){
     e.preventDefault();
-    document.getElementById('confirm').classList.add('show');
-    document.getElementById('submit').disabled = true;
-    document.getElementById('confirm').scrollIntoView({behavior:'smooth', block:'center'});
+    errBox.classList.remove('show');
+
+    var val = function(id){ return (document.getElementById(id).value || '').trim(); };
+    var payload = {
+      given_names: val('given'), surname: val('surname'), email: val('email'),
+      borough: document.getElementById('borough').value, date_of_birth: val('dob'),
+      best_pizza: val('best_pizza'), worst_subway: val('worst_subway'),
+      ny_story: val('ny_story'), comments: val('comments'),
+      attested: document.getElementById('attested').checked,
+      responses: state
+    };
+    var file = document.getElementById('headshot').files[0];
+
+    // Client-side required checks (the server validates authoritatively).
+    if(!payload.given_names || !payload.surname || !payload.email || !payload.borough ||
+       !payload.date_of_birth || !payload.best_pizza || !payload.worst_subway ||
+       payload.ny_story.length < 20){ return fail('Please complete every required field (marked *), including a few sentences for your New York story.'); }
+    if(!file){ return fail('A photograph is required for your ID card.'); }
+    if(!/^image\/(jpeg|png)$/.test(file.type)){ return fail('Your photograph must be a JPEG or PNG.'); }
+    if(file.size > 20*1024*1024){ return fail('Your photograph must be 20 MB or smaller.'); }
+    if(!payload.attested){ return fail('Please check the affirmation box before submitting.'); }
+
+    submitBtn.disabled = true; submitBtn.textContent = 'Filing…';
+    try {
+      payload.worst_subway_station = payload.worst_subway;
+      payload.headshot = { name: file.name, type: file.type, size: file.size };
+      var r1 = await fetch('/api/track2/apply', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+      var d1 = await r1.json();
+      if(!r1.ok) return fail(d1.error || 'The Department could not open your file. Try again.');
+
+      var up = await fetch(d1.upload.url, { method:'PUT', headers:{'Content-Type':file.type}, body:file });
+      if(!up.ok) return fail('Your photograph did not upload. Try again.');
+
+      var r2 = await fetch('/api/track2/finalize', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ application_id: d1.application_id }) });
+      var d2 = await r2.json();
+      if(!r2.ok) return fail(d2.error || 'The Department could not seal your file. Try again.');
+
+      document.getElementById('confirm').classList.add('show');
+      submitBtn.style.display = 'none';
+      document.getElementById('confirm').scrollIntoView({behavior:'smooth', block:'center'});
+    } catch(err){
+      fail('Something went wrong reaching the Department. Try again in a moment.');
+    }
   });
 
   render();

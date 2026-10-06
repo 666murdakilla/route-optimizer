@@ -56,7 +56,8 @@ function buildTokens(a) {
     dob: usDate(dob),
     verified_date: usDate(ver),
     expires: exp ? usDate(exp) : 'NEVER',
-    basis: t2 ? 'EXPER.' : 'ORIGIN',
+    basis: t2 ? 'EXPERIENCE' : 'ORIGIN',
+    class_no: t2 ? '6' : '9',
     track_chip: t2 ? 'Track 2' : 'Track 1',
     status: (a.status ?? 'verified').toUpperCase(),
     permanence: t2
@@ -126,5 +127,59 @@ export async function renderIdCardHtml(supabase, app) {
     photo_src,
   };
 
+  return { html: fillTemplate(idTemplate(), buildTokens(applicant)), idNumber };
+}
+
+// ---- Track 2 (Verification by Experience) ------------------------------------
+// ID numbers are unique across BOTH tracks so a Track 1 and a Track 2 card can
+// never collide.
+async function uniqueIdNumberAcross(supabase) {
+  for (let i = 0; i < 20; i++) {
+    const n = String(Math.floor(Math.random() * 1e9)).padStart(9, '0');
+    const { data: a } = await supabase.from('applications').select('id').eq('id_number', n).maybeSingle();
+    if (a) continue;
+    const { data: b } = await supabase.from('track2_applications').select('id').eq('id_number', n).maybeSingle();
+    if (!b) return n;
+  }
+  throw new Error('could not allocate id_number');
+}
+
+export async function ensureTrack2IdNumber(supabase, app) {
+  if (app.id_number) return app.id_number;
+  const n = await uniqueIdNumberAcross(supabase);
+  const { error } = await supabase.from('track2_applications').update({ id_number: n }).eq('id', app.id);
+  if (error) throw new Error('track2 id_number assign failed: ' + error.message);
+  app.id_number = n;
+  return n;
+}
+
+// Track 2 ID card HTML — same template, track:2 (TRACK 2 badge, EXPERIENCE
+// basis, CLASS 6, ten-year expiry). Reads the headshot from track2_documents.
+export async function renderTrack2IdCardHtml(supabase, app) {
+  const idNumber = await ensureTrack2IdNumber(supabase, app);
+  let photo_src = 'https://placehold.co/512x640/dfe3ea/13306B?text=PHOTO';
+  const { data: hsDoc } = await supabase
+    .from('track2_documents')
+    .select('storage_path, mime_type')
+    .eq('application_id', app.id).eq('kind', 'headshot').limit(1).single();
+  if (hsDoc) {
+    const { data: blob, error: dlErr } = await supabase.storage.from(BUCKET).download(hsDoc.storage_path);
+    if (!dlErr && blob) {
+      const b64 = Buffer.from(await blob.arrayBuffer()).toString('base64');
+      photo_src = `data:${hsDoc.mime_type};base64,${b64}`;
+    }
+  }
+  const applicant = {
+    id_number: idNumber,
+    surname: app.surname,
+    given_names: app.given_names,
+    dob: app.date_of_birth,
+    verified_date: String(app.determined_at || app.submitted_at).slice(0, 10),
+    borough: app.borough,
+    track: 2,
+    status: 'verified',
+    hologram: true,
+    photo_src,
+  };
   return { html: fillTemplate(idTemplate(), buildTokens(applicant)), idNumber };
 }

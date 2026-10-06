@@ -190,3 +190,140 @@ export async function sendWaitlistConfirmation({ to }) {
   );
   return deliver({ to, subject, text: textDoc(lines), html });
 }
+
+// =====================================================================
+// Track 2 — Verification by Experience
+// =====================================================================
+
+// ---- Track 2: petition received (on finalize) --------------------------------
+export async function sendTrack2ApplicationReceived({ to, name, fileNumber }) {
+  const subject = `Your petition has entered the queue — ${fileNumber}`;
+  const lines = [
+    `Dear ${name},`, ``,
+    `The Department has received your petition for Verification by Experience (Track 2). Your file number is ${fileNumber}. Keep it; all correspondence will reference it.`, ``,
+    `A Verifier will review it in the order received, the City being large and the Department being busy. You will hear from us by email. Do not write to ask where you are in line. You are exactly where you are in line.`, ``,
+    `No score and no determination is disclosed at this stage. The instrument is the Department's; the verdict is a Verifier's.`, ``,
+    CONTACT_TEXT, ``, SIGNOFF,
+  ];
+  const html = shell(
+    p(`Dear ${esc(name)},`) +
+    p(`The Department has received your petition for Verification by Experience (Track&nbsp;2). Your file number is <strong>${esc(fileNumber)}</strong>. Keep it; all correspondence will reference it.`) +
+    p(`A Verifier will review it in the order received, the City being large and the Department being busy. You will hear from us by email. Do not write to ask where you are in line. You are exactly where you are in line.`) +
+    p(`No score and no determination is disclosed at this stage. The instrument is the Department's; the verdict is a Verifier's.`) +
+    p(CONTACT_HTML, 'color:#555;') +
+    p(SIGNOFF, 'margin-top:24px;color:#555;font-size:14px;')
+  );
+  return deliver({ to, subject, text: textDoc(lines), html });
+}
+
+// ---- Track 2: Verified -------------------------------------------------------
+export async function sendTrack2Verified({ to, name, fileNumber, cardUrl, certPdf }) {
+  const subject = `Congratulations! You are a Verified New Yorker — ${fileNumber}`;
+  const lines = [
+    `Dear ${name},`, ``,
+    `The Department has completed its review of your petition for Verification by Experience (Track 2), file number ${fileNumber}, and has reached a determination.`, ``,
+    `You are Verified.`, ``,
+    `By the authority of the Department, you are recorded as a New Yorker — status conferred by experience. You were not born to it. You earned it the hard way, which is the only way. Welcome.`, ``,
+    `Track 2 status is conferred for ten years and is renewable upon continued residence and the ordinary tribulations of the city. It binds you to the Code of Conduct, which holds the native and the verified alike.`, ``,
+    `Your Certificate of Verification is attached, suitable for printing and framing.`, ``,
+    `Your New Yorker identification card — bearing your file number and photograph — is ready to view, download, and print here:`, ``,
+    cardUrl, ``,
+    `The link is issued for your file alone. Keep it to yourself.`, ``,
+    `If you would prefer an official printed identification card — issued on Department stock and mailed to you — write to verify@dnyv.nyc with your file number, and the Department will arrange it.`, ``,
+    CONTACT_TEXT, ``, SIGNOFF,
+  ];
+  const html = shell(
+    p(`Dear ${esc(name)},`) +
+    p(`The Department has completed its review of your petition for Verification by Experience (Track&nbsp;2), file number <strong>${esc(fileNumber)}</strong>, and has reached a determination.`) +
+    p(`<span style="font-size:20px;font-weight:700;color:#050560;">You are Verified.</span>`) +
+    p(`By the authority of the Department, you are recorded as a New Yorker — status conferred by experience. You were not born to it. You earned it the hard way, which is the only way. Welcome.`) +
+    p(`Track 2 status is conferred for ten years and is renewable upon continued residence and the ordinary tribulations of the city. It binds you to the Code of Conduct, which holds the native and the verified alike.`) +
+    p(`Your <strong>Certificate of Verification</strong> is attached, suitable for printing and framing.`) +
+    p(`Your <strong>New Yorker identification card</strong> — bearing your file number and photograph — is ready to view, download, and print:`) +
+    `<p style="margin:0 0 8px;"><a href="${esc(cardUrl)}" style="display:inline-block;background:#103FEF;color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:2px;">View your New Yorker ID card &rarr;</a></p>` +
+    p(`The link is issued for your file alone. Keep it to yourself.`, 'color:#555;font-size:13px;') +
+    p(`If you would prefer an official printed identification card — issued on Department stock and mailed to you — write to <a href="mailto:verify@dnyv.nyc" style="color:#103FEF;">verify@dnyv.nyc</a> with your file number, and the Department will arrange it.`) +
+    p(CONTACT_HTML, 'color:#555;') +
+    p(SIGNOFF, 'margin-top:24px;color:#555;font-size:14px;')
+  );
+  const attachments = certPdf
+    ? [{ filename: `Certificate of Verification — ${fileNumber}.pdf`, content: Buffer.from(certPdf).toString('base64') }]
+    : undefined;
+  return deliver({ to, subject, text: textDoc(lines), html, attachments });
+}
+
+// ---- Track 2: Denied ---------------------------------------------------------
+export async function sendTrack2Denied({ to, name, fileNumber, note }) {
+  const subject = `A determination on your petition — ${fileNumber}`;
+  const reasonText = note ? `A note from the Verifier: ${note}` : '';
+  const lines = [
+    `Dear ${name},`, ``,
+    `The Department has completed its review of your petition for Verification by Experience (Track 2), file number ${fileNumber}, and has reached a determination.`, ``,
+    `Not yet.`, ``,
+    `You have not yet done enough to be verified by experience. This is not a judgment of your character or your affection for the city — only of what the city has, so far, asked of you and received back. The Department keeps your file open.`, ``,
+    ...(note ? [reasonText, ``] : []),
+    `There is no new application to file. Go live a little more. When the city has taken more from you, and given you more in return, write to the Department and say so, and your file will be reviewed again.`, ``,
+    CONTACT_TEXT, ``, SIGNOFF,
+  ];
+  const html = shell(
+    p(`Dear ${esc(name)},`) +
+    p(`The Department has completed its review of your petition for Verification by Experience (Track&nbsp;2), file number <strong>${esc(fileNumber)}</strong>, and has reached a determination.`) +
+    p(`<span style="font-size:18px;font-weight:700;">Not yet.</span>`) +
+    p(`You have not yet done enough to be verified by experience. This is not a judgment of your character or your affection for the city — only of what the city has, so far, asked of you and received back. The Department keeps your file open.`) +
+    (note ? p(esc(reasonText), 'color:#555;') : '') +
+    p(`There is no new application to file. Go live a little more. When the city has taken more from you, and given you more in return, write to the Department and say so, and your file will be reviewed again.`) +
+    p(CONTACT_HTML, 'color:#555;') +
+    p(SIGNOFF, 'margin-top:24px;color:#555;font-size:14px;')
+  );
+  return deliver({ to, subject, text: textDoc(lines), html });
+}
+
+// ---- Track 2: Returned for Insufficient Suffering ----------------------------
+export async function sendTrack2Returned({ to, name, fileNumber, note }) {
+  const subject = `Your petition has been returned — ${fileNumber}`;
+  const lines = [
+    `Dear ${name},`, ``,
+    `The Department has completed its review of your petition, file number ${fileNumber}, and has reached a determination.`, ``,
+    `Your petition is Returned for Insufficient Suffering.`, ``,
+    `You have the points. You have not yet paid enough for them. Your tenure, your knowledge of the ground, your fluency in the city are not in question — but the Mandatory Suffering Clause is not a formality, and it cannot be waived. The Department does not recognize a New Yorker who has not suffered.`, ``,
+    `This is not a denial. It is an instruction. Go live a little more. Miss the last train. Get some bedbugs. Lose the apartment. Invite some rats to live in your walls. Come back when the city has cost you something, and bring it with you.`, ``,
+    ...(note ? [note, ``] : []),
+    `Your file remains open. No new petition is required; when you are ready, write to the Department and say so.`, ``,
+    CONTACT_TEXT, ``, SIGNOFF,
+  ];
+  const html = shell(
+    p(`Dear ${esc(name)},`) +
+    p(`The Department has completed its review of your petition, file number <strong>${esc(fileNumber)}</strong>, and has reached a determination.`) +
+    p(`<span style="font-size:18px;font-weight:700;">Your petition is Returned for Insufficient Suffering.</span>`) +
+    p(`You have the points. You have not yet paid enough for them. Your tenure, your knowledge of the ground, your fluency in the city are not in question — but the Mandatory Suffering Clause is not a formality, and it cannot be waived. The Department does not recognize a New Yorker who has not suffered.`) +
+    p(`This is not a denial. It is an instruction. Go live a little more. Miss the last train. Get some bedbugs. Lose the apartment. Invite some rats to live in your walls. Come back when the city has cost you something, and bring it with you.`) +
+    (note ? p(esc(note), 'color:#555;') : '') +
+    p(`Your file remains open. No new petition is required; when you are ready, write to the Department and say so.`) +
+    p(CONTACT_HTML, 'color:#555;') +
+    p(SIGNOFF, 'margin-top:24px;color:#555;font-size:14px;')
+  );
+  return deliver({ to, subject, text: textDoc(lines), html });
+}
+
+// ---- Track 2: Disqualified (a flag item) -------------------------------------
+export async function sendTrack2Disqualified({ to, name, fileNumber, note }) {
+  const subject = `A determination on your petition — ${fileNumber}`;
+  const lines = [
+    `Dear ${name},`, ``,
+    `The Department has completed its review of your petition, file number ${fileNumber}, and has reached a determination.`, ``,
+    `Disqualified.`, ``,
+    `Not for want of points, but for want of respect. The Department recognizes a single absolute bar, and you have met it. No tally of experience can undo it, and none was weighed. You may be a person from New York. You are not a New Yorker.`, ``,
+    ...(note ? [note, ``] : []),
+    CONTACT_TEXT, ``, SIGNOFF,
+  ];
+  const html = shell(
+    p(`Dear ${esc(name)},`) +
+    p(`The Department has completed its review of your petition, file number <strong>${esc(fileNumber)}</strong>, and has reached a determination.`) +
+    p(`<span style="font-size:18px;font-weight:700;">Disqualified.</span>`) +
+    p(`Not for want of points, but for want of respect. The Department recognizes a single absolute bar, and you have met it. No tally of experience can undo it, and none was weighed. You may be a person from New York. You are not a New Yorker.`) +
+    (note ? p(esc(note), 'color:#555;') : '') +
+    p(CONTACT_HTML, 'color:#555;') +
+    p(SIGNOFF, 'margin-top:24px;color:#555;font-size:14px;')
+  );
+  return deliver({ to, subject, text: textDoc(lines), html });
+}

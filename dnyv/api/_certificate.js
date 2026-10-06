@@ -33,7 +33,7 @@ export function buildCertificateTokens(app) {
   if (!b) throw new Error('certificate: unknown borough ' + app.borough);
   const digits = String(app.id_number ?? '').replace(/\D/g, '');
   if (digits.length !== 9) throw new Error('certificate: a 9-digit id_number must be assigned before rendering');
-  const t2 = false;
+  const t2 = Number(app.track) === 2;
   const dateIso = String(app.determined_at || app.submitted_at).slice(0, 10);
   return {
     holder_name: app.full_name,
