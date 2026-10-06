@@ -895,6 +895,22 @@
       "points": 5
     },
     {
+      "id": "suf-grieved-someone-something-while-the-city-kept-moving-and-went-to-work-anyway",
+      "category": "Suffering",
+      "label": "Grieved someone/something while the city kept moving, and went to work anyway",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 10
+    },
+    {
+      "id": "suf-spent-a-major-holiday-alone-in-the-city-while-everyone-else-went-home",
+      "category": "Suffering",
+      "label": "Spent a major holiday alone in the city while everyone else \"went home\"",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 10
+    },
+    {
       "id": "sus-know-your-bodega-cat-s-name",
       "category": "Sustenance",
       "label": "Know your bodega cat's name",
