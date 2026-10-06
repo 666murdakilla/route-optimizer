@@ -440,6 +440,14 @@
   .btn:hover{background:var(--blue-10);color:var(--white);}
   .btn.secondary{background:var(--white);color:var(--blue-40);box-shadow:inset 0 0 0 2px var(--blue-40);}
   .btn.secondary:hover{background:var(--blue-95);color:var(--blue-10);}
+  .docwarn{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(5,5,96,.55);}
+  .docwarn.show{display:flex;}
+  .docwarn .box{background:var(--white);max-width:470px;width:100%;border-top:6px solid var(--blue-40);border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.35);padding:28px 28px 26px;}
+  .docwarn .box h3{font-size:20px;color:var(--blue-10);margin:0 0 12px;}
+  .docwarn .box p{font-size:16px;line-height:1.6;color:var(--gray-20);margin:0 0 22px;}
+  .docwarn .acts{display:flex;gap:12px;}
+  .docwarn .acts .btn{flex:1;text-align:center;padding:13px 18px;font-size:16px;}
+  @media (max-width:440px){.docwarn .acts{flex-direction:column;}}
   .eyebrow{font-family:var(--body);font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-30);margin-bottom:12px;}
 
   /* ---------- Gov banner ---------- */
@@ -1389,5 +1397,49 @@ document.getElementById('notify-btn').addEventListener('click',async function(){
 navigate(location.hash.replace('#','')||'home');
 </script>
 
+<div class="docwarn" id="doc-warn" role="dialog" aria-modal="true" aria-labelledby="doc-warn-title">
+  <div class="box">
+    <h3 id="doc-warn-title">One New Yorker to another.</h3>
+    <p>You might be about to send a birth certificate or school record to a website. We made this one, and even we'll tell you: be careful who you give your documents to online. These uploads are optional. Are you sure you want to send what you just selected?</p>
+    <div class="acts">
+      <button type="button" class="btn secondary" data-cancel>Actually, hold on</button>
+      <button type="button" class="btn" data-keep>Send it anyway</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// One-per-visit advisory before sending sensitive supporting documents.
+// Purely front-end: no change to what's uploaded; cancel just clears the input.
+(function(){
+  var KEY='dnyv_doc_warned';
+  var modal=document.getElementById('doc-warn');
+  if(!modal) return;
+  var keepBtn=modal.querySelector('[data-keep]');
+  var cancelBtn=modal.querySelector('[data-cancel]');
+  var pending=null, lastFocus=null;
+  function warned(){ try{return sessionStorage.getItem(KEY)==='1';}catch(e){return false;} }
+  function markWarned(){ try{sessionStorage.setItem(KEY,'1');}catch(e){} }
+  function open(input){ pending=input; lastFocus=document.activeElement; modal.classList.add('show'); keepBtn.focus(); }
+  function close(){ modal.classList.remove('show'); pending=null; if(lastFocus&&lastFocus.focus){lastFocus.focus();} }
+  keepBtn.addEventListener('click', function(){ markWarned(); close(); });
+  cancelBtn.addEventListener('click', function(){ if(pending){ pending.value=''; } markWarned(); close(); });
+  modal.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){ if(pending){ pending.value=''; } markWarned(); close(); }
+    if(e.key==='Tab'){ // trap focus between the two buttons
+      var f=[cancelBtn,keepBtn]; var i=f.indexOf(document.activeElement);
+      if(e.shiftKey){ if(i<=0){ e.preventDefault(); f[f.length-1].focus(); } }
+      else { if(i===f.length-1){ e.preventDefault(); f[0].focus(); } }
+    }
+  });
+  ['t1-hs-files','t1-origin-files'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(!el) return;
+    el.addEventListener('change', function(){
+      if(this.files && this.files.length && !warned()){ open(this); }
+    });
+  });
+})();
+</script>
 
 </body></html>
