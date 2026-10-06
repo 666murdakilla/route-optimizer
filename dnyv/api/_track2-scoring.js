@@ -121,4 +121,51 @@ export function computeScore(rawResponses) {
   };
 }
 
+// Reviewer-facing breakdown of what the petitioner actually declared: the
+// selected items grouped by category, each with its face-value contribution and
+// crime/soft/trap/flag tags. Mirrors computeScore's arithmetic so the "test
+// results" the reviewer reads line up with the score. Only categories with at
+// least one selected item are returned.
+export function explainResponses(rawResponses) {
+  const r = normalizeResponses(rawResponses);
+  const blocks = [];
+  let softRaw = 0;
+  for (const cat of ORDER) {
+    const items = [];
+    let raw = 0;
+    for (const it of BY_CAT[cat] || []) {
+      if (!r[it.id]) continue;
+      let contribution;
+      let count = null;
+      if (it.input === 'counter') {
+        count = r[it.id];
+        contribution = Math.min(it.max, it.unitPoints * count);
+      } else {
+        contribution = it.points || 0;
+      }
+      raw += contribution;
+      if (it.soft && !it.crime) softRaw += it.points || 0;
+      items.push({
+        label: it.label,
+        type: it.type || null,
+        input: it.input,
+        count,
+        unitPoints: it.unitPoints ?? null,
+        points: contribution,
+        crime: !!it.crime,
+        soft: !!it.soft,
+        flag: it.input === 'flag' || cat === 'Flag',
+        trap: it.input === 'trap' || cat === 'Trap',
+      });
+    }
+    if (!items.length) continue;
+    const block = { category: cat, raw, items };
+    if (cat === TENURE_CAT) { block.cap = TCAP; block.counted = Math.min(TCAP, raw); }
+    if (MINS[cat] != null) block.gateMin = MINS[cat];
+    blocks.push(block);
+  }
+  const softDiscount = Math.round(Math.max(0, softRaw - SOFT_CAP) * 0.5);
+  return { blocks, soft: { raw: softRaw, counted: softRaw - softDiscount, cap: SOFT_CAP, discount: softDiscount } };
+}
+
 export const TRACK2_META = META;

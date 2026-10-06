@@ -1,5 +1,6 @@
 import { getServiceClient, BUCKET } from '../_supabase.js';
 import { requireReviewer } from '../_auth.js';
+import { explainResponses } from '../_track2-scoring.js';
 
 // One Track 2 petition in full, with the stored score breakdown and a signed
 // (thumbnailed) headshot URL. The score fields live on the row itself.
@@ -33,5 +34,6 @@ export default async function handler(req, res) {
     }
     documents.push({ id: d.id, kind: d.kind, original_filename: d.original_filename, mime_type: d.mime_type, size_bytes: d.size_bytes, url: e1 ? null : signed.signedUrl, preview_url });
   }
-  return res.status(200).json({ application, documents });
+  const answers = explainResponses(application.responses);
+  return res.status(200).json({ application, documents, answers });
 }

@@ -87,6 +87,22 @@ tr.row:hover{background:var(--blue-95);cursor:pointer;}
 .doc img{max-width:100%;border:1px solid var(--gray-80);border-radius:2px;display:block;}
 .doc iframe{width:100%;height:520px;border:1px solid var(--gray-80);border-radius:2px;}
 .dkind{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gray-40);}
+.acat{margin-bottom:18px;}
+.acat:last-child{margin-bottom:0;}
+.acat .ahead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:2px solid var(--gray-80);padding-bottom:4px;margin-bottom:6px;}
+.acat .ahead .an{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gray-30);}
+.acat .ahead .asub{font-size:13px;font-weight:700;color:var(--gray-20);white-space:nowrap;}
+.acat .anote{font-size:12px;color:var(--gray-40);margin:-2px 0 6px;}
+.arow{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid var(--gray-90);font-size:15px;}
+.arow:last-child{border-bottom:none;}
+.arow .al{flex:1;}
+.arow .ap{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap;}
+.arow .ap.neg{color:#b30d16;}
+.abadge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:1px 6px;border-radius:2px;margin-left:7px;vertical-align:1px;}
+.abadge.crime{background:#FFF4E0;color:#9a6400;}
+.abadge.trap{background:#FCEBEC;color:#b30d16;}
+.abadge.flag{background:#111;color:#fff;}
+.abadge.soft{background:var(--gray-90);color:var(--gray-30);}
 
 .determine label{display:block;font-weight:600;margin-bottom:8px;}
 .determine textarea{width:100%;border:2px solid var(--black);padding:12px 14px;font-family:var(--body);font-size:15px;border-radius:2px;margin-bottom:16px;min-height:90px;resize:vertical;}
@@ -151,6 +167,10 @@ tr.row:hover{background:var(--blue-95);cursor:pointer;}
       <div class="card section" id="d-score-card">
         <h2>Score <span class="muted" style="font-weight:400;font-size:14px;">· advisory</span></h2>
         <div id="d-score"></div>
+      </div>
+      <div class="card section" id="d-answers-card">
+        <h2>Declared experience <span class="muted" style="font-weight:400;font-size:14px;">· test results</span></h2>
+        <div id="d-answers"></div>
       </div>
       <div class="card section">
         <h2>Petitioner</h2>
@@ -261,6 +281,34 @@ async function loadQueue(){
 
 // --- detail ---
 function fieldRow(k,v){ return `<div class="field"><div class="k">${esc(k)}</div><div class="v">${esc(v)||'—'}</div></div>`; }
+function answerBadge(it){
+  if(it.flag) return '<span class="abadge flag">Flag</span>';
+  let b='';
+  if(it.crime) b+='<span class="abadge crime">Crime</span>';
+  if(it.trap) b+='<span class="abadge trap">Trap</span>';
+  if(it.soft && !it.crime) b+='<span class="abadge soft">Everyday</span>';
+  return b;
+}
+function renderAnswers(ans){
+  if(!ans||!Array.isArray(ans.blocks)||!ans.blocks.length) return '<p class="muted">No experience items declared.</p>';
+  let html='';
+  for(const blk of ans.blocks){
+    const sub=(blk.cap!=null && blk.raw>blk.cap)
+      ? `${blk.counted} pts <span class="muted" style="font-weight:400;">(capped from ${blk.raw})</span>`
+      : `${blk.raw} pts`;
+    html+=`<div class="acat"><div class="ahead"><span class="an">${esc(blk.category)}${blk.gateMin!=null?` · gate ${blk.gateMin}`:''}</span><span class="asub">${sub}</span></div>`;
+    for(const it of blk.items){
+      const cnt=(it.input==='counter'&&it.count!=null)?` <span class="muted">×${esc(it.count)}</span>`:'';
+      const pts=it.flag?'—':(it.points>0?`+${it.points}`:`${it.points}`);
+      html+=`<div class="arow"><span class="al">${esc(it.label)}${cnt}${answerBadge(it)}</span><span class="ap${it.points<0?' neg':''}">${pts}</span></div>`;
+    }
+    html+='</div>';
+  }
+  if(ans.soft && ans.soft.discount>0){
+    html+=`<p class="anote" style="margin-top:12px;">Everyday-life items: ${ans.soft.raw} declared → ${ans.soft.counted} counted (half-rate past ${ans.soft.cap}).</p>`;
+  }
+  return html;
+}
 async function openDetail(id){
   currentId=id;
   const r=await api('/api/track2/review-application?id='+encodeURIComponent(id)); const d=await r.json();
@@ -288,6 +336,8 @@ async function openDetail(id){
     fieldRow('Suffering total',a.suffering_total)+
     (prov?`<div class="field"><div class="k">Provisional</div><div class="v"><span class="tag ${prov.cls}">${prov.label}</span></div></div>`:'')+
     `<p class="muted" style="margin-top:10px;line-height:1.5;">Advisory only. The determination is the reviewer's to make.</p>`;
+
+  $('d-answers').innerHTML=renderAnswers(d.answers);
 
   $('d-fields').innerHTML=
     fieldRow('Full legal name',a.full_name)+
