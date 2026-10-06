@@ -1,5 +1,5 @@
-import { getServiceClient } from './_supabase.js';
-import { renderTrack2IdCardHtml, hasCardIdentity } from './_id-card.js';
+import { getServiceClient } from '../_supabase.js';
+import { renderTrack2IdCardHtml, hasCardIdentity } from '../_id-card.js';
 
 // Public, token-gated Track 2 New Yorker ID card. The link is emailed to a
 // verified Track 2 applicant and carries an unguessable per-file token. Renders

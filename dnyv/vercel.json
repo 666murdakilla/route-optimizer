@@ -9,13 +9,12 @@
   ],
   "rewrites": [
     { "source": "/id/:token", "destination": "/api/card?t=:token" },
-    { "source": "/t2/id/:token", "destination": "/api/t2card?t=:token" }
+    { "source": "/t2/id/:token", "destination": "/api/track2/card?t=:token" }
   ],
   "functions": {
     "api/review/determine.js": { "memory": 1024, "maxDuration": 60, "includeFiles": "node_modules/@sparticuz/chromium/bin/**" },
     "api/review/certificate.js": { "memory": 1024, "maxDuration": 60, "includeFiles": "node_modules/@sparticuz/chromium/bin/**" },
-    "api/review/track2-determine.js": { "memory": 1024, "maxDuration": 60, "includeFiles": "node_modules/@sparticuz/chromium/bin/**" },
-    "api/review/track2-certificate.js": { "memory": 1024, "maxDuration": 60, "includeFiles": "node_modules/@sparticuz/chromium/bin/**" }
+    "api/track2/[action].js": { "memory": 1024, "maxDuration": 60, "includeFiles": "node_modules/@sparticuz/chromium/bin/**" }
   },
   "headers": [
     {

@@ -246,7 +246,7 @@ $('logout').addEventListener('click',()=>{ setTok(null); $('who').style.visibili
 
 // --- queue ---
 async function loadQueue(){
-  const r=await api('/api/review/track2-list'); const d=await r.json();
+  const r=await api('/api/track2/review-list'); const d=await r.json();
   const apps=d.applications||[];
   $('queue-count').textContent=apps.length+(apps.length===1?' application':' applications');
   $('queue-empty').style.display=apps.length?'none':'block';
@@ -263,7 +263,7 @@ async function loadQueue(){
 function fieldRow(k,v){ return `<div class="field"><div class="k">${esc(k)}</div><div class="v">${esc(v)||'—'}</div></div>`; }
 async function openDetail(id){
   currentId=id;
-  const r=await api('/api/review/track2-application?id='+encodeURIComponent(id)); const d=await r.json();
+  const r=await api('/api/track2/review-application?id='+encodeURIComponent(id)); const d=await r.json();
   const a=d.application;
   $('d-title').textContent=fileNo(a);
   const o=a.determination?OUTCOMES[a.determination]:null;
@@ -343,7 +343,7 @@ $('dl-idcard').addEventListener('click',async function(){
   const w=window.open('','_blank');
   if(w){ w.document.write('<!doctype html><title>Preparing ID…</title><body style="font-family:sans-serif;padding:40px;color:#555">Preparing the New Yorker ID…</body>'); }
   try{
-    const r=await api('/api/review/track2-id-card?id='+encodeURIComponent(currentId));
+    const r=await api('/api/track2/review-id-card?id='+encodeURIComponent(currentId));
     if(!r.ok) throw new Error('gen failed');
     const html=await r.text();
     if(!w){ alert('Allow pop-ups for this site, then try again.'); return; }
@@ -357,7 +357,7 @@ $('dl-idcard').addEventListener('click',async function(){
 $('dl-cert').addEventListener('click',async function(){
   this.disabled=true; const label=this.textContent; this.textContent='Preparing…';
   try{
-    const r=await api('/api/review/track2-certificate?id='+encodeURIComponent(currentId));
+    const r=await api('/api/track2/review-certificate?id='+encodeURIComponent(currentId));
     if(!r.ok) throw new Error('gen failed');
     const blob=await r.blob();
     const url=URL.createObjectURL(blob);
@@ -375,7 +375,7 @@ document.querySelectorAll('.dbtns .btn').forEach(btn=>btn.addEventListener('clic
   document.querySelectorAll('.dbtns .btn').forEach(b=>b.disabled=true);
   $('d-err').classList.remove('show');
   try{
-    const r=await api('/api/review/track2-determine',{method:'POST',body:JSON.stringify({application_id:currentId,determination,notes:$('d-notes').value})});
+    const r=await api('/api/track2/review-determine',{method:'POST',body:JSON.stringify({application_id:currentId,determination,notes:$('d-notes').value})});
     if(!r.ok) throw new Error('failed');
     await openDetail(currentId);
   }catch(e){
