@@ -887,6 +887,22 @@
       "points": 5
     },
     {
+      "id": "suf-got-splashed-by-a-bus-or-cab-hitting-a-puddle",
+      "category": "Suffering",
+      "label": "Got splashed by a bus or cab hitting a puddle",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-getting-an-appendage-caught-in-subway-doors",
+      "category": "Suffering",
+      "label": "Getting an appendage caught in subway doors",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
       "id": "sus-know-your-bodega-cat-s-name",
       "category": "Sustenance",
       "label": "Know your bodega cat's name",
