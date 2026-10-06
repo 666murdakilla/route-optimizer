@@ -783,6 +783,110 @@
       "points": 10
     },
     {
+      "id": "suf-ended-up-on-an-empty-subway-car-when-the-others-were-packed-iykyk",
+      "category": "Suffering",
+      "label": "Ended up on an empty subway car when the others were packed IYKYK",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-were-held-momentarily-due-to-train-traffic-ahead-of-us-for-at-least-twenty-minutes",
+      "category": "Suffering",
+      "label": "Were held \"momentarily, due to train traffic ahead of us\" for at least twenty minutes",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-stepped-off-a-curb-into-the-ankle-deep-corner-lake-at-a-crosswalk",
+      "category": "Suffering",
+      "label": "Stepped off a curb into the ankle-deep corner lake at a crosswalk",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-got-caught-in-a-downpour-with-no-umbrella-and-just-accepted-it",
+      "category": "Suffering",
+      "label": "Got caught in a downpour with no umbrella and just accepted it",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-had-your-shoes-or-boots-destroyed-by-winter-sidewalk-salt",
+      "category": "Suffering",
+      "label": "Had your shoes or boots destroyed by winter sidewalk salt",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-opened-your-windows-in-january-because-the-radiator-would-not-stop",
+      "category": "Suffering",
+      "label": "Opened your windows in January because the radiator would not stop",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-hauled-laundry-blocks-to-a-laundromat-or-down-to-a-basement-for-3-or-more-years",
+      "category": "Suffering",
+      "label": "Hauled laundry blocks to a laundromat, or down to a basement, for 3 or more years",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 10
+    },
+    {
+      "id": "suf-watched-a-place-you-loved-become-a-bank-a-pharmacy-or-luxury-condos",
+      "category": "Suffering",
+      "label": "Watched a place you loved become a bank, a pharmacy, or luxury condos",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-had-your-bodega-deli-or-coffee-cart-close-or-change-hands",
+      "category": "Suffering",
+      "label": "Had your bodega, deli, or coffee cart close or change hands",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-had-to-walk-up-the-stairs-in-a-10-story-building-because-the-elevator-was-out",
+      "category": "Suffering",
+      "label": "Had to walk up the stairs in a 10+ story building because the elevator was out",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-accidentally-kicking-a-rat",
+      "category": "Suffering",
+      "label": "Accidentally kicking a rat",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-being-cursed-out-for-ignoring-catcalls",
+      "category": "Suffering",
+      "label": "Being cursed out for ignoring catcalls",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-being-asked-what-you-re-looking-at",
+      "category": "Suffering",
+      "label": "Being asked what you're looking at",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
       "id": "sus-know-your-bodega-cat-s-name",
       "category": "Sustenance",
       "label": "Know your bodega cat's name",
