@@ -392,14 +392,6 @@
       "points": 5
     },
     {
-      "id": "suf-waited-on-a-line-around-the-block-for-something",
-      "category": "Suffering",
-      "label": "Waited on a line around the block for something stupid and stayed",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
-    },
-    {
       "id": "suf-been-on-a-train-when-something-happened-and-the",
       "category": "Suffering",
       "label": "Been on a train when something happened and the whole car became a temporary family",
@@ -882,6 +874,14 @@
       "id": "suf-being-asked-what-you-re-looking-at",
       "category": "Suffering",
       "label": "Being asked what you're looking at",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-carried-furniture-you-found-on-the-street-home-by-yourself",
+      "category": "Suffering",
+      "label": "Carried furniture you found on the street home by yourself",
       "type": "Core",
       "input": "checkbox",
       "points": 5
