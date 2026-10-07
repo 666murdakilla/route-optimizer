@@ -702,6 +702,14 @@
       "display": "Disposition"
     },
     {
+      "id": "suf-been-pooped-on-by-a-pigeon-or-felt-it-just-miss",
+      "category": "Suffering",
+      "label": "Been pooped on by a pigeon (or felt it just miss)",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
       "id": "suf-lost-a-security-deposit-and-let-it-go-because-fi",
       "category": "Suffering",
       "label": "Lost a security deposit and let it go because fighting cost more",
