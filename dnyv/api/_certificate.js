@@ -23,7 +23,10 @@ const longDate = (iso) => { const [y, m, d] = iso.split('-').map(Number); return
 
 export function certificateFileNumber(app) {
   const y = new Date(app.submitted_at || app.determined_at || Date.now()).getFullYear();
-  return `DNYV-${y}-${String(app.file_number).padStart(6, '0')}`;
+  // Track 2 (Verification by Experience) carries an "E" marker so its file-number
+  // register never collides with Track 1's. Track 1 stays unmarked (legacy).
+  const marker = Number(app.track) === 2 ? 'E-' : '';
+  return `DNYV-${marker}${y}-${String(app.file_number).padStart(6, '0')}`;
 }
 
 // Maps an application record to the certificate template's tokens. Track 1 only

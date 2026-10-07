@@ -220,7 +220,7 @@ function esc(s){ const d=document.createElement('div'); d.textContent=s==null?''
 function fmtDate(s){ if(!s)return '—'; const d=new Date(s); return d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'})+' '+d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}); }
 function fmtDOB(s){ if(!s)return '—'; const d=new Date(s+'T00:00:00'); return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); }
 function fmtSize(b){ return b>=1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB'; }
-function fileNo(app){ const y=new Date(app.submitted_at||app.determined_at||Date.now()).getFullYear(); return 'DNYV-'+y+'-'+String(app.file_number).padStart(6,'0'); }
+function fileNo(app){ const y=new Date(app.submitted_at||app.determined_at||Date.now()).getFullYear(); return 'DNYV-E-'+y+'-'+String(app.file_number).padStart(6,'0'); }
 
 // --- authenticated API calls, with one refresh retry on 401 ---
 async function api(path,opts={}){

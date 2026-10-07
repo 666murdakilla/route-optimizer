@@ -9,7 +9,8 @@ import { sendTrack2ApplicationReceived } from '../_email.js';
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 function fileNumber(n, year) {
-  return `DNYV-${year}-${String(n).padStart(6, '0')}`;
+  // Track 2 register: "E" marker keeps it distinct from Track 1's file numbers.
+  return `DNYV-E-${year}-${String(n).padStart(6, '0')}`;
 }
 
 export default async function handler(req, res) {
