@@ -231,90 +231,17 @@
       "points": 35
     },
     {
-      "id": "suf-jumped-a-turnstile",
+      "id": "suf-watched-a-place-you-loved-become-a-bank-a-pharmacy-or-luxury-condos",
       "category": "Suffering",
-      "label": "Jumped a turnstile",
-      "type": "Crime",
-      "input": "checkbox",
-      "points": 30,
-      "crime": true
-    },
-    {
-      "id": "suf-been-robbed-mugged-pickpocketed-or-scammed",
-      "category": "Suffering",
-      "label": "Been robbed, mugged, pickpocketed, or scammed",
+      "label": "Watched a place you loved become a bank, a pharmacy, or luxury condos",
       "type": "Core",
       "input": "checkbox",
-      "points": 55
+      "points": 5
     },
     {
       "id": "suf-had-a-bike-phone-or-package-stolen",
       "category": "Suffering",
       "label": "Had a bike, phone, or package stolen",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 20
-    },
-    {
-      "id": "suf-had-bedbugs",
-      "category": "Suffering",
-      "label": "Had bedbugs",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 30
-    },
-    {
-      "id": "suf-had-roaches",
-      "category": "Suffering",
-      "label": "Had roaches",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 10
-    },
-    {
-      "id": "suf-had-mice",
-      "category": "Suffering",
-      "label": "Had mice",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 10
-    },
-    {
-      "id": "suf-had-an-actual-rat-inside-your-apartment",
-      "category": "Suffering",
-      "label": "Had an actual rat inside your apartment",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 30
-    },
-    {
-      "id": "suf-lived-somewhere-with-a-tub-in-the-kitchen-or-a-b",
-      "category": "Suffering",
-      "label": "Lived somewhere with a tub in the kitchen, or a \"bedroom\" with no window",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 20
-    },
-    {
-      "id": "suf-survived-a-summer-with-no-air-conditioning",
-      "category": "Suffering",
-      "label": "Survived a summer with no air conditioning",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 30
-    },
-    {
-      "id": "suf-survived-a-winter-where-heat-included-meant-the",
-      "category": "Suffering",
-      "label": "Survived a winter where \"heat included\" meant the heat never worked",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 20
-    },
-    {
-      "id": "suf-been-stuck-on-a-stalled-train-underground-in-the",
-      "category": "Suffering",
-      "label": "Been stuck on a stalled train, underground, in the dark, no a/c",
       "type": "Core",
       "input": "checkbox",
       "points": 20
@@ -328,49 +255,121 @@
       "points": 20
     },
     {
-      "id": "suf-paid-a-broker-s-fee-and-felt-the-specific-rage-o",
+      "id": "suf-been-robbed-mugged-pickpocketed-or-scammed",
       "category": "Suffering",
-      "label": "Paid a broker's fee and felt the specific rage of it",
+      "label": "Been robbed, mugged, pickpocketed, or scammed",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 55
+    },
+    {
+      "id": "suf-got-splashed-by-a-bus-or-cab-hitting-a-puddle",
+      "category": "Suffering",
+      "label": "Got splashed by a bus or cab hitting a puddle",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-had-a-ceiling-leak-for-months-while-nobody-came",
+      "category": "Suffering",
+      "label": "Had a building/apartment issue for months while nobody came to fix it",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 10
+    },
+    {
+      "id": "suf-had-mice",
+      "category": "Suffering",
+      "label": "Had mice",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 10
+    },
+    {
+      "id": "suf-survived-a-winter-where-heat-included-meant-the",
+      "category": "Suffering",
+      "label": "Survived a winter where \"heat included\" meant the heat never worked",
       "type": "Core",
       "input": "checkbox",
       "points": 20
-    },
-    {
-      "id": "suf-been-priced-out-of-an-apartment-or-a-neighborhoo",
-      "category": "Suffering",
-      "label": "Been priced out of an apartment or a neighborhood you loved",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 20
-    },
-    {
-      "id": "suf-lost-a-security-deposit-and-let-it-go-because-fi",
-      "category": "Suffering",
-      "label": "Lost a security deposit and let it go because fighting cost more",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 10
-    },
-    {
-      "id": "suf-got-into-it-with-a-stranger-and-won-or-lost",
-      "category": "Suffering",
-      "label": "Got into it with a stranger, and won or lost",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 10
-    },
-    {
-      "id": "suf-had-a-full-public-breakdown-on-a-stoop-a-bench-o",
-      "category": "Suffering",
-      "label": "Had a full public breakdown on a stoop, a bench, or a platform",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 10
     },
     {
       "id": "suf-endured-a-week-with-no-hot-water",
       "category": "Suffering",
       "label": "Endured a week with no hot water",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 30
+    },
+    {
+      "id": "suf-grieved-someone-something-while-the-city-kept-moving-and-went-to-work-anyway",
+      "category": "Suffering",
+      "label": "Grieved someone/something while the city kept moving, and went to work anyway",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 10
+    },
+    {
+      "id": "suf-had-a-neighbor-so-loud-you-learned-their-whole-l",
+      "category": "Suffering",
+      "label": "Had a neighbor so loud you learned their whole life through the wall",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-stepped-in-something-you-chose-never-to-identify",
+      "category": "Suffering",
+      "label": "Stepped in something you chose never to identify",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-carried-furniture-you-found-on-the-street-home-by-yourself",
+      "category": "Suffering",
+      "label": "Carried furniture you found on the street home by yourself",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-had-your-apartment-flood-from-above-and-lost-som",
+      "category": "Suffering",
+      "label": "Had your apartment flood from above and lost something to it",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 30
+    },
+    {
+      "id": "suf-had-to-walk-up-the-stairs-in-a-10-story-building-because-the-elevator-was-out",
+      "category": "Suffering",
+      "label": "Had to walk up the stairs in a 10+ story building because the elevator was out",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-lived-through-an-apartment-fire-or-an-evacuation",
+      "category": "Suffering",
+      "label": "Lived through an apartment fire, or an evacuation that felt like one",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 30
+    },
+    {
+      "id": "suf-been-stuck-on-a-stalled-train-underground-in-the",
+      "category": "Suffering",
+      "label": "Been stuck on a stalled train, underground, in the dark, no a/c",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 20
+    },
+    {
+      "id": "suf-had-bedbugs",
+      "category": "Suffering",
+      "label": "Had bedbugs",
       "type": "Core",
       "input": "checkbox",
       "points": 30
@@ -384,20 +383,20 @@
       "points": 5
     },
     {
-      "id": "suf-been-on-a-train-when-something-happened-and-the",
+      "id": "suf-being-asked-what-you-re-looking-at",
       "category": "Suffering",
-      "label": "Been on a train when something happened and the whole car became a temporary family",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 10
-    },
-    {
-      "id": "suf-stepped-in-something-you-chose-never-to-identify",
-      "category": "Suffering",
-      "label": "Stepped in something you chose never to identify",
+      "label": "Being asked what you're looking at",
       "type": "Core",
       "input": "checkbox",
       "points": 5
+    },
+    {
+      "id": "suf-spent-a-major-holiday-alone-in-the-city-while-everyone-else-went-home",
+      "category": "Suffering",
+      "label": "Spent a major holiday alone in the city while everyone else \"went home\"",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 10
     },
     {
       "id": "mas-navigate-the-subway-with-no-map-and-no-phone",
@@ -703,12 +702,12 @@
       "display": "Disposition"
     },
     {
-      "id": "suf-had-your-apartment-flood-from-above-and-lost-som",
+      "id": "suf-lost-a-security-deposit-and-let-it-go-because-fi",
       "category": "Suffering",
-      "label": "Had your apartment flood from above and lost something to it",
+      "label": "Lost a security deposit and let it go because fighting cost more",
       "type": "Core",
       "input": "checkbox",
-      "points": 30
+      "points": 10
     },
     {
       "id": "suf-fought-a-landlord-in-housing-court-and-kept-show",
@@ -719,54 +718,6 @@
       "points": 20
     },
     {
-      "id": "suf-lived-through-an-apartment-fire-or-an-evacuation",
-      "category": "Suffering",
-      "label": "Lived through an apartment fire, or an evacuation that felt like one",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 30
-    },
-    {
-      "id": "suf-carried-groceries-home-by-hand-in-the-rain-and-y",
-      "category": "Suffering",
-      "label": "Carried groceries home by hand in the rain and your bag broke",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
-    },
-    {
-      "id": "suf-had-a-neighbor-so-loud-you-learned-their-whole-l",
-      "category": "Suffering",
-      "label": "Had a neighbor so loud you learned their whole life through the wall",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
-    },
-    {
-      "id": "suf-waited-out-a-blizzard-with-the-tub-filled-and-th",
-      "category": "Suffering",
-      "label": "Waited out a blizzard with the tub filled and the windows taped",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
-    },
-    {
-      "id": "suf-had-a-ceiling-leak-for-months-while-nobody-came",
-      "category": "Suffering",
-      "label": "Had a building/apartment issue for months while nobody came to fix it",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 10
-    },
-    {
-      "id": "suf-ended-up-on-an-empty-subway-car-when-the-others-were-packed-iykyk",
-      "category": "Suffering",
-      "label": "Ended up on an empty subway car when the others were packed IYKYK",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
-    },
-    {
       "id": "suf-stepped-off-a-curb-into-the-ankle-deep-corner-lake-at-a-crosswalk",
       "category": "Suffering",
       "label": "Stepped off a curb into the ankle-deep corner lake at a crosswalk",
@@ -775,20 +726,12 @@
       "points": 5
     },
     {
-      "id": "suf-got-caught-in-a-downpour-with-no-umbrella-and-just-accepted-it",
+      "id": "suf-been-on-a-train-when-something-happened-and-the",
       "category": "Suffering",
-      "label": "Got caught in a downpour with no umbrella and just accepted it",
+      "label": "Been on a train when something happened and the whole car became a temporary family",
       "type": "Core",
       "input": "checkbox",
-      "points": 5
-    },
-    {
-      "id": "suf-opened-your-windows-in-january-because-the-radiator-would-not-stop",
-      "category": "Suffering",
-      "label": "Opened your windows in January because the radiator would not stop",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
+      "points": 10
     },
     {
       "id": "suf-hauled-laundry-blocks-to-a-laundromat-or-down-to-a-basement-for-3-or-more-years",
@@ -799,17 +742,17 @@
       "points": 10
     },
     {
-      "id": "suf-watched-a-place-you-loved-become-a-bank-a-pharmacy-or-luxury-condos",
+      "id": "suf-paid-a-broker-s-fee-and-felt-the-specific-rage-o",
       "category": "Suffering",
-      "label": "Watched a place you loved become a bank, a pharmacy, or luxury condos",
+      "label": "Paid a broker's fee and felt the specific rage of it",
       "type": "Core",
       "input": "checkbox",
-      "points": 5
+      "points": 20
     },
     {
-      "id": "suf-had-to-walk-up-the-stairs-in-a-10-story-building-because-the-elevator-was-out",
+      "id": "suf-waited-out-a-blizzard-with-the-tub-filled-and-th",
       "category": "Suffering",
-      "label": "Had to walk up the stairs in a 10+ story building because the elevator was out",
+      "label": "Waited out a blizzard with the tub filled and the windows taped",
       "type": "Core",
       "input": "checkbox",
       "points": 5
@@ -823,6 +766,95 @@
       "points": 5
     },
     {
+      "id": "suf-jumped-a-turnstile",
+      "category": "Suffering",
+      "label": "Jumped a turnstile",
+      "type": "Crime",
+      "input": "checkbox",
+      "points": 30,
+      "crime": true
+    },
+    {
+      "id": "suf-got-into-it-with-a-stranger-and-won-or-lost",
+      "category": "Suffering",
+      "label": "Got into it with a stranger, and won or lost",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 10
+    },
+    {
+      "id": "suf-had-an-actual-rat-inside-your-apartment",
+      "category": "Suffering",
+      "label": "Had an actual rat inside your apartment",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 30
+    },
+    {
+      "id": "suf-been-priced-out-of-an-apartment-or-a-neighborhoo",
+      "category": "Suffering",
+      "label": "Been priced out of an apartment or a neighborhood you loved",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 20
+    },
+    {
+      "id": "suf-carried-groceries-home-by-hand-in-the-rain-and-y",
+      "category": "Suffering",
+      "label": "Carried groceries home by hand in the rain and your bag broke",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-got-caught-in-a-downpour-with-no-umbrella-and-just-accepted-it",
+      "category": "Suffering",
+      "label": "Got caught in a downpour with no umbrella and just accepted it",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-ended-up-on-an-empty-subway-car-when-the-others-were-packed-iykyk",
+      "category": "Suffering",
+      "label": "Ended up on an empty subway car when the others were packed IYKYK",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-opened-your-windows-in-january-because-the-radiator-would-not-stop",
+      "category": "Suffering",
+      "label": "Opened your windows in January because the radiator would not stop",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-lived-somewhere-with-a-tub-in-the-kitchen-or-a-b",
+      "category": "Suffering",
+      "label": "Lived somewhere with a tub in the kitchen, or a \"bedroom\" with no window",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 20
+    },
+    {
+      "id": "suf-had-a-full-public-breakdown-on-a-stoop-a-bench-o",
+      "category": "Suffering",
+      "label": "Had a full public breakdown on a stoop, a bench, or a platform",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 10
+    },
+    {
+      "id": "suf-had-roaches",
+      "category": "Suffering",
+      "label": "Had roaches",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 10
+    },
+    {
       "id": "suf-being-cursed-out-for-ignoring-catcalls",
       "category": "Suffering",
       "label": "Being cursed out for ignoring catcalls",
@@ -831,44 +863,12 @@
       "points": 5
     },
     {
-      "id": "suf-being-asked-what-you-re-looking-at",
+      "id": "suf-survived-a-summer-with-no-air-conditioning",
       "category": "Suffering",
-      "label": "Being asked what you're looking at",
+      "label": "Survived a summer with no air conditioning",
       "type": "Core",
       "input": "checkbox",
-      "points": 5
-    },
-    {
-      "id": "suf-carried-furniture-you-found-on-the-street-home-by-yourself",
-      "category": "Suffering",
-      "label": "Carried furniture you found on the street home by yourself",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
-    },
-    {
-      "id": "suf-got-splashed-by-a-bus-or-cab-hitting-a-puddle",
-      "category": "Suffering",
-      "label": "Got splashed by a bus or cab hitting a puddle",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
-    },
-    {
-      "id": "suf-grieved-someone-something-while-the-city-kept-moving-and-went-to-work-anyway",
-      "category": "Suffering",
-      "label": "Grieved someone/something while the city kept moving, and went to work anyway",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 10
-    },
-    {
-      "id": "suf-spent-a-major-holiday-alone-in-the-city-while-everyone-else-went-home",
-      "category": "Suffering",
-      "label": "Spent a major holiday alone in the city while everyone else \"went home\"",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 10
+      "points": 30
     },
     {
       "id": "sus-know-your-bodega-cat-s-name",
