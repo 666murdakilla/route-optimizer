@@ -303,6 +303,14 @@
       "points": 30
     },
     {
+      "id": "suf-sat-in-a-mystery-wet-subway-seat",
+      "category": "Suffering",
+      "label": "Sat in a mystery-wet subway seat",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
       "id": "suf-grieved-someone-something-while-the-city-kept-moving-and-went-to-work-anyway",
       "category": "Suffering",
       "label": "Grieved someone/something while the city kept moving, and went to work anyway",
@@ -386,6 +394,14 @@
       "id": "suf-being-asked-what-you-re-looking-at",
       "category": "Suffering",
       "label": "Being asked what you're looking at",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
+    },
+    {
+      "id": "suf-got-dripped-on-by-a-window-ac-unit-and-chose-to-believe-it-was-maybe-just-a-raindrop",
+      "category": "Suffering",
+      "label": "Got dripped on by a window AC unit and chose to believe it was maybe just a raindrop",
       "type": "Core",
       "input": "checkbox",
       "points": 5
@@ -716,6 +732,14 @@
       "type": "Core",
       "input": "checkbox",
       "points": 10
+    },
+    {
+      "id": "suf-woken-at-7am-by-construction-outside",
+      "category": "Suffering",
+      "label": "Woken at 7am by construction outside",
+      "type": "Core",
+      "input": "checkbox",
+      "points": 5
     },
     {
       "id": "suf-fought-a-landlord-in-housing-court-and-kept-show",
