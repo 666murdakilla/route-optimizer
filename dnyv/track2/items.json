@@ -368,14 +368,6 @@
       "points": 10
     },
     {
-      "id": "suf-been-stuck-in-an-elevator-a-turnstile-or-a-revol",
-      "category": "Suffering",
-      "label": "Been stuck in an elevator, a turnstile, or a revolving door",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
-    },
-    {
       "id": "suf-endured-a-week-with-no-hot-water",
       "category": "Suffering",
       "label": "Endured a week with no hot water",
@@ -775,14 +767,6 @@
       "points": 5
     },
     {
-      "id": "suf-were-held-momentarily-due-to-train-traffic-ahead-of-us-for-at-least-twenty-minutes",
-      "category": "Suffering",
-      "label": "Were held \"momentarily, due to train traffic ahead of us\" for at least twenty minutes",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
-    },
-    {
       "id": "suf-stepped-off-a-curb-into-the-ankle-deep-corner-lake-at-a-crosswalk",
       "category": "Suffering",
       "label": "Stepped off a curb into the ankle-deep corner lake at a crosswalk",
@@ -794,14 +778,6 @@
       "id": "suf-got-caught-in-a-downpour-with-no-umbrella-and-just-accepted-it",
       "category": "Suffering",
       "label": "Got caught in a downpour with no umbrella and just accepted it",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
-    },
-    {
-      "id": "suf-had-your-shoes-or-boots-destroyed-by-winter-sidewalk-salt",
-      "category": "Suffering",
-      "label": "Had your shoes or boots destroyed by winter sidewalk salt",
       "type": "Core",
       "input": "checkbox",
       "points": 5
@@ -826,14 +802,6 @@
       "id": "suf-watched-a-place-you-loved-become-a-bank-a-pharmacy-or-luxury-condos",
       "category": "Suffering",
       "label": "Watched a place you loved become a bank, a pharmacy, or luxury condos",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
-    },
-    {
-      "id": "suf-had-your-bodega-deli-or-coffee-cart-close-or-change-hands",
-      "category": "Suffering",
-      "label": "Had your bodega, deli, or coffee cart close or change hands",
       "type": "Core",
       "input": "checkbox",
       "points": 5
@@ -882,14 +850,6 @@
       "id": "suf-got-splashed-by-a-bus-or-cab-hitting-a-puddle",
       "category": "Suffering",
       "label": "Got splashed by a bus or cab hitting a puddle",
-      "type": "Core",
-      "input": "checkbox",
-      "points": 5
-    },
-    {
-      "id": "suf-getting-an-appendage-caught-in-subway-doors",
-      "category": "Suffering",
-      "label": "Getting an appendage caught in subway doors",
       "type": "Core",
       "input": "checkbox",
       "points": 5
