@@ -2,15 +2,15 @@ import { useState } from 'react'
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { SortableContext, arrayMove, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { computeArrivalMinutes, dayOffsetLabel, formatDurationMinutes, minutesToInputValue } from '../lib/schedule'
+import { formatDurationMinutes } from '../lib/schedule'
 import { buildGoogleMapsDirectionsUrl } from '../lib/mapsLink'
 import { buildIcsCalendar, downloadTextFile } from '../lib/calendarExport'
 import { DAYS_OF_WEEK } from '../lib/savedRoutes'
 
 // One route's (distance- or time-optimized) stop list: drag-and-drop
-// reorderable, with a per-stop arrival time (the "anchor" - see
-// lib/schedule.js) and dwell duration, and a button to snap back to the
-// solver's original order.
+// reorderable, with a per-stop arrival time and dwell duration (both fully
+// manual - typing a time on one stop never changes any other stop's time),
+// and a button to snap back to the solver's original order.
 export default function RouteStopList({
   routeKey,
   label,
@@ -18,17 +18,15 @@ export default function RouteStopList({
   totalMiles,
   totalMinutes,
   stopDurations,
-  anchor,
+  times,
   pinned,
-  referenceLocations,
-  durationMinutes,
   visible,
   onToggleVisible,
   isModified,
   onReorder,
   onResetOrder,
   onDurationChange,
-  onAnchorChange,
+  onTimeChange,
   onSaveRoute,
   onTogglePin,
   onRecalculate,
@@ -43,10 +41,10 @@ export default function RouteStopList({
   const [saveDay, setSaveDay] = useState('')
   const [savedConfirmation, setSavedConfirmation] = useState('')
 
-  const arrivalMinutes = computeArrivalMinutes(order, referenceLocations, durationMinutes, stopDurations, anchor)
   const mapsUrl = buildGoogleMapsDirectionsUrl(order)
   const pinnedCount = Object.keys(pinned).length
-  const canExportCalendar = Boolean(anchor && scheduleDate)
+  const hasAnyTime = Object.values(times).some(Boolean)
+  const canExportCalendar = Boolean(scheduleDate && hasAnyTime)
 
   function handleDragEnd(event) {
     const { active, over } = event
@@ -65,7 +63,7 @@ export default function RouteStopList({
   }
 
   function handleExportCalendar() {
-    const ics = buildIcsCalendar(order, scheduleDate, stopDurations, anchor, durationMinutes, referenceLocations, phoneByLocationId)
+    const ics = buildIcsCalendar(order, scheduleDate, stopDurations, times, phoneByLocationId)
     if (!ics) return
     downloadTextFile(`${routeKey}-route-${scheduleDate}.ics`, ics, 'text/calendar')
   }
@@ -117,7 +115,7 @@ export default function RouteStopList({
         <button type="button" onClick={handleExportCalendar} disabled={!canExportCalendar}>
           Export to Calendar
         </button>
-        {!anchor && <span className="pin-hint">Set an arrival time on a stop below first.</span>}
+        {!hasAnyTime && <span className="pin-hint">Set an arrival time on a stop below first.</span>}
       </div>
 
       <div className="pin-control">
@@ -136,11 +134,11 @@ export default function RouteStopList({
                 loc={loc}
                 index={index}
                 duration={stopDurations[loc.id] ?? 0}
-                arrivalMinutes={arrivalMinutes[index]}
+                time={times[loc.id] ?? ''}
                 pinned={index === 0 ? true : Boolean(pinned[loc.id])}
                 pinDisabled={index === 0}
                 onDurationChange={(minutes) => onDurationChange(loc.id, minutes)}
-                onTimeChange={(time) => onAnchorChange(loc.id, time)}
+                onTimeChange={(time) => onTimeChange(loc.id, time)}
                 onTogglePin={() => onTogglePin(loc.id)}
               />
             ))}
@@ -151,15 +149,13 @@ export default function RouteStopList({
   )
 }
 
-function StopRow({ loc, index, duration, arrivalMinutes, pinned, pinDisabled, onDurationChange, onTimeChange, onTogglePin }) {
+function StopRow({ loc, index, duration, time, pinned, pinDisabled, onDurationChange, onTimeChange, onTogglePin }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: loc.id })
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1,
   }
-  const timeValue = arrivalMinutes !== null ? minutesToInputValue(arrivalMinutes) : ''
-  const offsetLabel = arrivalMinutes !== null ? dayOffsetLabel(arrivalMinutes) : ''
 
   return (
     <li ref={setNodeRef} style={style} className={`stop-row${pinned ? ' stop-row-pinned' : ''}`}>
@@ -188,8 +184,7 @@ function StopRow({ loc, index, duration, arrivalMinutes, pinned, pinDisabled, on
       </span>
       <label className="stop-field">
         <span>Arrive</span>
-        <input type="time" value={timeValue} onChange={(e) => onTimeChange(e.target.value)} />
-        {offsetLabel && <span className="day-offset">{offsetLabel}</span>}
+        <input type="time" value={time} onChange={(e) => onTimeChange(e.target.value)} />
       </label>
       <label className="stop-field">
         <span>Stay (min)</span>

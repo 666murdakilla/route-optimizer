@@ -45,6 +45,16 @@ function buildRouteSummary(orderIndices, locations, distanceMiles, durationMinut
   }
 }
 
+// Solves a single fresh (unpinned, free-end) route for one metric against
+// already-fetched matrices - used when reopening a saved route to give its
+// unsaved counterpart (e.g. "fastest time" when only "shortest distance"
+// was saved) a sensible starting order, with no new API call.
+export function solveSingleRoute(locations, matrices, startIndex, optimizeFor) {
+  const matrix = optimizeFor === 'time' ? matrices.durationMinutes : matrices.distanceMiles
+  const result = solveTSP(matrix, startIndex)
+  return buildRouteSummary(result.order, locations, matrices.distanceMiles, matrices.durationMinutes)
+}
+
 // Recomputes total miles/minutes for a manually reordered stop list. `order`
 // is a permutation of the same stops `locations`/the matrices were built
 // from - reordering never changes which stops are involved, only their

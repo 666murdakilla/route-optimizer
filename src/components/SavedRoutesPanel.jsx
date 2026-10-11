@@ -7,7 +7,7 @@ const ROUTE_LABELS = {
   time: 'Fastest time',
 }
 
-export default function SavedRoutesPanel({ savedRoutes, onDelete }) {
+export default function SavedRoutesPanel({ savedRoutes, onDelete, onReopen }) {
   const savedDays = DAYS_OF_WEEK.filter((day) => savedRoutes[day])
 
   return (
@@ -51,6 +51,9 @@ export default function SavedRoutesPanel({ savedRoutes, onDelete }) {
                     Open in Google Maps ↗
                   </a>
                 )}
+                <button type="button" className="reopen-btn" onClick={() => onReopen(day)}>
+                  Reopen
+                </button>
               </li>
             )
           })}

@@ -30,26 +30,29 @@ client-side.
 - Pin any stop (📌) at its current position and hit "Recalculate with pins"
   to re-optimize every other stop around it - the exact same solver, just
   constrained to keep pinned stops exactly where they are.
-- Per-stop arrival time and dwell-duration editing: set a time on any one
-  stop and the rest are estimated automatically (forward and backward)
-  using real drive times and each stop's dwell duration, staying in sync as
-  you reorder stops or change durations.
+- Per-stop arrival time and dwell-duration editing: every stop has its own
+  independent time field - setting one never changes any other stop's time.
+  The dwell duration only affects that stop's own calendar event length (see
+  calendar export below).
 - Every route has an "Open in Google Maps" link (a plain maps.google.com
   directions URL - no extra API calls) that opens the current stop order for
   turn-by-turn navigation.
-- Save the current state of either route to a day of the week (Monday-Sunday,
-  one route per day, persisted to `localStorage`) for quick recall later -
-  each saved route keeps its own stop order, totals, and Google Maps link.
+- Save the current state of either route - stop order, pins, arrival times,
+  and dwell durations - to a day of the week (Monday-Sunday, one route per
+  day, persisted to `localStorage`). A "Reopen" button on each saved route
+  brings it back into the Calculate section, fully editable again, with
+  everything restored exactly as saved; the other route type (whichever
+  wasn't saved) gets its own freshly-optimized order alongside it.
 - Import contact info by pasting rows copied from a Google Docs/Sheets table
   (Name, Phone, Address) - matches by name against your saved locations to
   fill in phone numbers, no Google sign-in involved.
-- Export a route to a calendar file (`.ics`) once you've set an arrival time
-  and picked a date - one event per stop with its computed arrival time,
-  address, and phone number, ready to import into Google/Apple/Outlook
-  calendars with a click. This and the contact import above are both plain
-  client-side file handling - no OAuth/Google sign-in required; reading a
-  Doc live or writing directly to Calendar would need that instead (a
-  heavier lift - see "Notes and limitations").
+- Export a route to a calendar file (`.ics`) once you've picked a date and
+  set at least one stop's arrival time - one event per stop that has a time
+  set, using that time, its address, and phone number, ready to import into
+  Google/Apple/Outlook calendars with a click. This and the contact import
+  above are both plain client-side file handling - no OAuth/Google sign-in
+  required; reading a Doc live or writing directly to Calendar would need
+  that instead (a heavier lift - see "Notes and limitations").
 
 ## Getting a Google Maps API key
 
@@ -108,7 +111,7 @@ src/
     distanceMatrix.js   Fetches the distance/duration matrix for selected stops
     tsp.js              TSP solver (Held-Karp exact + nearest-neighbor/2-opt fallback)
     computeRoutes.js    Combines the matrix + solver into the two route results
-    schedule.js         Per-stop arrival time propagation from a single anchor stop
+    schedule.js         Formats total trip minutes as "X hr Y min"
     mapsLink.js          Builds a Google Maps directions URL from a stop order
     contactImport.js     Parses pasted contact rows and matches them to locations by name
     calendarExport.js    Builds a downloadable .ics calendar file for a route

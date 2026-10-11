@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useGoogleMaps } from './hooks/useGoogleMaps'
 import { loadLocations, saveLocations } from './lib/storage'
-import { computeRoutes, recomputeRouteTotals, recalculateWithPins } from './lib/computeRoutes'
+import { computeRoutes, recomputeRouteTotals, recalculateWithPins, solveSingleRoute } from './lib/computeRoutes'
 import { loadSavedRoutes, saveSavedRoutes } from './lib/savedRoutes'
 import MapView from './components/MapView'
 import LocationForm from './components/LocationForm'
@@ -189,14 +189,13 @@ export default function App() {
     }))
   }
 
-  function handleAnchorChange(routeKey, locationId, time) {
+  function handleTimeChange(routeKey, locationId, time) {
     setRouteViews((prev) => {
       const current = prev[routeKey]
-      if (time === '') {
-        if (current.anchor?.locationId !== locationId) return prev
-        return { ...prev, [routeKey]: { ...current, anchor: null } }
-      }
-      return { ...prev, [routeKey]: { ...current, anchor: { locationId, time } } }
+      const nextTimes = { ...current.times }
+      if (time === '') delete nextTimes[locationId]
+      else nextTimes[locationId] = time
+      return { ...prev, [routeKey]: { ...current, times: nextTimes } }
     })
   }
 
@@ -210,12 +209,47 @@ export default function App() {
         order: view.order,
         totalMiles: view.totalMiles,
         totalMinutes: view.totalMinutes,
+        stopDurations: view.stopDurations,
+        times: view.times,
+        pinned: view.pinned,
+        locations: routesResult.locations,
+        matrices: routesResult.matrices,
       },
     }))
   }
 
   function handleDeleteSavedRoute(day) {
     setSavedRoutes((prev) => ({ ...prev, [day]: null }))
+  }
+
+  function handleReopenSavedRoute(day) {
+    const saved = savedRoutes[day]
+    if (!saved) return
+
+    const otherKey = saved.routeKey === 'distance' ? 'time' : 'distance'
+    const startIndex = saved.locations.findIndex((loc) => loc.id === saved.order[0].id)
+    const otherRoute = solveSingleRoute(saved.locations, saved.matrices, startIndex, otherKey)
+    const savedRoute = solveSingleRoute(saved.locations, saved.matrices, startIndex, saved.routeKey)
+
+    setRoutesResult({
+      distance: saved.routeKey === 'distance' ? savedRoute : otherRoute,
+      time: saved.routeKey === 'time' ? savedRoute : otherRoute,
+      identicalOrder: false,
+      locations: saved.locations,
+      matrices: saved.matrices,
+    })
+    setRouteViews({
+      [saved.routeKey]: {
+        order: saved.order,
+        totalMiles: saved.totalMiles,
+        totalMinutes: saved.totalMinutes,
+        stopDurations: saved.stopDurations,
+        times: saved.times,
+        pinned: saved.pinned,
+        scheduleDate: '',
+      },
+      [otherKey]: routeViewFromSummary(otherRoute),
+    })
   }
 
   function handleScheduleDateChange(routeKey, date) {
@@ -299,7 +333,7 @@ export default function App() {
               onReorder={handleReorder}
               onResetOrder={handleResetOrder}
               onDurationChange={handleDurationChange}
-              onAnchorChange={handleAnchorChange}
+              onTimeChange={handleTimeChange}
               onSaveRoute={handleSaveRoute}
               savedRoutes={savedRoutes}
               onDeleteSavedRoute={handleDeleteSavedRoute}
@@ -307,6 +341,7 @@ export default function App() {
               onRecalculate={handleRecalculate}
               onScheduleDateChange={handleScheduleDateChange}
               phoneByLocationId={phoneByLocationId}
+              onReopenSavedRoute={handleReopenSavedRoute}
             />
           )}
         </section>
@@ -321,7 +356,7 @@ function routeViewFromSummary(routeSummary) {
     totalMiles: routeSummary.totalMiles,
     totalMinutes: routeSummary.totalMinutes,
     stopDurations: {},
-    anchor: null,
+    times: {},
     pinned: {},
     scheduleDate: '',
   }

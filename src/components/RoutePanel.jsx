@@ -22,7 +22,7 @@ export default function RoutePanel({
   onReorder,
   onResetOrder,
   onDurationChange,
-  onAnchorChange,
+  onTimeChange,
   onSaveRoute,
   savedRoutes,
   onDeleteSavedRoute,
@@ -30,6 +30,7 @@ export default function RoutePanel({
   onRecalculate,
   onScheduleDateChange,
   phoneByLocationId,
+  onReopenSavedRoute,
 }) {
   const canCalculate = selectedLocations.length >= 2 && !loading
   const identicalOrder =
@@ -99,17 +100,15 @@ export default function RoutePanel({
                 totalMiles={view.totalMiles}
                 totalMinutes={view.totalMinutes}
                 stopDurations={view.stopDurations}
-                anchor={view.anchor}
+                times={view.times}
                 pinned={view.pinned}
-                referenceLocations={routesResult.locations}
-                durationMinutes={routesResult.matrices.durationMinutes}
                 visible={visibleRoutes[key]}
                 onToggleVisible={() => onToggleVisible(key)}
                 isModified={isModified}
                 onReorder={(newOrder) => onReorder(key, newOrder)}
                 onResetOrder={() => onResetOrder(key)}
                 onDurationChange={(locId, minutes) => onDurationChange(key, locId, minutes)}
-                onAnchorChange={(locId, time) => onAnchorChange(key, locId, time)}
+                onTimeChange={(locId, time) => onTimeChange(key, locId, time)}
                 onSaveRoute={(day) => onSaveRoute(key, day)}
                 onTogglePin={(locId) => onTogglePin(key, locId)}
                 onRecalculate={() => onRecalculate(key)}
@@ -122,7 +121,7 @@ export default function RoutePanel({
         </div>
       )}
 
-      <SavedRoutesPanel savedRoutes={savedRoutes} onDelete={onDeleteSavedRoute} />
+      <SavedRoutesPanel savedRoutes={savedRoutes} onDelete={onDeleteSavedRoute} onReopen={onReopenSavedRoute} />
     </div>
   )
 }

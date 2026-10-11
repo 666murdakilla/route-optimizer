@@ -1,24 +1,22 @@
-import { computeArrivalMinutes } from './schedule.js'
-
-// Builds a standard .ics (iCalendar) file for a route - one VEVENT per stop,
-// using the same anchor-based arrival times already computed for display
-// (see lib/schedule.js), combined with a calendar date the user picks. No
-// Google sign-in needed: this is a plain file the browser downloads, which
-// any calendar app (Google, Apple, Outlook) can import.
+// Builds a standard .ics (iCalendar) file for a route - one VEVENT per stop
+// that has a manually-set time, combined with a calendar date the user
+// picks. No Google sign-in needed: this is a plain file the browser
+// downloads, which any calendar app (Google, Apple, Outlook) can import.
 //
-// Returns null if there's no anchor time set yet - without one, arrival
-// times are all unknown, so there's nothing to schedule.
-export function buildIcsCalendar(order, scheduleDate, stopDurations, anchor, durationMinutes, referenceLocations, phoneByLocationId) {
-  if (!anchor || !scheduleDate) return null
-
-  const arrivalMinutes = computeArrivalMinutes(order, referenceLocations, durationMinutes, stopDurations, anchor)
-  if (arrivalMinutes.every((m) => m === null)) return null
+// `times` maps location id -> "HH:MM" (only stops the user actually typed a
+// time into have an entry); stops with no time set are skipped since there's
+// nothing to schedule them at. Returns null if there's no date, or no stop
+// has a time set at all.
+export function buildIcsCalendar(order, scheduleDate, stopDurations, times, phoneByLocationId) {
+  if (!scheduleDate) return null
 
   const now = formatIcsDateTime(new Date(), true)
   const events = order
-    .map((loc, i) => {
-      if (arrivalMinutes[i] === null) return null
-      const start = dateTimeFromSchedule(scheduleDate, arrivalMinutes[i])
+    .map((loc) => {
+      const time = times[loc.id]
+      if (!time) return null
+
+      const start = dateTimeFromSchedule(scheduleDate, time)
       const durationMins = Math.max(stopDurations[loc.id] ?? 0, 15)
       const end = new Date(start.getTime() + durationMins * 60000)
       const phone = phoneByLocationId[loc.id]
@@ -44,11 +42,10 @@ export function buildIcsCalendar(order, scheduleDate, stopDurations, anchor, dur
   )
 }
 
-function dateTimeFromSchedule(scheduleDate, minutesSinceMidnight) {
+function dateTimeFromSchedule(scheduleDate, hhmm) {
   const [year, month, day] = scheduleDate.split('-').map(Number)
-  const dt = new Date(year, month - 1, day, 0, 0, 0, 0)
-  dt.setMinutes(dt.getMinutes() + minutesSinceMidnight)
-  return dt
+  const [hours, minutes] = hhmm.split(':').map(Number)
+  return new Date(year, month - 1, day, hours, minutes, 0, 0)
 }
 
 // `utc` formats using UTC components (for DTSTAMP, which must be UTC);
