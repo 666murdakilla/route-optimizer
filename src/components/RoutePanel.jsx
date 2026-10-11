@@ -28,6 +28,8 @@ export default function RoutePanel({
   onDeleteSavedRoute,
   onTogglePin,
   onRecalculate,
+  onScheduleDateChange,
+  phoneByLocationId,
 }) {
   const canCalculate = selectedLocations.length >= 2 && !loading
   const identicalOrder =
@@ -111,6 +113,9 @@ export default function RoutePanel({
                 onSaveRoute={(day) => onSaveRoute(key, day)}
                 onTogglePin={(locId) => onTogglePin(key, locId)}
                 onRecalculate={() => onRecalculate(key)}
+                scheduleDate={view.scheduleDate}
+                onScheduleDateChange={(date) => onScheduleDateChange(key, date)}
+                phoneByLocationId={phoneByLocationId}
               />
             )
           })}

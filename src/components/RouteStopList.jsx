@@ -4,6 +4,7 @@ import { SortableContext, arrayMove, sortableKeyboardCoordinates, useSortable, v
 import { CSS } from '@dnd-kit/utilities'
 import { computeArrivalMinutes, dayOffsetLabel, formatDurationMinutes, minutesToInputValue } from '../lib/schedule'
 import { buildGoogleMapsDirectionsUrl } from '../lib/mapsLink'
+import { buildIcsCalendar, downloadTextFile } from '../lib/calendarExport'
 import { DAYS_OF_WEEK } from '../lib/savedRoutes'
 
 // One route's (distance- or time-optimized) stop list: drag-and-drop
@@ -31,6 +32,9 @@ export default function RouteStopList({
   onSaveRoute,
   onTogglePin,
   onRecalculate,
+  scheduleDate,
+  onScheduleDateChange,
+  phoneByLocationId,
 }) {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
@@ -42,6 +46,7 @@ export default function RouteStopList({
   const arrivalMinutes = computeArrivalMinutes(order, referenceLocations, durationMinutes, stopDurations, anchor)
   const mapsUrl = buildGoogleMapsDirectionsUrl(order)
   const pinnedCount = Object.keys(pinned).length
+  const canExportCalendar = Boolean(anchor && scheduleDate)
 
   function handleDragEnd(event) {
     const { active, over } = event
@@ -57,6 +62,12 @@ export default function RouteStopList({
     setSavedConfirmation(`Saved to ${saveDay}`)
     setSaveDay('')
     setTimeout(() => setSavedConfirmation(''), 2500)
+  }
+
+  function handleExportCalendar() {
+    const ics = buildIcsCalendar(order, scheduleDate, stopDurations, anchor, durationMinutes, referenceLocations, phoneByLocationId)
+    if (!ics) return
+    downloadTextFile(`${routeKey}-route-${scheduleDate}.ics`, ics, 'text/calendar')
   }
 
   return (
@@ -96,6 +107,17 @@ export default function RouteStopList({
           Save
         </button>
         {savedConfirmation && <span className="save-confirmation">{savedConfirmation}</span>}
+      </div>
+
+      <div className="calendar-export-control">
+        <label className="stop-field">
+          <span>Date</span>
+          <input type="date" value={scheduleDate} onChange={(e) => onScheduleDateChange(e.target.value)} />
+        </label>
+        <button type="button" onClick={handleExportCalendar} disabled={!canExportCalendar}>
+          Export to Calendar
+        </button>
+        {!anchor && <span className="pin-hint">Set an arrival time on a stop below first.</span>}
       </div>
 
       <div className="pin-control">

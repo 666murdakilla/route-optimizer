@@ -40,6 +40,16 @@ client-side.
 - Save the current state of either route to a day of the week (Monday-Sunday,
   one route per day, persisted to `localStorage`) for quick recall later -
   each saved route keeps its own stop order, totals, and Google Maps link.
+- Import contact info by pasting rows copied from a Google Docs/Sheets table
+  (Name, Phone, Address) - matches by name against your saved locations to
+  fill in phone numbers, no Google sign-in involved.
+- Export a route to a calendar file (`.ics`) once you've set an arrival time
+  and picked a date - one event per stop with its computed arrival time,
+  address, and phone number, ready to import into Google/Apple/Outlook
+  calendars with a click. This and the contact import above are both plain
+  client-side file handling - no OAuth/Google sign-in required; reading a
+  Doc live or writing directly to Calendar would need that instead (a
+  heavier lift - see "Notes and limitations").
 
 ## Getting a Google Maps API key
 
@@ -100,6 +110,8 @@ src/
     computeRoutes.js    Combines the matrix + solver into the two route results
     schedule.js         Per-stop arrival time propagation from a single anchor stop
     mapsLink.js          Builds a Google Maps directions URL from a stop order
+    contactImport.js     Parses pasted contact rows and matches them to locations by name
+    calendarExport.js    Builds a downloadable .ics calendar file for a route
     storage.js           localStorage persistence for saved locations
     savedRoutes.js        localStorage persistence for routes saved per day
 ```
@@ -137,3 +149,10 @@ any position in the list.
   if you want the roads themselves drawn.
 - Only locations are persisted to `localStorage`; the current selection and
   last-calculated routes reset on page refresh.
+- Contact import and calendar export are both plain client-side file
+  handling (a paste box and a downloaded `.ics` file) - no Google sign-in.
+  Live-reading a Google Doc or writing events directly into Google Calendar
+  would need real OAuth (a sign-in flow, a consent screen, and - since this
+  app won't go through Google's app verification - staying in "Testing"
+  mode with an explicit list of allowed accounts and an "unverified app"
+  warning on every sign-in).

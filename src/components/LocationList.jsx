@@ -10,6 +10,7 @@ export default function LocationList({ locations, selectedIds, onToggleSelect, o
           <th aria-label="Select" />
           <th>Company</th>
           <th>Address</th>
+          <th>Phone</th>
           <th aria-label="Delete" />
         </tr>
       </thead>
@@ -26,6 +27,7 @@ export default function LocationList({ locations, selectedIds, onToggleSelect, o
             </td>
             <td>{loc.name}</td>
             <td className="address-cell">{loc.address}</td>
+            <td className="address-cell">{loc.phone ?? ''}</td>
             <td>
               <button
                 type="button"

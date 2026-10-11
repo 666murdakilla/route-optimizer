@@ -6,6 +6,7 @@ import { loadSavedRoutes, saveSavedRoutes } from './lib/savedRoutes'
 import MapView from './components/MapView'
 import LocationForm from './components/LocationForm'
 import LocationList from './components/LocationList'
+import ContactImportPanel from './components/ContactImportPanel'
 import RoutePanel from './components/RoutePanel'
 import './App.css'
 
@@ -60,6 +61,10 @@ export default function App() {
 
   function handleAdd(location) {
     setLocations((prev) => [...prev, location])
+  }
+
+  function handleImportContacts(updatedLocations) {
+    setLocations(updatedLocations)
   }
 
   function handleDelete(id) {
@@ -213,6 +218,17 @@ export default function App() {
     setSavedRoutes((prev) => ({ ...prev, [day]: null }))
   }
 
+  function handleScheduleDateChange(routeKey, date) {
+    setRouteViews((prev) => ({
+      ...prev,
+      [routeKey]: { ...prev[routeKey], scheduleDate: date },
+    }))
+  }
+
+  const phoneByLocationId = Object.fromEntries(
+    locations.filter((loc) => loc.phone).map((loc) => [loc.id, loc.phone]),
+  )
+
   return (
     <div className="app">
       <header className="app-header">
@@ -264,6 +280,8 @@ export default function App() {
             />
           </div>
 
+          <ContactImportPanel locations={locations} onImport={handleImportContacts} />
+
           {mapsStatus === 'ready' && (
             <RoutePanel
               selectedLocations={selectedLocations}
@@ -287,6 +305,8 @@ export default function App() {
               onDeleteSavedRoute={handleDeleteSavedRoute}
               onTogglePin={handleTogglePin}
               onRecalculate={handleRecalculate}
+              onScheduleDateChange={handleScheduleDateChange}
+              phoneByLocationId={phoneByLocationId}
             />
           )}
         </section>
@@ -303,6 +323,7 @@ function routeViewFromSummary(routeSummary) {
     stopDurations: {},
     anchor: null,
     pinned: {},
+    scheduleDate: '',
   }
 }
 
